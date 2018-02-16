@@ -2,6 +2,7 @@ const express = require('express');
 const fs = require('fs');
 const bodyParser = require('body-parser');
 const _ = require('lodash');
+const HttpStatus = require('http-status-codes');
 const { Portfolio, Setting } = require('./models');
 
 /** ============================================================= *
@@ -28,23 +29,25 @@ app.use((req, res, next) => {
 /** ============================================================= *
   * Request
   * ============================================================= */
+const { OK, BAD_REQUEST } = HttpStatus
+
 app.get('/api/v1/setting', (req, res) => {
   Setting.find()
     .then((settings) => {
-      res.status('200').send(_.head(settings));
+      res.status(OK).send(_.head(settings));
     })
     .catch((err) => {
-      res.status('400').send(err);
+      res.status(BAD_REQUEST).send(err);
     })
 })
 
 app.get('/api/v1/portfolio', (req, res) => {
   Portfolio.find()
     .then((portfolios) => {
-      res.status('200').send(portfolios);
+      res.status(OK).send({ portfolios });
     })
     .catch((err) => {
-      res.status('400').send(err);
+      res.status(BAD_REQUEST).send(err);
     })
 });
 
@@ -52,10 +55,10 @@ app.get('/api/v1/portfolio/:id', (req, res) => {
   const id = req.params.id
   Portfolio.findById(id)
     .then((portfolios) => {
-      res.status('200').send(portfolios);
+      res.status(OK).send(portfolios);
     })
     .catch((err) => {
-      res.status('400').send(err);
+      res.status(BAD_REQUEST).send(err);
     })
 });
 
@@ -63,10 +66,10 @@ app.post('/api/v1/portfolio', (req, res) => {
   let portfolio = new Portfolio(req.body);
   portfolio.save()
     .then(() => {
-      res.status('200').send('Saved new portfolio.');
+      res.status(OK).send('Saved new portfolio.');
     })
     .catch((err) => {
-      res.status('400').send(err);
+      res.status(BAD_REQUEST).send(err);
     });
 })
 
