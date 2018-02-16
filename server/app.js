@@ -1,7 +1,7 @@
 const express = require('express');
 const fs = require('fs');
 const bodyParser = require('body-parser');
-const { Portfolio } = require('./server/models');
+const { Portfolio } = require('./models');
 
 /** ============================================================= *
   * Middleware
