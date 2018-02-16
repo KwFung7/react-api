@@ -1,7 +1,8 @@
 const express = require('express');
 const fs = require('fs');
 const bodyParser = require('body-parser');
-const { Portfolio } = require('./models');
+const _ = require('lodash');
+const { Portfolio, Setting } = require('./models');
 
 /** ============================================================= *
   * Middleware
@@ -27,8 +28,20 @@ app.use((req, res, next) => {
 /** ============================================================= *
   * Request
   * ============================================================= */
-app.get('/api/v1/hello', (req, res) => {
-  res.send({ testingText: 'Testing api !'});
+app.get('/api/v1/portfolio', (req, res) => {
+  // fetch system setting and selected portfolio id
+  Setting.find().then((settings) => {
+    const selectedPortfolioId = _.head(settings).selected_portfolio
+
+    // find selected portfolio with id
+    Portfolio.findById(selectedPortfolioId).then((portfolios) => {
+      res.status('200').send(portfolios);
+    }, (err) => {
+      res.status('400').send(err);
+    })
+  }, (err) => {
+    res.status('400').send(err);
+  })
 });
 
 app.post('/api/v1/portfolio', (req, res) => {
