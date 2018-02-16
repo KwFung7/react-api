@@ -1,5 +1,5 @@
 let mongoose = require('../db-connect.js');
-const portfolioSchema = require('../schema/portfolio/portfolioSchema');
+const portfolioSchema = require('../schemas/portfolio/portfolioSchema');
 
 /** ============================================================= *
   * Model

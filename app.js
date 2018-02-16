@@ -1,9 +1,7 @@
 const express = require('express');
 const fs = require('fs');
 const bodyParser = require('body-parser');
-const { Portfolio } = require('./model');
-// const portfolioExample = require('./example/portfolioExample');
-
+const { Portfolio } = require('./server/models');
 
 /** ============================================================= *
   * Middleware
@@ -16,7 +14,8 @@ app.use((req, res, next) => {
   let log = `${now}: ${req.method} ${req.url}`;
   fs.appendFile('server.log', `${log}\n`, err => {
     if (err) {
-      console.log('Unable to append server log.');
+      console.error('Unable to append server log.');
+      return;
     }
     console.log('Record was appended to server log.');
   });
