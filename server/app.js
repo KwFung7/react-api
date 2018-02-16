@@ -38,6 +38,16 @@ app.get('/api/v1/setting', (req, res) => {
     })
 })
 
+app.get('/api/v1/portfolio', (req, res) => {
+  Portfolio.find()
+    .then((portfolios) => {
+      res.status('200').send(portfolios);
+    })
+    .catch((err) => {
+      res.status('400').send(err);
+    })
+});
+
 app.get('/api/v1/portfolio/:id', (req, res) => {
   const id = req.params.id
   Portfolio.findById(id)
