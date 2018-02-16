@@ -28,29 +28,36 @@ app.use((req, res, next) => {
 /** ============================================================= *
   * Request
   * ============================================================= */
-app.get('/api/v1/portfolio', (req, res) => {
-  // fetch system setting and selected portfolio id
-  Setting.find().then((settings) => {
-    const selectedPortfolioId = _.head(settings).selected_portfolio
-
-    // find selected portfolio with id
-    Portfolio.findById(selectedPortfolioId).then((portfolios) => {
-      res.status('200').send(portfolios);
-    }, (err) => {
+app.get('/api/v1/setting', (req, res) => {
+  Setting.find()
+    .then((settings) => {
+      res.status('200').send(_.head(settings));
+    })
+    .catch((err) => {
       res.status('400').send(err);
     })
-  }, (err) => {
-    res.status('400').send(err);
-  })
+})
+
+app.get('/api/v1/portfolio/:id', (req, res) => {
+  const id = req.params.id
+  Portfolio.findById(id)
+    .then((portfolios) => {
+      res.status('200').send(portfolios);
+    })
+    .catch((err) => {
+      res.status('400').send(err);
+    })
 });
 
 app.post('/api/v1/portfolio', (req, res) => {
   let portfolio = new Portfolio(req.body);
-  portfolio.save().then(() => {
-    res.status('200').send('Saved new portfolio.');
-  }, (err) => {
-    res.status('400').send(err);
-  });
+  portfolio.save()
+    .then(() => {
+      res.status('200').send('Saved new portfolio.');
+    })
+    .catch((err) => {
+      res.status('400').send(err);
+    });
 })
 
 module.exports = app;
