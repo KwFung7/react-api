@@ -1,4 +1,5 @@
 const portfolioExample = {
+  name: 'felixkwan',
   header: {
     name: 'Felix Kwan',
     position: 'Programmer'
@@ -126,6 +127,6 @@ const portfolioExample = {
     email: 'kwfxng@gmail.com',
     phone: '(852) 98213628'
   }
-}
+};
 
 module.exports = portfolioExample;

@@ -13,6 +13,10 @@ const portfolioContactSchema = require('./portfolioContactSchema');
   * Main
   * ============================================================= */
 const portfolioSchema = new Schema({
+  name: {
+    type: String,
+    required: true
+  },
   header: portfolioHeaderSchema,
   intro: portfolioIntroSchema,
   projects: portfolioProjectsSchema,

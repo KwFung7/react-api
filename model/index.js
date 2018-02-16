@@ -8,4 +8,4 @@ const Portfolio = mongoose.model('Portfolio', portfolioSchema);
 
 module.exports = {
   Portfolio
-}
+};

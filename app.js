@@ -1,6 +1,7 @@
 const express = require('express');
-const fs = require('fs')
-const { Portfolio } = require('./model')
+const fs = require('fs');
+const bodyParser = require('body-parser');
+const { Portfolio } = require('./model');
 // const portfolioExample = require('./example/portfolioExample');
 
 
@@ -8,12 +9,16 @@ const { Portfolio } = require('./model')
   * Middleware
   * ============================================================= */
 let app = express();
+app.use(bodyParser.json());
 app.use((req, res, next) => {
   // for server log
   let now = new Date().toString();
   let log = `${now}: ${req.method} ${req.url}`;
   fs.appendFile('server.log', `${log}\n`, err => {
-    console.log('Unable to append server.log');
+    if (err) {
+      console.log('Unable to append server log.');
+    }
+    console.log('Record was appended to server log.');
   });
   next();
 });
@@ -27,13 +32,13 @@ app.get('/api/v1/hello', (req, res) => {
   res.send({ testingText: 'Testing api !'});
 });
 
-/*
-let testPortfolio = new Portfolio(portfolioExample);
-testPortfolio.save().then(() => {
-  console.log('Saved Portfolio.');
-}, (err) => {
-  console.log(err);
-});
-*/
+app.post('/api/v1/portfolio', (req, res) => {
+  let portfolio = new Portfolio(req.body);
+  portfolio.save().then(() => {
+    res.status('200').send('Saved new portfolio.');
+  }, (err) => {
+    res.status('400').send(err);
+  });
+})
 
 module.exports = app;
