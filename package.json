@@ -7,7 +7,9 @@
   "scripts": {
     "client": "cd client && yarn start",
     "server": "cd server && nodemon server.js",
-    "start": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+    "start": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
+    "test": "mocha server/**/*.test.js",
+    "watch-test": "nodemon --exec \"yarn test\""
   },
   "dependencies": {
     "body-parser": "^1.18.2",
