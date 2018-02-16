@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const HttpStatus = require('http-status-codes');
 const { Portfolio } = require('../../models');
 let router = express.Router();
@@ -14,7 +15,7 @@ router.get('/portfolio', (req, res) => {
     })
 });
 
-router.get('/portfolio/:id', (req, res) => {
+router.get('/portfolio/:id', cors(), (req, res) => {
   const id = req.params.id
   Portfolio.findById(id)
     .then((portfolios) => {
