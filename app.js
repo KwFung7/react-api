@@ -18,7 +18,6 @@ app.use((req, res, next) => {
   });
   next();
 });
-app.use('/', express.static(`${__dirname}/client/build`));
 app.use('/', ApiRouter);
 
 
