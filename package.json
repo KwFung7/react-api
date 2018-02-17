@@ -6,10 +6,14 @@
   "private": true,
   "scripts": {
     "client": "cd client && yarn start",
-    "server": "cd server && nodemon server.js",
+    "server": "cd server && node server.js",
+    "watch-server": "cd server && nodemon server.js",
     "start": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
     "test": "mocha server/**/*.test.js",
     "watch-test": "nodemon --exec \"yarn test\""
+  },
+  "engines": {
+    "node": "6.11.2"
   },
   "dependencies": {
     "body-parser": "^1.18.2",

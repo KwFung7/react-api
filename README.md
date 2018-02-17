@@ -17,3 +17,17 @@
 
 ### `yarn watch-test`
   - test with nodemon hotloader
+
+
+## Deployment
+
+### `Set start script in package.json`
+
+### `Set engines in package.json`
+- specify which node version used, so heroku follow it
+
+### `Heroku create app, add addons e.g. mLab, get DB url`
+- `heroku login`
+- `heroku create`, create app
+- `heroku addons:create mongolab:sandbox`
+- `heroku config`, show mongodb url
