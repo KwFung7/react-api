@@ -1,11 +1,10 @@
 const express = require('express');
 const cors = require('cors');
-const HttpStatus = require('http-status-codes');
 const { Portfolio } = require('../../models');
-let router = express.Router();
+const { PORTFOLIO_ROUTE, OK, BAD_REQUEST } = require('../../constants');
 
-const { OK, BAD_REQUEST } = HttpStatus
-router.get('/portfolio', (req, res) => {
+let router = express.Router();
+router.get(PORTFOLIO_ROUTE, (req, res) => {
   Portfolio.find()
     .then((portfolios) => {
       res.status(OK).send({ portfolios });
@@ -15,7 +14,7 @@ router.get('/portfolio', (req, res) => {
     })
 });
 
-router.get('/portfolio/:id', cors(), (req, res) => {
+router.get(`${PORTFOLIO_ROUTE}/:id`, cors(), (req, res) => {
   const id = req.params.id
   Portfolio.findById(id)
     .then((portfolio) => {
@@ -33,7 +32,7 @@ router.get('/portfolio/:id', cors(), (req, res) => {
     })
 });
 
-router.post('/portfolio', (req, res) => {
+router.post(PORTFOLIO_ROUTE, (req, res) => {
   let portfolio = new Portfolio(req.body);
   portfolio.save()
     .then(() => {

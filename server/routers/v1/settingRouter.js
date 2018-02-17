@@ -1,11 +1,10 @@
 const express = require('express');
 const cors = require('cors');
-const HttpStatus = require('http-status-codes');
 const { Setting } = require('../../models');
-let router = express.Router();
+const { SETTING_ROUTE, OK, BAD_REQUEST } = require('../../constants');
 
-const { OK, BAD_REQUEST } = HttpStatus
-router.get('/setting', cors(), (req, res) => {
+let router = express.Router();
+router.get(SETTING_ROUTE, cors(), (req, res) => {
   Setting.find()
     .then((settings) => {
       res.status(OK).send(settings);

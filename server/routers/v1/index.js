@@ -1,13 +1,13 @@
 const express = require('express');
-let v1Router = express.Router();
+const { V1_ROUTE } = require('../../constants');
 
 /** ============================================================= *
   * Routes
   * ============================================================= */
 const settingRouter = require('./settingRouter');
 const portfolioRouter = require('./portfolioRouter');
-const V1_ROUTE = '/v1';
 
+let v1Router = express.Router();
 v1Router.use(V1_ROUTE, settingRouter);
 v1Router.use(V1_ROUTE, portfolioRouter);
 
