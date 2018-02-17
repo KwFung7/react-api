@@ -1,5 +1,5 @@
 const HttpStatus = require('http-status-codes');
-const { OK, BAD_REQUEST } = HttpStatus;
+const { OK, BAD_REQUEST, NOT_FOUND } = HttpStatus;
 
 // Route
 const PORTFOLIO_ROUTE = '/portfolio';
@@ -13,6 +13,7 @@ const DB_CONNECTION = 'mongodb://localhost:27017';
 module.exports = {
   OK,
   BAD_REQUEST,
+  NOT_FOUND,
   PORTFOLIO_ROUTE,
   SETTING_ROUTE,
   V1_ROUTE,
