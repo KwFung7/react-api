@@ -43,7 +43,7 @@ const portfolioIntroSchema = new Schema({
         required: true
       },
       start: {
-        type: Date,
+        type: String,
         required: true
       },
       start_for_moment: {
