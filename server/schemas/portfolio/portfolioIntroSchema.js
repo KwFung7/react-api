@@ -19,10 +19,6 @@ const portfolioIntroSchema = new Schema({
       type: String,
       required: true
     },
-    year: {
-      type: String,
-      required: true
-    },
     birth: {
       type: String,
       required: true
