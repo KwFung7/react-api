@@ -18,8 +18,15 @@ router.get('/portfolio', (req, res) => {
 router.get('/portfolio/:id', cors(), (req, res) => {
   const id = req.params.id
   Portfolio.findById(id)
-    .then((portfolios) => {
-      res.status(OK).send(portfolios);
+    .then((portfolio) => {
+      if (!portfolio) {
+        res.status(BAD_REQUEST).send({
+          message: 'ID not found.',
+          value: id
+        });
+        return;
+      }
+      res.status(OK).send(portfolio);
     })
     .catch((err) => {
       res.status(BAD_REQUEST).send(err);
