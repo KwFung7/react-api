@@ -5,7 +5,7 @@
 
 ### `yarn install`
 
-### `yarn start`
+### `yarn dev-start`
   - simultaneously start backend server and frontend admin
   - port 5000 for server
   - port 3000 for admin interface, developed with create react app
@@ -31,3 +31,6 @@
 - `heroku create`, create app
 - `heroku addons:create mongolab:sandbox`
 - `heroku config`, show mongodb url
+
+### `Build frontend admin code`
+- `yarn build-client`
