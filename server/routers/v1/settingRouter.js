@@ -14,4 +14,15 @@ router.get(SETTING_ROUTE, cors(), (req, res) => {
     })
 })
 
+router.post(SETTING_ROUTE, (req, res) => {
+  const setting = new Setting(req.body);
+  setting.save()
+    .then(() => {
+      res.status(OK).send('Saved new setting.');
+    })
+    .catch((err) => {
+      res.status(BAD_REQUEST).send(err);
+    })
+})
+
 module.exports = router;
