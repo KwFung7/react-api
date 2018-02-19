@@ -9,7 +9,9 @@ const portfolioContactSchema = new Schema({
   phone: {
     type: String,
     required: true
-  }
+  },
+  github_link: String,
+  linkedin_link: String
 });
 
 module.exports = portfolioContactSchema;
