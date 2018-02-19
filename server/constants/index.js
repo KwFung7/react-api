@@ -13,6 +13,15 @@ const DB_CONNECTION = 'mongodb://localhost:27017';
 // System setting
 const ENABLED_UPDATE_SETTING = ['selected_portfolio'];
 
+// Portfolio
+const ENABLED_UPDATE_PORTFOLIO_FIELD = [
+  'name',
+  'header',
+  'intro',
+  'projects',
+  'contact',
+];
+
 module.exports = {
   OK,
   BAD_REQUEST,
@@ -23,4 +32,5 @@ module.exports = {
   API_ROUTE,
   DB_CONNECTION,
   ENABLED_UPDATE_SETTING,
+  ENABLED_UPDATE_PORTFOLIO_FIELD
 }

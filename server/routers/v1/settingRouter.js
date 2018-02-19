@@ -6,6 +6,7 @@ const { Setting } = require('../../models');
 const { SETTING_ROUTE, OK, BAD_REQUEST, ENABLED_UPDATE_SETTING } = require('../../constants');
 
 let router = express.Router();
+/* GET ===================================== */
 router.get(SETTING_ROUTE, cors(), (req, res) => {
   Setting.find()
     .then((settings) => {
@@ -16,6 +17,7 @@ router.get(SETTING_ROUTE, cors(), (req, res) => {
     })
 })
 
+/* PATCH ===================================== */
 router.patch(`${SETTING_ROUTE}/:id`, (req, res) => {
   const id = req.params.id;
   // only allow specific field for update
@@ -43,6 +45,7 @@ router.patch(`${SETTING_ROUTE}/:id`, (req, res) => {
     })
 })
 
+/* POST ===================================== */
 router.post(SETTING_ROUTE, (req, res) => {
   const setting = new Setting(req.body);
   setting.save()
