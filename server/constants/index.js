@@ -10,6 +10,9 @@ const API_ROUTE = '/api';
 // Database
 const DB_CONNECTION = 'mongodb://localhost:27017';
 
+// System setting
+const ENABLED_UPDATE_SETTING = ['selected_portfolio'];
+
 module.exports = {
   OK,
   BAD_REQUEST,
@@ -18,5 +21,6 @@ module.exports = {
   SETTING_ROUTE,
   V1_ROUTE,
   API_ROUTE,
-  DB_CONNECTION
+  DB_CONNECTION,
+  ENABLED_UPDATE_SETTING,
 }
