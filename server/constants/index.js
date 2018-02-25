@@ -4,6 +4,7 @@ const { OK, BAD_REQUEST, NOT_FOUND } = HttpStatus;
 // Route
 const PORTFOLIO_ROUTE = '/portfolio';
 const SETTING_ROUTE = '/setting';
+const USER_ROUTE = '/user';
 const V1_ROUTE = '/v1';
 const API_ROUTE = '/api';
 
@@ -28,6 +29,7 @@ module.exports = {
   NOT_FOUND,
   PORTFOLIO_ROUTE,
   SETTING_ROUTE,
+  USER_ROUTE,
   V1_ROUTE,
   API_ROUTE,
   DB_CONNECTION,

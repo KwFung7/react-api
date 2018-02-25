@@ -79,8 +79,8 @@ router.patch(`${PORTFOLIO_ROUTE}/:id`, (req, res) => {
 router.post(PORTFOLIO_ROUTE, (req, res) => {
   let portfolio = new Portfolio(req.body);
   portfolio.save()
-    .then(() => {
-      res.status(OK).send('Saved new portfolio.');
+    .then((doc) => {
+      res.status(OK).send(doc);
     })
     .catch((err) => {
       res.status(BAD_REQUEST).send(err);

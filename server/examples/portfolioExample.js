@@ -127,7 +127,7 @@ const portfolioExample = {
     email: 'kwfxng@gmail.com',
     phone: '(852) 98213628',
     github_link: 'https://github.com/KwFung7',
-	  linkedin_link: 'https://www.linkedin.com/in/felix-kwan-827212144/'
+    linkedin_link: 'https://www.linkedin.com/in/felix-kwan-827212144/'
   }
 };
 
