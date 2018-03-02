@@ -10,8 +10,13 @@ router.post(USER_ROUTE, (req, res) => {
   const body = _.pick(req.body, ['userName', 'password']);
   let user = new User(body);
   user.save()
-    .then((user) => {
-      res.status(OK).send(user);
+    .then(() => {
+      // return promise for token generation
+      // with user id, access type and secret key
+      return user.generateAuthToken();
+    })
+    .then((token) => {
+      res.header('x-auth', token).send(user);
     })
     .catch((err) => {
       res.status(BAD_REQUEST).send(err);

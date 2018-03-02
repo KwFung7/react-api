@@ -14,6 +14,9 @@ const DB_CONNECTION = 'mongodb://localhost:27017';
 // System setting
 const ENABLED_UPDATE_SETTING = ['selected_portfolio'];
 
+// Token generation secret key
+const SECRET_KEY = 'FUCKMYLIFE';
+
 // Portfolio
 const ENABLED_UPDATE_PORTFOLIO_FIELD = [
   'name',
@@ -34,5 +37,6 @@ module.exports = {
   API_ROUTE,
   DB_CONNECTION,
   ENABLED_UPDATE_SETTING,
-  ENABLED_UPDATE_PORTFOLIO_FIELD
+  ENABLED_UPDATE_PORTFOLIO_FIELD,
+  SECRET_KEY
 }

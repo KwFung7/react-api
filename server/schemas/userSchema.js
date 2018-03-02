@@ -1,6 +1,9 @@
 let mongoose = require('mongoose');
-let Schema = mongoose.Schema;
+const jwt = require('jsonwebtoken');
+const _ = require('lodash');
+const { SECRET_KEY } = require('../constants');
 
+let Schema = mongoose.Schema;
 const userSchema = new Schema({
   userName: {
     type: String,
@@ -32,6 +35,22 @@ const userSchema = new Schema({
       required: [true, 'Token required']
     }
   }]
-})
+});
+
+userSchema.methods.toJSON = function (){
+  let user = this;
+  const userObject = user.toObject();
+  
+  return _.pick(userObject, ['_id', 'userName']);
+}
+
+userSchema.methods.generateAuthToken = function (){
+  let user = this;
+  const access = 'auth';
+  const token = jwt.sign({ _id: user._id.toHexString(), access }, SECRET_KEY).toString();
+
+  user.tokens = user.tokens.concat([{ access, token }]);
+  return user.save().then(() => token);
+}
 
 module.exports = userSchema;
