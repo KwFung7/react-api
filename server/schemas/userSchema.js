@@ -37,20 +37,36 @@ const userSchema = new Schema({
   }]
 });
 
-userSchema.methods.toJSON = function (){
+userSchema.methods.toJSON = function() {
   let user = this;
   const userObject = user.toObject();
   
   return _.pick(userObject, ['_id', 'userName']);
-}
+};
 
-userSchema.methods.generateAuthToken = function (){
+userSchema.methods.generateAuthToken = function() {
   let user = this;
   const access = 'auth';
   const token = jwt.sign({ _id: user._id.toHexString(), access }, SECRET_KEY).toString();
 
   user.tokens = user.tokens.concat([{ access, token }]);
   return user.save().then(() => token);
-}
+};
+
+userSchema.statics.findByToken = function(token) {
+  let User = this;
+  let decoded;
+
+  try {
+    decoded = jwt.verify(token, SECRET_KEY);
+  } catch(e) {
+    return Promise.reject();
+  }
+  return User.findOne({
+    '_id': decoded._id,
+    'tokens.token': token,
+    'tokens.access': decoded.access
+  })
+};
 
 module.exports = userSchema;

@@ -1,6 +1,7 @@
 const express = require('express');
 const _ = require('lodash');
 const { User } = require('../../models');
+const authenticate = require('../../middlewares/authenticate');
 const { OK, BAD_REQUEST, USER_ROUTE } = require('../../constants');
 
 let router = express.Router();
@@ -21,5 +22,11 @@ router.post(USER_ROUTE, (req, res) => {
     .catch((err) => {
       res.status(BAD_REQUEST).send(err);
     });
-})
+});
+
+/* GET ===================================== */
+router.get(USER_ROUTE, authenticate, (req, res) => {
+  res.send(req.user);
+});
+
 module.exports = router;

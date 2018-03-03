@@ -1,5 +1,5 @@
 const HttpStatus = require('http-status-codes');
-const { OK, BAD_REQUEST, NOT_FOUND } = HttpStatus;
+const { OK, BAD_REQUEST, NOT_FOUND, UNAUTHORIZED } = HttpStatus;
 
 // Route
 const PORTFOLIO_ROUTE = '/portfolio';
@@ -30,6 +30,7 @@ module.exports = {
   OK,
   BAD_REQUEST,
   NOT_FOUND,
+  UNAUTHORIZED,
   PORTFOLIO_ROUTE,
   SETTING_ROUTE,
   USER_ROUTE,
