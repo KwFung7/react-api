@@ -44,4 +44,15 @@ router.get(USER_ROUTE, authenticate, (req, res) => {
   res.send(req.user);
 });
 
+/* DELETE ===================================== */
+router.delete(`${USER_ROUTE}/logout`, authenticate, (req, res) => {
+  req.user.removeToken(req.token)
+  .then(() => {
+    res.send('Logout Successful.');
+  })
+  .catch((err) => {
+    res.status(BAD_REQUEST).send(err);
+  })
+})
+
 module.exports = router;
