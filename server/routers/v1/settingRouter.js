@@ -57,6 +57,14 @@ router.patch(`${SETTING_ROUTE}/:id`, authenticate, (req, res) => {
 router.post(SETTING_ROUTE, authenticate, (req, res) => {
   let obj = Object.assign(req.body, { _creator: req.user._id });
   const setting = new Setting(obj);
+
+  if (!_.includes(ADMIN_USERNAME, req.user.userName)) {
+    return res.status(UNAUTHORIZED).send({
+      message: 'This account is not authorized to add system setting.',
+      value: req.user.userName
+    });
+  }
+
   setting.save()
     .then(() => {
       res.status(OK).send('Saved new setting.');
