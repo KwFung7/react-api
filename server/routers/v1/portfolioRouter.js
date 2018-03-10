@@ -63,13 +63,6 @@ router.patch(`${PORTFOLIO_ROUTE}/:id`, authenticate, (req, res) => {
   // only allow specific field for update
   const body = _.pick(req.body, ENABLED_UPDATE_PORTFOLIO_FIELD);
 
-  if (!_.isEqual(id, req.user.portfolioID)) {
-    return res.status(UNAUTHORIZED).send({
-      message: 'This account is not authorized to edit this portfolio',
-      value: req.user.userName
-    });
-  }
-
   if (!ObjectID.isValid(id)) {
     return res.status(NOT_FOUND).send({
       message: 'ID not valid.',
@@ -77,15 +70,24 @@ router.patch(`${PORTFOLIO_ROUTE}/:id`, authenticate, (req, res) => {
     });
   }
 
-  Portfolio.findByIdAndUpdate(id, { $set: body }, { new: true } )
+  Portfolio.findById(id)
     .then((portfolio) => {
       if (!portfolio) {
         return res.status(NOT_FOUND).send({
           message: 'ID not found.',
           value: id
         })
+      } else if (!_.isEqual(portfolio._creator.toHexString(), req.user._id.toHexString())) {
+        return res.status(UNAUTHORIZED).send({
+          message: 'This account is not authorized to edit this portfolio',
+          value: req.user.userName
+        });
+      } else {
+        portfolio.update({ $set: body })
+          .then(() => {
+            res.status(OK).send('Edit portfolio successful.');
+          })
       }
-      res.status(OK).send(portfolio);
     })
     .catch((err) => {
       res.status(BAD_REQUEST).send(err);

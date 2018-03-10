@@ -26,9 +26,6 @@ const userSchema = new Schema({
     minlength: 6,
     required: [true, 'Password required']
   },
-  portfolioID: {
-    type: mongoose.Schema.Types.ObjectId
-  },
   tokens: [{
     access: {
       type: String,
@@ -46,7 +43,7 @@ userSchema.methods.toJSON = function () {
   let user = this;
   const userObject = user.toObject();
   
-  return _.pick(userObject, ['_id', 'userName', 'portfolioID']);
+  return _.pick(userObject, ['_id', 'userName']);
 };
 
 userSchema.methods.generateAuthToken = function () {
