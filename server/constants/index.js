@@ -17,6 +17,9 @@ const ENABLED_UPDATE_SETTING = ['selected_portfolio'];
 // Token generation secret key
 const SECRET_KEY = 'FUCKMYLIFE';
 
+// Password bcrypt round
+const GEN_SALT_ROUND = 10;
+
 // Portfolio
 const ENABLED_UPDATE_PORTFOLIO_FIELD = [
   'name',
@@ -39,5 +42,6 @@ module.exports = {
   DB_CONNECTION,
   ENABLED_UPDATE_SETTING,
   ENABLED_UPDATE_PORTFOLIO_FIELD,
-  SECRET_KEY
+  SECRET_KEY,
+  GEN_SALT_ROUND
 }

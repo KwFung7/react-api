@@ -8,7 +8,7 @@ let router = express.Router();
 
 /* POST ===================================== */
 router.post(USER_ROUTE, (req, res) => {
-  const body = _.pick(req.body, ['userName', 'password']);
+  let body = _.pick(req.body, ['userName', 'password']);
   let user = new User(body);
   user.save()
     .then(() => {
@@ -23,6 +23,21 @@ router.post(USER_ROUTE, (req, res) => {
       res.status(BAD_REQUEST).send(err);
     });
 });
+
+router.post(`${USER_ROUTE}/login`, (req, res) => {
+  let body = _.pick(req.body, ['userName', 'password']);
+  
+  User.findByCredentials(body.userName, body.password)
+  .then((user) => {
+    return user.generateAuthToken()
+    .then((token) => {
+      res.header('x-auth', token).send(user);
+    })
+  })
+  .catch((err) => {
+    res.status(BAD_REQUEST).send(err);
+  })
+})
 
 /* GET ===================================== */
 router.get(USER_ROUTE, authenticate, (req, res) => {
