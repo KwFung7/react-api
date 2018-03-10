@@ -20,7 +20,11 @@ const portfolioSchema = new Schema({
   header: portfolioHeaderSchema,
   intro: portfolioIntroSchema,
   projects: portfolioProjectsSchema,
-  contact: portfolioContactSchema
+  contact: portfolioContactSchema,
+  _creator: {
+    type: Schema.Types.ObjectId,
+    required: true
+  }
 });
 
 module.exports = portfolioSchema;

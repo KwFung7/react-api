@@ -29,6 +29,9 @@ const ENABLED_UPDATE_PORTFOLIO_FIELD = [
   'contact',
 ];
 
+// Admin userName
+const ADMIN_USERNAME = ['admin'];
+
 module.exports = {
   OK,
   BAD_REQUEST,
@@ -43,5 +46,6 @@ module.exports = {
   ENABLED_UPDATE_SETTING,
   ENABLED_UPDATE_PORTFOLIO_FIELD,
   SECRET_KEY,
-  GEN_SALT_ROUND
+  GEN_SALT_ROUND,
+  ADMIN_USERNAME
 }

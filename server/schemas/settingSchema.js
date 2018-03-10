@@ -5,6 +5,10 @@ const settingSchema = new Schema({
   selected_portfolio: {
     type: Schema.Types.ObjectId,
     required: true
+  },
+  _creator: {
+    type: Schema.Types.ObjectId,
+    required: true
   }
 });
 
