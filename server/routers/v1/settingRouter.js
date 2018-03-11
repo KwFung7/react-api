@@ -4,7 +4,7 @@ const _ = require('lodash');
 const { ObjectID } = require('mongodb');
 const { Setting } = require('../../models');
 const authenticate = require('../../middlewares/authenticate');
-const { SETTING_ROUTE, OK, BAD_REQUEST, UNAUTHORIZED, ENABLED_UPDATE_SETTING, ADMIN_USERNAME } = require('../../constants');
+const { SETTING_ROUTE, OK, BAD_REQUEST, UNAUTHORIZED, ENABLED_UPDATE_SETTING, ADMIN_ROLE } = require('../../constants');
 
 let router = express.Router();
 /* GET ===================================== */
@@ -24,7 +24,7 @@ router.patch(`${SETTING_ROUTE}/:id`, authenticate, (req, res) => {
   // only allow specific field for update
   const body = _.pick(req.body, ENABLED_UPDATE_SETTING);
 
-  if (!_.includes(ADMIN_USERNAME, req.user.userName)) {
+  if (ADMIN_ROLE !== req.user.role) {
     return res.status(UNAUTHORIZED).send({
       message: 'This account is not authorized to edit system setting.',
       value: req.user.userName
@@ -58,7 +58,7 @@ router.post(SETTING_ROUTE, authenticate, (req, res) => {
   let obj = Object.assign(req.body, { _creator: req.user._id });
   const setting = new Setting(obj);
 
-  if (!_.includes(ADMIN_USERNAME, req.user.userName)) {
+  if (ADMIN_ROLE !== req.user.role) {
     return res.status(UNAUTHORIZED).send({
       message: 'This account is not authorized to add system setting.',
       value: req.user.userName

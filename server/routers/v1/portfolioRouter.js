@@ -11,13 +11,13 @@ const {
   NOT_FOUND,
   UNAUTHORIZED,
   ENABLED_UPDATE_PORTFOLIO_FIELD,
-  ADMIN_USERNAME
+  ADMIN_ROLE
 } = require('../../constants');
 
 let router = express.Router();
 /* GET ===================================== */
 router.get(PORTFOLIO_ROUTE, authenticate, (req, res) => {
-  if (!_.includes(ADMIN_USERNAME, req.user.userName)) {
+  if (ADMIN_ROLE !== req.user.role) {
     return res.status(UNAUTHORIZED).send({
       message: 'This account is not authorized to get portfolio index',
       value: req.user.userName

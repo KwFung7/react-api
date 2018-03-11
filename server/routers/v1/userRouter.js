@@ -8,7 +8,7 @@ let router = express.Router();
 
 /* POST ===================================== */
 router.post(USER_ROUTE, (req, res) => {
-  let body = _.pick(req.body, ['userName', 'password']);
+  let body = _.pick(req.body, ['userName', 'password', 'role']);
   let user = new User(body);
   user.save()
     .then(() => {

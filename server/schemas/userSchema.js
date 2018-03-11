@@ -35,7 +35,11 @@ const userSchema = new Schema({
       type: String,
       required: [true, 'Token required']
     }
-  }]
+  }],
+  role: {
+    type: String,
+    required: [true, 'User role required']
+  }
 });
 
 /* Instance Method ==================================== */
@@ -43,7 +47,7 @@ userSchema.methods.toJSON = function () {
   let user = this;
   const userObject = user.toObject();
   
-  return _.pick(userObject, ['_id', 'userName']);
+  return _.pick(userObject, ['_id', 'userName', 'role']);
 };
 
 userSchema.methods.generateAuthToken = function () {
