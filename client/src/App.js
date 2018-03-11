@@ -5,9 +5,14 @@ import NoMatch from './components/NoMatch';
 import AdminPage from './components/AdminPage';
 import LoginPage from './components/LoginPage';
 import * as constants from './constants';
+import { setLocale } from './modules/I18n';
 import './App.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    setLocale();
+  }
   render() {
     return (
       <MuiThemeProvider>

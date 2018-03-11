@@ -7,3 +7,8 @@ export const LOGIN_ROUTE = '/login';
 export const NO_MATCH_STATUS = '404.'
 export const NOT_FOUND = 'Not Found'
 export const NO_MATCH_FOR = 'No match for '
+
+// Locale
+export const DEFAULT_LOCALE = 'en'
+export const EN = 'en'
+export const TW = 'tw'
