@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-d
 import NoMatch from './components/NoMatch';
 import AdminPage from './components/AdminPage';
 import LoginPage from './components/LoginPage';
+import { muiTheme } from './components/MuiTheme';
 import * as constants from './constants';
 import { setLocale } from './modules/I18n';
 import './App.css';
@@ -15,7 +16,7 @@ class App extends Component {
   }
   render() {
     return (
-      <MuiThemeProvider>
+      <MuiThemeProvider muiTheme={muiTheme}>
         <Router>
           <Switch>
             <Route exact path={constants.ROOT} render={() => {
