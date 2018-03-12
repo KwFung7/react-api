@@ -20,6 +20,9 @@ const SECRET_KEY = 'FUCKMYLIFE';
 // Password bcrypt round
 const GEN_SALT_ROUND = 10;
 
+// Token expire time
+const TOKEN_EXPIRE_DAY = 1;
+
 // Portfolio
 const ENABLED_UPDATE_PORTFOLIO_FIELD = [
   'name',
@@ -47,5 +50,6 @@ module.exports = {
   ENABLED_UPDATE_PORTFOLIO_FIELD,
   SECRET_KEY,
   GEN_SALT_ROUND,
-  ADMIN_ROLE
+  ADMIN_ROLE,
+  TOKEN_EXPIRE_DAY
 }

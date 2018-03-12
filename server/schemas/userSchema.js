@@ -2,7 +2,7 @@ let mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const _ = require('lodash');
-const { SECRET_KEY, GEN_SALT_ROUND } = require('../constants');
+const { SECRET_KEY, GEN_SALT_ROUND, TOKEN_EXPIRE_DAY } = require('../constants');
 
 let Schema = mongoose.Schema;
 const userSchema = new Schema({
@@ -34,7 +34,9 @@ const userSchema = new Schema({
     token: {
       type: String,
       required: [true, 'Token required']
-    }
+    },
+    createdAt: Date,
+    expireAt: Date
   }],
   role: {
     type: String,
@@ -53,9 +55,17 @@ userSchema.methods.toJSON = function () {
 userSchema.methods.generateAuthToken = function () {
   let user = this;
   const access = 'auth';
-  const token = jwt.sign({ _id: user._id.toHexString(), access }, SECRET_KEY).toString();
+  const createdAt = new Date();
+  let expireAt = new Date();
+  expireAt.setDate(expireAt.getDate() + TOKEN_EXPIRE_DAY);
+  const token = jwt.sign({
+    _id: user._id.toHexString(),
+    access,
+    createdAt,
+    expireAt
+  }, SECRET_KEY).toString();
 
-  user.tokens = user.tokens.concat([{ access, token }]);
+  user.tokens = user.tokens.concat([{ access, token, createdAt, expireAt }]);
   return user.save().then(() => token);
 };
 
@@ -78,6 +88,13 @@ userSchema.statics.findByToken = function (token) {
   } catch(e) {
     return Promise.reject();
   }
+
+  // check token expired
+  let now = new Date();
+  if (now > decoded.expireAt) {
+    return Promise.reject();
+  }
+
   return User.findOne({
     '_id': decoded._id,
     'tokens.token': token,
