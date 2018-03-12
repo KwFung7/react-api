@@ -55,11 +55,29 @@ class AdminPage extends Component {
           width={220}
           containerStyle={{ height: 'calc(100% - 64px)', top: 64 }}
         >
-          <List>
-            <ListItem leftIcon={<ActionSettings />}>{t('navigation.drawerMenu.setting')}</ListItem>
-            <ListItem leftIcon={<ActionFace />}>{t('navigation.drawerMenu.portfolio.label')}</ListItem>
-            <ListItem leftIcon={<ActionFeedback />}>{t('navigation.drawerMenu.feedback')}</ListItem>
-            <ListItem leftIcon={<NotificationEventNote />}>{t('navigation.drawerMenu.serverLog')}</ListItem>
+          <List style={{ padding: 0 }}>
+            <ListItem
+              primaryText={t('navigation.drawerMenu.setting')}
+              leftIcon={<ActionSettings />}
+            />
+            <ListItem
+              primaryText={t('navigation.drawerMenu.portfolio.label')}
+              primaryTogglesNestedList={true}
+              leftIcon={<ActionFace />}
+              nestedItems={t('navigation.drawerMenu.portfolio.subMenu').map((obj, idx) => {
+                return <ListItem key={idx} primaryText={obj} />;
+              })}
+            />
+            <ListItem
+              primaryText={t('navigation.drawerMenu.feedback')}
+              leftIcon={<ActionFeedback />}
+              disabled={true}
+            />
+            <ListItem
+              primaryText={t('navigation.drawerMenu.serverLog')}
+              leftIcon={<NotificationEventNote />}
+              disabled={true}
+            />
           </List>
         </Drawer>
       </Paper>
