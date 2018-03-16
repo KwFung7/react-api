@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 import NoMatch from './components/NoMatch';
-import AdminPage from './components/AdminPage';
+import HomePage from './components/HomePage';
 import LoginPage from './components/LoginPage';
 import { muiTheme } from './components/MuiTheme';
 import * as constants from './constants';
@@ -23,7 +23,7 @@ class App extends Component {
               return <Redirect to={constants.HOME_ROUTE} />;
             }} />
             <Route path={constants.LOGIN_ROUTE} component={LoginPage} />
-            <Route path={constants.HOME_ROUTE} component={AdminPage} />
+            <Route path={constants.HOME_ROUTE} component={HomePage} />
             <Route component={NoMatch} />
           </Switch>
         </Router>

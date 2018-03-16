@@ -7,7 +7,7 @@ import NotificationEventNote from 'material-ui/svg-icons/notification/event-note
 import { t, setLocale, currentLocale } from '../modules/I18n';
 import { EN, TW, BREAKPOINT_MOBILE } from '../constants';
 
-class AdminPage extends Component {
+class AdminLayout extends Component {
   constructor(props) {
     super(props);
     this.screenWidth = window.innerWidth
@@ -45,6 +45,8 @@ class AdminPage extends Component {
         <AppBar
           title={t('navigation.appTitle')}
           style={{ zIndex: 1500 }}
+          zDepth={3}
+          titleStyle={{ fontFamily: 'harabara', letterSpacing: '5px' }}
           onLeftIconButtonClick={this.handleDrawer}
           iconElementRight={
             <FlatButton label={t('navigation.localeBtnLabel')} onClick={this.handleLocaleBtnClick} />
@@ -53,7 +55,8 @@ class AdminPage extends Component {
         <Drawer
           open={this.state.open}
           width={220}
-          containerStyle={{ height: 'calc(100% - 64px)', top: 64 }}
+          zDepth={3}
+          containerStyle={{ height: 'calc(100% - 64px)', top: 64, backgroundColor: 'whitesmoke' }}
         >
           <List style={{ padding: 0 }}>
             <ListItem
@@ -80,9 +83,10 @@ class AdminPage extends Component {
             />
           </List>
         </Drawer>
+        {this.props.children}
       </Paper>
     );
   }
 }
 
-export default AdminPage;
+export default AdminLayout;

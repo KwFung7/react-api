@@ -1,4 +1,5 @@
 @import './stylesheets/font-face.scss';
+@import './stylesheets/page.scss';
 
 .App {
   text-align: center;
