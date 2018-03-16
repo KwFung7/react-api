@@ -16,5 +16,10 @@ export default {
       feedback: 'Feedback',
       serverLog: 'Server Log'
     }
-  }
+  },
+  homePage: {
+    title: 'Welcome to my Admin Panel',
+    author: 'by Felix Kwan'
+  },
+  copyright: '© [currentYear] Felix Kwan. All rights reserved.'
 };

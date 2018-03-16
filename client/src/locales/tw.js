@@ -18,7 +18,8 @@ export default {
     }
   },
   homePage: {
-    title: 'Welcome to my Admin',
+    title: '歡迎來到我的管理平台',
     author: 'by Felix Kwan'
-  }
+  },
+  copyright: '© [currentYear] Felix Kwan 版權所有'
 };

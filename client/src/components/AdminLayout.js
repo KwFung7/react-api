@@ -6,6 +6,7 @@ import ActionFace from 'material-ui/svg-icons/action/face';
 import ActionFeedback from 'material-ui/svg-icons/action/feedback';
 import NotificationEventNote from 'material-ui/svg-icons/notification/event-note';
 import { t, setLocale, currentLocale } from '../modules/I18n';
+import CopyrightFooter from './CopyrightFooter';
 import * as constants from '../constants';
 
 class AdminLayout extends Component {
@@ -40,7 +41,7 @@ class AdminLayout extends Component {
     this.setState({ open: !this.state.open });
   };
 
-  handleDrawerItemClick = (location) => {
+  handleLocationChange = (location) => {
     this.props.history.push(location);
   }
 
@@ -51,11 +52,13 @@ class AdminLayout extends Component {
           title={t('navigation.appTitle')}
           style={{ zIndex: 1500 }}
           zDepth={3}
-          // titleStyle={{ fontFamily: 'harabara', letterSpacing: '5px' }}
           onLeftIconButtonClick={this.handleDrawer}
           iconElementRight={
             <FlatButton label={t('navigation.localeBtnLabel')} onClick={this.handleLocaleBtnClick} />
           }
+          onTitleClick={() => {
+            this.handleLocationChange(constants.HOME_ROUTE)
+          }}
         />
         <Drawer
           open={this.state.open}
@@ -68,7 +71,7 @@ class AdminLayout extends Component {
               primaryText={t('navigation.drawerMenu.setting')}
               leftIcon={<ActionSettings />}
               onClick={() => { 
-                this.handleDrawerItemClick(constants.SETTING_ROUTE) 
+                this.handleLocationChange(constants.SETTING_ROUTE) 
               }}
             />
             <ListItem
@@ -76,7 +79,7 @@ class AdminLayout extends Component {
               primaryTogglesNestedList={true}
               leftIcon={<ActionFace />}
               onClick={() => {
-                this.handleDrawerItemClick(constants.PORTFOLIO_ROUTE) 
+                this.handleLocationChange(constants.PORTFOLIO_ROUTE) 
               }}
               nestedItems={t('navigation.drawerMenu.portfolio.subMenu').map((obj, idx) => {
                 return (
@@ -84,7 +87,7 @@ class AdminLayout extends Component {
                     key={idx}
                     primaryText={obj}
                     onClick={() => {
-                      this.handleDrawerItemClick(constants.PORTFOLIO_ROUTE) 
+                      this.handleLocationChange(constants.PORTFOLIO_ROUTE) 
                     }}
                   />
                 )
@@ -100,12 +103,13 @@ class AdminLayout extends Component {
               primaryText={t('navigation.drawerMenu.serverLog')}
               leftIcon={<NotificationEventNote />}
               onClick={() => {
-                this.handleDrawerItemClick(constants.SERVER_LOG_ROUTE) 
+                this.handleLocationChange(constants.SERVER_LOG_ROUTE) 
               }}
             />
           </List>
         </Drawer>
         {this.props.children}
+        <CopyrightFooter />
       </Paper>
     );
   }

@@ -1,5 +1,21 @@
 .page {
   height: calc(100vh - 64px);
+  padding: 2rem;
   text-align: center;
   background-color: whitesmoke !important;
+}
+
+.page-title {
+  color: grey;
+}
+
+.copyright-footer {
+  position: fixed;
+  bottom: 0;
+  text-align: center;
+  opacity: 0.6;
+  letter-spacing: 2px;
+  font-size: 12px;
+  padding: 0;
+  width: 100%
 }
