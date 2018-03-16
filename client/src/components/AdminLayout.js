@@ -1,11 +1,12 @@
-import React, { Component} from 'react';
+import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { AppBar, FlatButton, Drawer, MenuItem, Paper, List, ListItem } from 'material-ui';
 import ActionSettings from 'material-ui/svg-icons/action/settings';
 import ActionFace from 'material-ui/svg-icons/action/face';
 import ActionFeedback from 'material-ui/svg-icons/action/feedback';
 import NotificationEventNote from 'material-ui/svg-icons/notification/event-note';
 import { t, setLocale, currentLocale } from '../modules/I18n';
-import { EN, TW, BREAKPOINT_MOBILE } from '../constants';
+import * as constants from '../constants';
 
 class AdminLayout extends Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class AdminLayout extends Component {
     this.screenWidth = window.innerWidth
       || document.documentElement.clientWidth
       || document.getElementsByTagName('body')[0].clientWidth;
-    this.isMobile = this.screenWidth < BREAKPOINT_MOBILE;
+    this.isMobile = this.screenWidth < constants.BREAKPOINT_MOBILE;
 
     this.state = {
       open: !this.isMobile
@@ -22,14 +23,14 @@ class AdminLayout extends Component {
 
   handleLocaleBtnClick = () => {
     switch (currentLocale()) {
-      case EN:
-        setLocale(TW);
+      case constants.EN:
+        setLocale(constants.TW);
         break;
-      case TW:
-        setLocale(EN);
+      case constants.TW:
+        setLocale(constants.EN);
         break;
       default:
-        setLocale(EN);
+        setLocale(constants.EN);
     }
     this.forceUpdate();
     return;
@@ -39,6 +40,10 @@ class AdminLayout extends Component {
     this.setState({ open: !this.state.open });
   };
 
+  handleDrawerItemClick = (location) => {
+    this.props.history.push(location);
+  }
+
   render() {
     return (
       <Paper>
@@ -46,7 +51,7 @@ class AdminLayout extends Component {
           title={t('navigation.appTitle')}
           style={{ zIndex: 1500 }}
           zDepth={3}
-          titleStyle={{ fontFamily: 'harabara', letterSpacing: '5px' }}
+          // titleStyle={{ fontFamily: 'harabara', letterSpacing: '5px' }}
           onLeftIconButtonClick={this.handleDrawer}
           iconElementRight={
             <FlatButton label={t('navigation.localeBtnLabel')} onClick={this.handleLocaleBtnClick} />
@@ -56,30 +61,47 @@ class AdminLayout extends Component {
           open={this.state.open}
           width={220}
           zDepth={3}
-          containerStyle={{ height: 'calc(100% - 64px)', top: 64, backgroundColor: 'whitesmoke' }}
+          containerStyle={{ height: 'calc(100% - 64px)', top: 64, backgroundColor: 'lightgrey' }}
         >
           <List style={{ padding: 0 }}>
             <ListItem
               primaryText={t('navigation.drawerMenu.setting')}
               leftIcon={<ActionSettings />}
+              onClick={() => { 
+                this.handleDrawerItemClick(constants.SETTING_ROUTE) 
+              }}
             />
             <ListItem
               primaryText={t('navigation.drawerMenu.portfolio.label')}
               primaryTogglesNestedList={true}
               leftIcon={<ActionFace />}
+              onClick={() => {
+                this.handleDrawerItemClick(constants.PORTFOLIO_ROUTE) 
+              }}
               nestedItems={t('navigation.drawerMenu.portfolio.subMenu').map((obj, idx) => {
-                return <ListItem key={idx} primaryText={obj} />;
+                return (
+                  <ListItem 
+                    key={idx}
+                    primaryText={obj}
+                    onClick={() => {
+                      this.handleDrawerItemClick(constants.PORTFOLIO_ROUTE) 
+                    }}
+                  />
+                )
               })}
             />
             <ListItem
               primaryText={t('navigation.drawerMenu.feedback')}
               leftIcon={<ActionFeedback />}
               disabled={true}
+              innerDivStyle={{ opacity: 0.5 }}
             />
             <ListItem
               primaryText={t('navigation.drawerMenu.serverLog')}
               leftIcon={<NotificationEventNote />}
-              disabled={true}
+              onClick={() => {
+                this.handleDrawerItemClick(constants.SERVER_LOG_ROUTE) 
+              }}
             />
           </List>
         </Drawer>
@@ -89,4 +111,4 @@ class AdminLayout extends Component {
   }
 }
 
-export default AdminLayout;
+export default withRouter(AdminLayout);

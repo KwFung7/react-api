@@ -2,6 +2,9 @@
 export const ROOT = '/';
 export const HOME_ROUTE = '/dashboard';
 export const LOGIN_ROUTE = '/login';
+export const SETTING_ROUTE = '/setting';
+export const PORTFOLIO_ROUTE = '/portfolio';
+export const SERVER_LOG_ROUTE = '/log';
 
 // NoMatch
 export const NO_MATCH_STATUS = '404.';

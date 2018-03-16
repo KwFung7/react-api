@@ -2,16 +2,16 @@ import React, { Component } from 'react';
 import AdminLayout from './AdminLayout';
 import { Paper } from 'material-ui'
 
-class HomePage extends Component {
+class PortfolioPage extends Component {
   render() {
     return (
       <AdminLayout>
-        <Paper className="container-fluid home-page page">
-          <div className="home-page-title page-title">Home page</div>
+        <Paper className="container-fluid portfolio-page page">
+          <div className="portfolio-page-title page-title">Portfolio page</div>
         </Paper>
       </AdminLayout>
     );
   }
 }
 
-export default HomePage;
+export default PortfolioPage;

@@ -16,5 +16,9 @@ export default {
       feedback: '反饋',
       serverLog: '服務器日誌'
     }
+  },
+  homePage: {
+    title: 'Welcome to my Admin',
+    author: 'by Felix Kwan'
   }
 };
