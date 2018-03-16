@@ -8,9 +8,9 @@ class HomePage extends Component {
     return (
       <AdminLayout>
         <Paper className="container-fluid home-page page">
-          <div className="home-page-title page-title">
-            <div>{t('homePage.title')}</div>
-            <div>{t('homePage.author')}</div>
+          <div>
+            <div className="home-page-title page-title">{t('homePage.title')}</div>
+            <div className="page-subtitle">{t('homePage.author')}</div>
           </div>
         </Paper>
       </AdminLayout>

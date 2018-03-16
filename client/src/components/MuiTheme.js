@@ -4,5 +4,6 @@ import { indigo500 } from 'material-ui/styles/colors';
 export const muiTheme = getMuiTheme({
   appBar: {
     color: indigo500
-  }
+  },
+  fontFamily: 'Ubuntu'
 });

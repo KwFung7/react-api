@@ -33,7 +33,7 @@ class AdminLayout extends Component {
       default:
         setLocale(constants.EN);
     }
-    this.forceUpdate();
+    this.handleLocationChange(this.props.location.pathname);
     return;
   };
 
@@ -43,7 +43,7 @@ class AdminLayout extends Component {
 
   handleLocationChange = (location) => {
     this.props.history.push(location);
-  }
+  };
 
   render() {
     return (

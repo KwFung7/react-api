@@ -21,5 +21,26 @@ export default {
     title: 'Welcome to my Admin Panel',
     author: 'by Felix Kwan'
   },
+  settingPage: {
+    title: 'System Setting'
+  },
+  portfolioPage: {
+    title: 'Portfolio',
+    header: {
+      title: 'Portfolio Header'
+    },
+    intro: {
+      title: 'Portfolio Intro'
+    },
+    projects: {
+      title: 'Portfolio Projects'
+    },
+    contact: {
+      title: 'Portfolio Contact'
+    }
+  },
+  serverLogPage: {
+    title: 'Server Log'
+  },
   copyright: '© [currentYear] Felix Kwan. All rights reserved.'
 };
