@@ -1,5 +1,4 @@
 const express = require('express');
-const cors = require('cors');
 const _ = require('lodash');
 const { ObjectID } = require('mongodb');
 const { Portfolio } = require('../../models');
@@ -33,7 +32,7 @@ router.get(PORTFOLIO_ROUTE, authenticate, (req, res) => {
     })
 });
 
-router.get(`${PORTFOLIO_ROUTE}/:id`, cors(), (req, res) => {
+router.get(`${PORTFOLIO_ROUTE}/:id`, (req, res) => {
   const id = req.params.id
 
   if (!ObjectID.isValid(id)) {

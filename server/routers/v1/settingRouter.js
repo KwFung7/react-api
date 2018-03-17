@@ -1,5 +1,4 @@
 const express = require('express');
-const cors = require('cors');
 const _ = require('lodash');
 const { ObjectID } = require('mongodb');
 const { Setting } = require('../../models');
@@ -8,7 +7,7 @@ const { SETTING_ROUTE, OK, BAD_REQUEST, UNAUTHORIZED, ENABLED_UPDATE_SETTING, AD
 
 let router = express.Router();
 /* GET ===================================== */
-router.get(SETTING_ROUTE, cors(), (req, res) => {
+router.get(SETTING_ROUTE, (req, res) => {
   Setting.find()
     .then((settings) => {
       res.status(OK).send(settings);
