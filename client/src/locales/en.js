@@ -21,6 +21,9 @@ export default {
     title: 'Welcome to my Admin Panel',
     author: 'by Felix Kwan'
   },
+  loginPage: {
+    title: 'Login'
+  },
   settingPage: {
     title: 'System Setting',
     selectedPortfolio: 'Selected portfolio'

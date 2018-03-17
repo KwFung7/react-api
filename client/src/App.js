@@ -4,9 +4,12 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-d
 import * as constants from './constants';
 import { setLocale } from './modules/I18n';
 import { connect } from 'react-redux';
+import './App.css';
+
+// Actions
 import { fetchPortfolioList } from './actions/portfolioActions';
 import { fetchSystemSetting } from './actions/settingActions';
-import './App.css';
+import { startLoginProcess } from './actions/userActions';
 
 // Import components
 import NoMatch from './components/NoMatch';
@@ -24,7 +27,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const { fetchSystemSetting, fetchPortfolioList } = this.props;
+    const { fetchSystemSetting, fetchPortfolioList, startLoginProcess } = this.props;
     fetchSystemSetting();
     fetchPortfolioList();
   }
@@ -34,7 +37,7 @@ class App extends Component {
         <Router>
           <Switch>
             <Route exact path={constants.ROOT} render={() => {
-              return <Redirect to={constants.HOME_ROUTE} />;
+              return <Redirect to={constants.LOGIN_ROUTE} />;
             }} />
             <Route path={constants.LOGIN_ROUTE} component={LoginPage} />
             <Route path={constants.HOME_ROUTE} component={HomePage} />
@@ -58,7 +61,8 @@ export default connect(
   (dispatch) => {
     return {
       fetchPortfolioList: () => { dispatch(fetchPortfolioList()) },
-      fetchSystemSetting: () => { dispatch(fetchSystemSetting()) }
+      fetchSystemSetting: () => { dispatch(fetchSystemSetting()) },
+      startLoginProcess: (user) => { dispatch(startLoginProcess(user)) }
     }
   }
 )(App);

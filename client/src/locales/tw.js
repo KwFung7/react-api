@@ -21,6 +21,9 @@ export default {
     title: '歡迎來到我的管理平台',
     author: 'by Felix Kwan'
   },
+  loginPage: {
+    title: '登入'
+  },
   settingPage: {
     title: '系統設置',
     selectedPortfolio: '已選作品集'
