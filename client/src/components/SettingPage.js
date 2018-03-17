@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import _ from 'lodash';
+import { connect } from 'react-redux';
 import AdminLayout from './AdminLayout';
 import { Paper, SelectField, MenuItem } from 'material-ui';
 import { t } from '../modules/I18n';
-import { API_HOST_URL, API_ROUTE, PORTFOLIO_ROUTE, SETTING_ROUTE } from '../constants';
+import { fetchPortfolioList } from '../actions/portfolioActions';
+import { fetchSystemSetting } from '../actions/settingActions';
 
 class SettingPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       portfolioValue: '',
-      systemSetting: {},
-      portfolios: []
     };
   }
 
@@ -22,46 +20,13 @@ class SettingPage extends Component {
     });
   }
 
-  fetchPortfolioList = () => {
-    const config = {
-      method: 'GET',
-      url: `${API_HOST_URL}${API_ROUTE}${PORTFOLIO_ROUTE}`
-    }
-    axios(config)
-    .then((payload) => {
-      console.log(payload)
-    })
-    .catch(() => {
-      console.log('Cant fetch portfolio list.')
-    })
-  }
-
-  fetchSystemSetting = () => {
-    const config = {
-      method: 'GET',
-      url: `${API_HOST_URL}${API_ROUTE}${SETTING_ROUTE}`
-    }
-    axios(config)
-    .then((payload) => {
-      const { data = [] } = payload;
-      const systemSetting = _.pick(_.head(data), ['selected_portfolio']);
-      this.setState({
-        systemSetting,
-        portfolioValue: systemSetting.selected_portfolio 
-      });
-    })
-    .catch(() => {
-      console.log('Cant fetch system setting.')
-    })
-  }
-
   componentDidMount() {
-    this.fetchSystemSetting();
-    this.fetchPortfolioList();
+    const { fetchSystemSetting, fetchPortfolioList } = this.props;
+    fetchSystemSetting();
+    fetchPortfolioList();
   }
 
   render() {
-    console.log(this.state)
     return (
       <AdminLayout>
         <Paper className="container-fluid setting-page page">
@@ -88,4 +53,17 @@ class SettingPage extends Component {
   }
 }
 
-export default SettingPage;
+export default connect(
+  (state) => {
+    return {
+      setting: state.setting,
+      portfolio: state.portfolio
+    }
+  },
+  (dispatch) => {
+    return {
+      fetchPortfolioList: () => { dispatch(fetchPortfolioList()) },
+      fetchSystemSetting: () => { dispatch(fetchSystemSetting()) }
+    }
+  }
+)(SettingPage);
