@@ -1,5 +1,6 @@
 // Route
 export const ROOT = '/';
+export const API_ROUTE = '/api/v1';
 export const HOME_ROUTE = '/dashboard';
 export const LOGIN_ROUTE = '/login';
 export const SETTING_ROUTE = '/setting';
@@ -19,3 +20,6 @@ export const TW = 'tw';
 // Responsive
 export const BREAKPOINT_MOBILE = 768;
 export const BREAKPOINT_TABLET = 992;
+
+// API
+export const API_HOST_URL = 'http://localhost:5000'

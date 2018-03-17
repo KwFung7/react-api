@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import { AppBar, FlatButton, Drawer, MenuItem, Paper, List, ListItem } from 'material-ui';
+import { AppBar, FlatButton, Drawer, Paper, List, ListItem } from 'material-ui';
 import ActionSettings from 'material-ui/svg-icons/action/settings';
 import ActionFace from 'material-ui/svg-icons/action/face';
 import ActionFeedback from 'material-ui/svg-icons/action/feedback';
@@ -70,6 +70,7 @@ class AdminLayout extends Component {
             <ListItem
               primaryText={t('navigation.drawerMenu.setting')}
               leftIcon={<ActionSettings />}
+              innerDivStyle={{ color: 'rgba(0, 0, 0, 0.6)' }}
               onClick={() => { 
                 this.handleLocationChange(constants.SETTING_ROUTE) 
               }}
@@ -78,6 +79,7 @@ class AdminLayout extends Component {
               primaryText={t('navigation.drawerMenu.portfolio.label')}
               primaryTogglesNestedList={true}
               leftIcon={<ActionFace />}
+              innerDivStyle={{ color: 'rgba(0, 0, 0, 0.6)' }}
               onClick={() => {
                 this.handleLocationChange(constants.PORTFOLIO_ROUTE) 
               }}
@@ -86,6 +88,7 @@ class AdminLayout extends Component {
                   <ListItem 
                     key={idx}
                     primaryText={obj}
+                    innerDivStyle={{ color: 'rgba(0, 0, 0, 0.6)' }}
                     onClick={() => {
                       this.handleLocationChange(constants.PORTFOLIO_ROUTE) 
                     }}
@@ -102,6 +105,7 @@ class AdminLayout extends Component {
             <ListItem
               primaryText={t('navigation.drawerMenu.serverLog')}
               leftIcon={<NotificationEventNote />}
+              innerDivStyle={{ color: 'rgba(0, 0, 0, 0.6)' }}
               onClick={() => {
                 this.handleLocationChange(constants.SERVER_LOG_ROUTE) 
               }}

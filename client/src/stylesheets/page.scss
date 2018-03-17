@@ -1,21 +1,26 @@
 .page {
   height: calc(100vh - 64px);
   padding: 2rem;
-  text-align: center;
   background-color: whitesmoke !important;
 }
 
 .page-title {
   font-family: 'Ubuntu';
   font-size: 30px;
+  text-align: center;
   color: grey;
 }
 
 .page-subtitle {
   font-family: 'Ubuntu';
   font-size: 18px;
+  text-align: center;
   margin-top: 0.5rem;
   color: grey;
+}
+
+.page-body {
+  text-align: center;
 }
 
 .copyright-footer {

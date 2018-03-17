@@ -22,7 +22,8 @@ export default {
     author: 'by Felix Kwan'
   },
   settingPage: {
-    title: '系統設置'
+    title: '系統設置',
+    selectedPortfolio: '已選作品集'
   },
   portfolioPage: {
     title: '作品集',

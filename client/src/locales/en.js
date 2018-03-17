@@ -22,7 +22,8 @@ export default {
     author: 'by Felix Kwan'
   },
   settingPage: {
-    title: 'System Setting'
+    title: 'System Setting',
+    selectedPortfolio: 'Selected portfolio'
   },
   portfolioPage: {
     title: 'Portfolio',
