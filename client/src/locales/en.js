@@ -22,7 +22,15 @@ export default {
     author: 'by Felix Kwan'
   },
   loginPage: {
-    title: 'Login'
+    title: 'Login',
+    userName: 'Account',
+    enterUserName: 'Enter your account',
+    password: 'Password',
+    enterPassword: 'Enter your password',
+    btnLabel: 'Next',
+    guestLogin: 'Guest Login',
+    guestUserName: 'account  : guest',
+    guestPassword: 'password : 123456'
   },
   settingPage: {
     title: 'System Setting',

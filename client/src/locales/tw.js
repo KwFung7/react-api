@@ -22,7 +22,15 @@ export default {
     author: 'by Felix Kwan'
   },
   loginPage: {
-    title: '登入'
+    title: '登入',
+    userName: '帳戶名稱',
+    enterUserName: '輸入你的帳戶名稱',
+    password: '密碼',
+    enterPassword: '輸入你的密碼',
+    btnLabel: '下一步',
+    guestLogin: '客人登入',
+    guestUserName: '帳戶 : guest',
+    guestPassword: '密碼 : 123456'
   },
   settingPage: {
     title: '系統設置',
