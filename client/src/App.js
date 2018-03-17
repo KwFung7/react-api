@@ -3,6 +3,9 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 import * as constants from './constants';
 import { setLocale } from './modules/I18n';
+import { connect } from 'react-redux';
+import { fetchPortfolioList } from './actions/portfolioActions';
+import { fetchSystemSetting } from './actions/settingActions';
 import './App.css';
 
 // Import components
@@ -18,6 +21,12 @@ class App extends Component {
   constructor(props) {
     super(props);
     setLocale();
+  }
+
+  componentDidMount() {
+    const { fetchSystemSetting, fetchPortfolioList } = this.props;
+    fetchSystemSetting();
+    fetchPortfolioList();
   }
   render() {
     return (
@@ -40,4 +49,16 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(
+  (state) => {
+    return {
+      setting: state.setting
+    }
+  },
+  (dispatch) => {
+    return {
+      fetchPortfolioList: () => { dispatch(fetchPortfolioList()) },
+      fetchSystemSetting: () => { dispatch(fetchSystemSetting()) }
+    }
+  }
+)(App);

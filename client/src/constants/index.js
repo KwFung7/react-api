@@ -2,6 +2,7 @@
 export const ROOT = '/';
 export const API_ROUTE = '/api/v1';
 export const HOME_ROUTE = '/dashboard';
+export const USER_ROUTE = '/user';
 export const LOGIN_ROUTE = '/login';
 export const SETTING_ROUTE = '/setting';
 export const PORTFOLIO_ROUTE = '/portfolio';
