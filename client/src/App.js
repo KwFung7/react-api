@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
+import { Router, Route, Redirect, Switch } from 'react-router-dom';
 import * as constants from './constants';
 import { setLocale } from './modules/I18n';
 import { connect } from 'react-redux';
@@ -34,7 +34,7 @@ class App extends Component {
   render() {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
-        <Router>
+        <Router history={this.props.history}>
           <Switch>
             <Route exact path={constants.ROOT} render={() => {
               return <Redirect to={constants.LOGIN_ROUTE} />;

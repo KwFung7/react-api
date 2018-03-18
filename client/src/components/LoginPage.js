@@ -6,6 +6,7 @@ import CopyrightFooter from './CopyrightFooter';
 import { t } from '../modules/I18n';
 import ActionAccountCircle from 'material-ui/svg-icons/action/account-circle';
 import { startLoginProcess, clearError } from '../actions/userActions';
+import { HOME_ROUTE } from '../constants';
 
 const containerStyle = { 
   width: 300,
@@ -39,7 +40,7 @@ class LoginPage extends Component {
       userName,
       password
     };
-    this.props.startLoginProcess(user);
+    this.props.startLoginProcess(user, HOME_ROUTE);
   };
 
   handleChange = field => (e, newValue) => {
@@ -129,7 +130,7 @@ export default connect(
   },
   (dispatch) => {
     return {
-      startLoginProcess: (user) => { dispatch(startLoginProcess(user)) },
+      startLoginProcess: (user, route) => { dispatch(startLoginProcess(user, route)) },
       clearError: () => { dispatch(clearError()) }
     }
   }

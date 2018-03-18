@@ -1,8 +1,9 @@
 import axios from 'axios';
+import { push } from 'react-router-redux';
 import * as types from './actionTypes';
 import { API_HOST_URL, API_ROUTE, USER_ROUTE, LOGIN_ROUTE } from '../constants';
 
-export const startLoginProcess = (data, callback) => {
+export const startLoginProcess = (data, route) => {
   const config = {
     method: 'POST',
     url: `${API_HOST_URL}${API_ROUTE}${USER_ROUTE}${LOGIN_ROUTE}`,
@@ -19,7 +20,7 @@ export const startLoginProcess = (data, callback) => {
         type: types.LOGIN_SUCCESS,
       })
       try {
-        callback();
+        dispatch(push(route));
       } catch(error) {
         console.log(error);
       }
@@ -33,7 +34,7 @@ export const startLoginProcess = (data, callback) => {
   }
 };
 
-export const startLogoutProcess = (callback) => {
+export const startLogoutProcess = (route) => {
   const config = {
     method: 'DELETE',
     url: `${API_HOST_URL}${API_ROUTE}${USER_ROUTE}/logout`
@@ -49,7 +50,7 @@ export const startLogoutProcess = (callback) => {
         type: types.LOGOUT_SUCCESS,
       })
       try {
-        callback();
+        dispatch(push(route));
       } catch(error) {
         console.log(error);
       }
