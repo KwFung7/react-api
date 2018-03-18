@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 import { AppBar, FlatButton, Drawer, Paper, List, ListItem } from 'material-ui';
 import ActionSettings from 'material-ui/svg-icons/action/settings';
 import ActionFace from 'material-ui/svg-icons/action/face';
@@ -33,16 +34,12 @@ class AdminLayout extends Component {
       default:
         setLocale(constants.EN);
     }
-    this.handleLocationChange(this.props.location.pathname);
+    this.props.handleLocationChange(window.location.pathname);
     return;
   };
 
   handleDrawer = () => {
     this.setState({ open: !this.state.open });
-  };
-
-  handleLocationChange = (location) => {
-    this.props.history.push(location);
   };
 
   render() {
@@ -57,7 +54,7 @@ class AdminLayout extends Component {
             <FlatButton label={t('navigation.localeBtnLabel')} onClick={this.handleLocaleBtnClick} />
           }
           onTitleClick={() => {
-            this.handleLocationChange(constants.HOME_ROUTE)
+            this.props.handleLocationChange(constants.HOME_ROUTE)
           }}
         />
         <Drawer
@@ -72,7 +69,7 @@ class AdminLayout extends Component {
               leftIcon={<ActionSettings />}
               innerDivStyle={{ color: 'rgba(0, 0, 0, 0.6)' }}
               onClick={() => { 
-                this.handleLocationChange(constants.SETTING_ROUTE) 
+                this.props.handleLocationChange(constants.SETTING_ROUTE) 
               }}
             />
             <ListItem
@@ -80,9 +77,6 @@ class AdminLayout extends Component {
               primaryTogglesNestedList={true}
               leftIcon={<ActionFace />}
               innerDivStyle={{ color: 'rgba(0, 0, 0, 0.6)' }}
-              onClick={() => {
-                this.handleLocationChange(constants.PORTFOLIO_ROUTE) 
-              }}
               nestedItems={t('navigation.drawerMenu.portfolio.subMenu').map((obj, idx) => {
                 return (
                   <ListItem 
@@ -90,7 +84,7 @@ class AdminLayout extends Component {
                     primaryText={obj}
                     innerDivStyle={{ color: 'rgba(0, 0, 0, 0.6)' }}
                     onClick={() => {
-                      this.handleLocationChange(constants.PORTFOLIO_ROUTE) 
+                      this.props.handleLocationChange(constants.PORTFOLIO_ROUTE) 
                     }}
                   />
                 )
@@ -107,7 +101,7 @@ class AdminLayout extends Component {
               leftIcon={<NotificationEventNote />}
               innerDivStyle={{ color: 'rgba(0, 0, 0, 0.6)' }}
               onClick={() => {
-                this.handleLocationChange(constants.SERVER_LOG_ROUTE) 
+                this.props.handleLocationChange(constants.SERVER_LOG_ROUTE) 
               }}
             />
           </List>
@@ -119,4 +113,11 @@ class AdminLayout extends Component {
   }
 }
 
-export default withRouter(AdminLayout);
+export default connect(
+  (state) => { return {} },
+  (dispatch) => {
+    return {
+      handleLocationChange: (location) => { dispatch(push(location)); }
+    }
+  }
+)(AdminLayout);
