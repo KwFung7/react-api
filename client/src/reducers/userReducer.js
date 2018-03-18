@@ -4,7 +4,8 @@ import {
   LOGIN_FAILURE,
   START_LOGOUT_PROCESS,
   LOGOUT_SUCCESS,
-  LOGOUT_FAILURE
+  LOGOUT_FAILURE,
+  CLEAR_ERROR
 } from '../actions/actionTypes';
 
 const initialState = {
@@ -50,6 +51,11 @@ export const user = (state = initialState, action) => {
         ...state,
         loading: false,
         error: action.error
+      }
+    case CLEAR_ERROR:
+      return {
+        ...state,
+        error: {}
       }
     default:
       return state;

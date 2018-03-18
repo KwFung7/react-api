@@ -27,9 +27,9 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const { fetchSystemSetting, fetchPortfolioList, startLoginProcess } = this.props;
-    fetchSystemSetting();
-    fetchPortfolioList();
+    // const { fetchSystemSetting, fetchPortfolioList, startLoginProcess } = this.props;
+    // fetchSystemSetting();
+    // fetchPortfolioList();
   }
   render() {
     return (

@@ -2,7 +2,7 @@ let mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const _ = require('lodash');
-const { SECRET_KEY, GEN_SALT_ROUND, TOKEN_EXPIRE_DAY } = require('../constants');
+const { SECRET_KEY, GEN_SALT_ROUND, TOKEN_EXPIRE_DAY, WRONG_ACCOUNT, WRONG_PASSWORD } = require('../constants');
 
 let Schema = mongoose.Schema;
 const userSchema = new Schema({
@@ -107,14 +107,14 @@ userSchema.statics.findByCredentials = function (userName, password) {
 
   return User.findOne({ userName }).then((user) => {
     if (!user) {
-      return Promise.reject();
+      return Promise.reject(WRONG_ACCOUNT);
     }
     return new Promise((resolve, reject) => {
       bcrypt.compare(password, user.password, (err, res) => {
         if (res) {
           resolve(user);
         } else {
-          reject();
+          reject(WRONG_PASSWORD);
         }
       });
     })

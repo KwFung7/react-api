@@ -35,6 +35,10 @@ const ENABLED_UPDATE_PORTFOLIO_FIELD = [
 // Admin role
 const ADMIN_ROLE = 'admin';
 
+// Error message
+const WRONG_ACCOUNT = 'Couldn\'t find your Account'
+const WRONG_PASSWORD = 'Wrong password. Please try again.'
+
 module.exports = {
   OK,
   BAD_REQUEST,
@@ -51,5 +55,7 @@ module.exports = {
   SECRET_KEY,
   GEN_SALT_ROUND,
   ADMIN_ROLE,
-  TOKEN_EXPIRE_DAY
+  TOKEN_EXPIRE_DAY,
+  WRONG_ACCOUNT,
+  WRONG_PASSWORD
 }

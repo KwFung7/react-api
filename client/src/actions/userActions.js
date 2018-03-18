@@ -1,9 +1,8 @@
 import axios from 'axios';
-import _ from 'lodash';
 import * as types from './actionTypes';
 import { API_HOST_URL, API_ROUTE, USER_ROUTE, LOGIN_ROUTE } from '../constants';
 
-export const startLoginProcess = (data) => {
+export const startLoginProcess = (data, callback) => {
   const config = {
     method: 'POST',
     url: `${API_HOST_URL}${API_ROUTE}${USER_ROUTE}${LOGIN_ROUTE}`,
@@ -19,6 +18,11 @@ export const startLoginProcess = (data) => {
       dispatch({
         type: types.LOGIN_SUCCESS,
       })
+      try {
+        callback();
+      } catch(error) {
+        console.log(error);
+      }
     })
     .catch((error) => {
       dispatch({
@@ -29,7 +33,7 @@ export const startLoginProcess = (data) => {
   }
 };
 
-export const startLogoutProcess = () => {
+export const startLogoutProcess = (callback) => {
   const config = {
     method: 'DELETE',
     url: `${API_HOST_URL}${API_ROUTE}${USER_ROUTE}/logout`
@@ -44,6 +48,11 @@ export const startLogoutProcess = () => {
       dispatch({
         type: types.LOGOUT_SUCCESS,
       })
+      try {
+        callback();
+      } catch(error) {
+        console.log(error);
+      }
     })
     .catch((error) => {
       dispatch({
@@ -51,5 +60,11 @@ export const startLogoutProcess = () => {
         error
       })
     })
+  }
+};
+
+export const clearError = () => {
+  return (dispatch) => {
+    dispatch({ type: types.CLEAR_ERROR });
   }
 };
