@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { push } from 'react-router-redux';
+import _ from 'lodash';
 import * as types from './actionTypes';
 import { API_HOST_URL, API_ROUTE, USER_ROUTE, LOGIN_ROUTE } from '../constants';
 
-export const startLoginProcess = (data, route) => {
+export const startLoginProcess = (data, callback) => {
   const config = {
     method: 'POST',
     url: `${API_HOST_URL}${API_ROUTE}${USER_ROUTE}${LOGIN_ROUTE}`,
@@ -19,10 +19,12 @@ export const startLoginProcess = (data, route) => {
       dispatch({
         type: types.LOGIN_SUCCESS,
       })
-      try {
-        dispatch(push(route));
-      } catch(error) {
-        console.log(error);
+      if (_.isFunction(callback)) {
+        try {
+          callback();
+        } catch(error) {
+          console.log(error);
+        }
       }
     })
     .catch((error) => {
@@ -34,7 +36,7 @@ export const startLoginProcess = (data, route) => {
   }
 };
 
-export const startLogoutProcess = (route) => {
+export const startLogoutProcess = (callback) => {
   const config = {
     method: 'DELETE',
     url: `${API_HOST_URL}${API_ROUTE}${USER_ROUTE}/logout`
@@ -49,10 +51,12 @@ export const startLogoutProcess = (route) => {
       dispatch({
         type: types.LOGOUT_SUCCESS,
       })
-      try {
-        dispatch(push(route));
-      } catch(error) {
-        console.log(error);
+      if (_.isFunction(callback)) {
+        try {
+          callback();
+        } catch(error) {
+          console.log(error);
+        }
       }
     })
     .catch((error) => {

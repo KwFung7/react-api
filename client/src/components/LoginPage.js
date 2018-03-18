@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Paper, AppBar, TextField, RaisedButton, Divider } from 'material-ui';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 import _ from 'lodash';
 import CopyrightFooter from './CopyrightFooter';
 import { t } from '../modules/I18n';
@@ -40,7 +41,7 @@ class LoginPage extends Component {
       userName,
       password
     };
-    this.props.startLoginProcess(user, HOME_ROUTE);
+    this.props.startLoginProcess(user, this.props.toHomePage);
   };
 
   handleChange = field => (e, newValue) => {
@@ -130,8 +131,9 @@ export default connect(
   },
   (dispatch) => {
     return {
-      startLoginProcess: (user, route) => { dispatch(startLoginProcess(user, route)) },
-      clearError: () => { dispatch(clearError()) }
+      startLoginProcess: (user, callback) => { dispatch(startLoginProcess(user, callback)) },
+      clearError: () => { dispatch(clearError()) },
+      toHomePage: () => { dispatch(push(HOME_ROUTE))}
     }
   }
 )(LoginPage);
