@@ -8,8 +8,10 @@ import logger from 'redux-logger';
 import createHistory from 'history/createBrowserHistory';
 import registerServiceWorker from './registerServiceWorker';
 import App from './App';
+import axios from 'axios';
 import './index.css';
 import rootReducer from './reducers/rootReducer';
+import { API_HOST_URL, API_ROUTE, X_AUTH } from './constants';
 
 // Log only in development
 let middlewares = [thunk];
@@ -27,6 +29,18 @@ let store = createStore(
   rootReducer,
   applyMiddleware(...middlewares)
 );
+
+// set axios base url and set response header x-auth
+axios.defaults.baseURL = `${API_HOST_URL}${API_ROUTE}`;
+axios.interceptors.response.use((res) => {
+  const { headers = {} } = res;
+  if (headers[X_AUTH]) {
+    axios.defaults.headers.common[X_AUTH] = headers[X_AUTH];
+  }
+  return res;
+}, (error) => {
+  return Promise.reject(error);
+});
 
 ReactDOM.render(
   <Provider store={store}>

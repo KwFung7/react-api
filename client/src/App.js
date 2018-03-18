@@ -9,7 +9,6 @@ import './App.css';
 // Actions
 import { fetchPortfolioList } from './actions/portfolioActions';
 import { fetchSystemSetting } from './actions/settingActions';
-import { startLoginProcess } from './actions/userActions';
 
 // Import components
 import NoMatch from './components/NoMatch';
@@ -61,8 +60,7 @@ export default connect(
   (dispatch) => {
     return {
       fetchPortfolioList: () => { dispatch(fetchPortfolioList()) },
-      fetchSystemSetting: () => { dispatch(fetchSystemSetting()) },
-      startLoginProcess: (user) => { dispatch(startLoginProcess(user)) }
+      fetchSystemSetting: () => { dispatch(fetchSystemSetting()) }
     }
   }
 )(App);

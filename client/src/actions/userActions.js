@@ -1,12 +1,12 @@
 import axios from 'axios';
 import _ from 'lodash';
 import * as types from './actionTypes';
-import { API_HOST_URL, API_ROUTE, USER_ROUTE, LOGIN_ROUTE } from '../constants';
+import { USER_ROUTE, LOGIN_ROUTE } from '../constants';
 
 export const startLoginProcess = (data, callback) => {
   const config = {
     method: 'POST',
-    url: `${API_HOST_URL}${API_ROUTE}${USER_ROUTE}${LOGIN_ROUTE}`,
+    url: `${USER_ROUTE}${LOGIN_ROUTE}`,
     data
   }
 
@@ -39,7 +39,7 @@ export const startLoginProcess = (data, callback) => {
 export const startLogoutProcess = (callback) => {
   const config = {
     method: 'DELETE',
-    url: `${API_HOST_URL}${API_ROUTE}${USER_ROUTE}/logout`
+    url: `${USER_ROUTE}/logout`
   }
 
   return (dispatch) => {

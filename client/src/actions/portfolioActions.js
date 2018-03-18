@@ -1,11 +1,11 @@
 import axios from 'axios';
 import * as types from './actionTypes';
-import { API_HOST_URL, API_ROUTE, PORTFOLIO_ROUTE } from '../constants';
+import { PORTFOLIO_ROUTE } from '../constants';
 
 export const fetchPortfolioList = (dispatch) => {
   const config = {
     method: 'GET',
-    url: `${API_HOST_URL}${API_ROUTE}${PORTFOLIO_ROUTE}`
+    url: PORTFOLIO_ROUTE
   }
 
   return (dispatch) => {

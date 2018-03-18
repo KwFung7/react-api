@@ -1,12 +1,12 @@
 import axios from 'axios';
 import _ from 'lodash';
 import * as types from './actionTypes';
-import { API_HOST_URL, API_ROUTE, SETTING_ROUTE } from '../constants';
+import { SETTING_ROUTE } from '../constants';
 
 export const fetchSystemSetting = () => {
   const config = {
     method: 'GET',
-    url: `${API_HOST_URL}${API_ROUTE}${SETTING_ROUTE}`
+    url: SETTING_ROUTE
   }
 
   return (dispatch) => {

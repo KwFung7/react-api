@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const ApiRouter = require('./server/routers');
 
 let app = express();
-app.use(cors());
+app.use(cors({ exposedHeaders: 'x-auth' }));
 app.use(bodyParser.json());
 app.use((req, res, next) => {
   // for server log
