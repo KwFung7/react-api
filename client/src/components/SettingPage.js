@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import AdminLayout from './AdminLayout';
 import { Paper, SelectField, MenuItem } from 'material-ui';
 import { t } from '../modules/I18n';
+import { fetchSpecificPortfolio } from '../actions/portfolioActions';
 
 class SettingPage extends Component {
   constructor(props) {
@@ -16,6 +17,12 @@ class SettingPage extends Component {
     this.setState({
       portfolioValue: value
     });
+  }
+
+  componentDidMount() {
+    const { data = {} } = this.props.setting;
+    const { selected_portfolio: id } = data;
+    id && this.props.fetchSpecificPortfolio(id);
   }
 
   render() {
@@ -50,6 +57,11 @@ export default connect(
     return {
       setting: state.setting,
       portfolio: state.portfolio
+    }
+  },
+  (dispatch) => {
+    return {
+      fetchSpecificPortfolio: (id) => { dispatch(fetchSpecificPortfolio(id)) },
     }
   }
 )(SettingPage);

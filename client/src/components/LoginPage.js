@@ -62,8 +62,6 @@ class LoginPage extends Component {
     fetchSystemSetting();
     if (user.role === ADMIN_ROLE) {
       fetchPortfolioList();
-    } else {
-      console.log('specific portfolio.')
     }
   };
 

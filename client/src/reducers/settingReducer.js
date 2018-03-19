@@ -5,7 +5,7 @@ import {
 } from '../actions/actionTypes';
 
 const initialState = {
-  setting: {},
+  data: {},
   loading: false,
   loaded: false,
   error: {}
@@ -24,7 +24,7 @@ export const setting = (state = initialState, action) => {
         ...state,
         loading: false,
         loaded: true,
-        setting: action.payload
+        data: action.payload
       };
     case FETCH_SYSTEM_SETTING_FAILURE:
       return {
