@@ -6,8 +6,12 @@ import _ from 'lodash';
 import CopyrightFooter from './CopyrightFooter';
 import { t } from '../modules/I18n';
 import ActionAccountCircle from 'material-ui/svg-icons/action/account-circle';
+import { HOME_ROUTE, ADMIN_ROLE } from '../constants';
+
+// Actions
+import { fetchPortfolioList } from '../actions/portfolioActions';
+import { fetchSystemSetting } from '../actions/settingActions';
 import { startLoginProcess, clearError } from '../actions/userActions';
-import { HOME_ROUTE } from '../constants';
 
 const containerStyle = { 
   width: 300,
@@ -41,7 +45,7 @@ class LoginPage extends Component {
       userName,
       password
     };
-    this.props.startLoginProcess(user, this.props.toHomePage);
+    this.props.startLoginProcess(user, this.loginCallback);
   };
 
   handleChange = field => (e, newValue) => {
@@ -51,6 +55,21 @@ class LoginPage extends Component {
       passwordErrorText: ''
     });
     !_.isEmpty(this.props.user.error) && this.props.clearError();
+  };
+
+  fetchEssentialData = () => {
+    const { user = {}, fetchSystemSetting, fetchPortfolioList } = this.props;
+    fetchSystemSetting();
+    if (user.role === ADMIN_ROLE) {
+      fetchPortfolioList();
+    } else {
+      console.log('specific portfolio.')
+    }
+  };
+
+  loginCallback = () => {
+    this.fetchEssentialData();
+    this.props.toHomePage();
   };
 
   componentWillReceiveProps(nextProps) {
@@ -132,6 +151,8 @@ export default connect(
   (dispatch) => {
     return {
       startLoginProcess: (user, callback) => { dispatch(startLoginProcess(user, callback)) },
+      fetchPortfolioList: () => { dispatch(fetchPortfolioList()) },
+      fetchSystemSetting: () => { dispatch(fetchSystemSetting()) },
       clearError: () => { dispatch(clearError()) },
       toHomePage: () => { dispatch(push(HOME_ROUTE))}
     }

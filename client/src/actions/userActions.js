@@ -16,8 +16,11 @@ export const startLoginProcess = (data, callback) => {
     });
     axios(config)
     .then((payload) => {
+      const { data = {} } = payload;
       dispatch({
         type: types.LOGIN_SUCCESS,
+        userName: data.userName,
+        role: data.role 
       })
       if (_.isFunction(callback)) {
         try {

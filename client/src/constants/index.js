@@ -25,3 +25,4 @@ export const BREAKPOINT_TABLET = 992;
 // API
 export const API_HOST_URL = 'http://localhost:5000';
 export const X_AUTH = 'x-auth';
+export const ADMIN_ROLE = 'admin';

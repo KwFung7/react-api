@@ -6,10 +6,6 @@ import { setLocale } from './modules/I18n';
 import { connect } from 'react-redux';
 import './App.css';
 
-// Actions
-import { fetchPortfolioList } from './actions/portfolioActions';
-import { fetchSystemSetting } from './actions/settingActions';
-
 // Import components
 import NoMatch from './components/NoMatch';
 import HomePage from './components/HomePage';
@@ -25,11 +21,6 @@ class App extends Component {
     setLocale();
   }
 
-  componentDidMount() {
-    // const { fetchSystemSetting, fetchPortfolioList, startLoginProcess } = this.props;
-    // fetchSystemSetting();
-    // fetchPortfolioList();
-  }
   render() {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
@@ -55,12 +46,6 @@ export default connect(
   (state) => {
     return {
       setting: state.setting
-    }
-  },
-  (dispatch) => {
-    return {
-      fetchPortfolioList: () => { dispatch(fetchPortfolioList()) },
-      fetchSystemSetting: () => { dispatch(fetchSystemSetting()) }
     }
   }
 )(App);

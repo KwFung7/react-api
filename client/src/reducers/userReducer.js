@@ -11,7 +11,9 @@ import {
 const initialState = {
   login: false,
   loading: false,
-  error: {}
+  error: {},
+  userName: '',
+  role: ''
 };
 
 export const user = (state = initialState, action) => {
@@ -26,7 +28,9 @@ export const user = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        login: true
+        login: true,
+        userName: action.userName,
+        role: action.role
       }
     case LOGIN_FAILURE:
       return {
@@ -44,7 +48,9 @@ export const user = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        login: false
+        login: false,
+        userName: '',
+        role: ''
       }
     case LOGOUT_FAILURE:
       return {

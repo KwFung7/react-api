@@ -17,7 +17,7 @@ export const fetchPortfolioList = (dispatch) => {
       const { data = [] } = payload;
       dispatch({
         type: types.FETCH_PORTFOLIO_LIST_SUCCESS,
-        payload: data
+        payload: data.portfolios
       });
     })
     .catch((error) => {
