@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Paper, AppBar, TextField, RaisedButton, Divider } from 'material-ui';
+import { Paper, AppBar, TextField, RaisedButton, Divider, CircularProgress } from 'material-ui';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import _ from 'lodash';
@@ -89,6 +89,7 @@ class LoginPage extends Component {
   }
   render() {
     const { userName, password, userErrorText, passwordErrorText } = this.state;
+    const loading = this.props.user.loading;
     return (
       <Paper zDepth={4} style={containerStyle}>
         <AppBar
@@ -120,14 +121,15 @@ class LoginPage extends Component {
             value={password}
           />
           <RaisedButton
-            label={t('loginPage.btnLabel')}
+            label={loading ? '' : t('loginPage.btnLabel')}
+            icon={loading ? <CircularProgress size={30} thickness={2}/> : ''}
             labelPosition='after'
             secondary={true}
             fullWidth={true}
             labelStyle={{ textTransform: 'normal' }}
             style={{ margin: '1rem 0' }}
             onClick={this.handleLoginBtnClick}
-            disabled={_.isEmpty(userName) || _.isEmpty(password)}
+            disabled={loading || _.isEmpty(userName) || _.isEmpty(password)}
           />
           <Divider />
           <div style={{ marginTop: '1rem', color: 'lightgrey' }} >

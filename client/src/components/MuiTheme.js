@@ -11,7 +11,7 @@ export const muiTheme = getMuiTheme({
     focusColor: blue500
   },
   button: {
-    height: 40
+    height: 45
   },
   raisedButton: {
     secondaryColor: orange500
