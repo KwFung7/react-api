@@ -2,7 +2,7 @@ let mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const _ = require('lodash');
-const { SECRET_KEY, GEN_SALT_ROUND, TOKEN_EXPIRE_DAY, WRONG_ACCOUNT, WRONG_PASSWORD } = require('../constants');
+const { GEN_SALT_ROUND, TOKEN_EXPIRE_DAY, WRONG_ACCOUNT, WRONG_PASSWORD } = require('../constants');
 
 let Schema = mongoose.Schema;
 const userSchema = new Schema({
@@ -63,7 +63,7 @@ userSchema.methods.generateAuthToken = function () {
     access,
     createdAt,
     expireAt
-  }, SECRET_KEY).toString();
+  }, process.env.JWT_SECRET).toString();
 
   user.tokens = user.tokens.concat([{ access, token, createdAt, expireAt }]);
   return user.save().then(() => token);
@@ -84,7 +84,7 @@ userSchema.statics.findByToken = function (token) {
   let decoded;
 
   try {
-    decoded = jwt.verify(token, SECRET_KEY);
+    decoded = jwt.verify(token, process.env.JWT_SECRET);
   } catch(e) {
     return Promise.reject();
   }

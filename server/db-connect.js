@@ -1,6 +1,5 @@
 let mongoose = require('mongoose');
-const { DB_CONNECTION } = require('./constants');
-const dbConnection = process.env.MONGODB_URI || DB_CONNECTION;
+const dbConnection = process.env.MONGODB_URI;
 
 mongoose.Promise = global.Promise;
 mongoose.connect(dbConnection).then(() => {
