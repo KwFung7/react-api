@@ -9,9 +9,10 @@ import createHistory from 'history/createBrowserHistory';
 import registerServiceWorker from './registerServiceWorker';
 import App from './App';
 import axios from 'axios';
+import jwt from 'jsonwebtoken';
 import './index.css';
 import rootReducer from './reducers/rootReducer';
-import { API_HOST_URL, API_ROUTE, X_AUTH, TOKEN_EXPIRE_DAY } from './constants';
+import { API_HOST_URL, API_ROUTE, X_AUTH } from './constants';
 
 // Log only in development
 let middlewares = [thunk];
@@ -39,9 +40,8 @@ axios.interceptors.response.use((res) => {
     window.localStorage.setItem('token', headers[X_AUTH]);
 
     // user cant keep login with expired token
-    let expireAt = new Date();
-    expireAt.setDate(expireAt.getDate() + TOKEN_EXPIRE_DAY);
-    window.localStorage.setItem('expiredAt', expireAt.toString());
+    let decoded = jwt.decode(headers[X_AUTH]);
+    window.localStorage.setItem('expireAt', decoded.expireAt);
   }
   return res;
 }, (error) => {
