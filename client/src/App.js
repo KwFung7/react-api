@@ -13,6 +13,7 @@ import LoginPage from './components/LoginPage';
 import SettingPage from './components/SettingPage';
 import PortfolioPage from './components/PortfolioPage';
 import ServerLogPage from './components/ServerLogPage';
+import PrivateRoute from './components/PrivateRoute';
 import { muiTheme } from './components/MuiTheme';
 
 class App extends Component {
@@ -26,14 +27,17 @@ class App extends Component {
       <MuiThemeProvider muiTheme={muiTheme}>
         <Router history={this.props.history}>
           <Switch>
-            <Route exact path={constants.ROOT} render={() => {
-              return <Redirect to={constants.LOGIN_ROUTE} />;
+            <Route exact path={constants.ROOT} render={(props) => {
+              return <Redirect to={{
+                pathname: constants.HOME_ROUTE,
+                state: { from: props.location }
+              }} />;
             }} />
             <Route path={constants.LOGIN_ROUTE} component={LoginPage} />
-            <Route path={constants.HOME_ROUTE} component={HomePage} />
-            <Route path={constants.SETTING_ROUTE} component={SettingPage} />
-            <Route path={constants.PORTFOLIO_ROUTE} component={PortfolioPage} />
-            <Route path={constants.SERVER_LOG_ROUTE} component={ServerLogPage} />
+            <PrivateRoute path={constants.HOME_ROUTE} component={HomePage} />
+            <PrivateRoute path={constants.SETTING_ROUTE} component={SettingPage} />
+            <PrivateRoute path={constants.PORTFOLIO_ROUTE} component={PortfolioPage} />
+            <PrivateRoute path={constants.SERVER_LOG_ROUTE} component={ServerLogPage} />
             <Route component={NoMatch} />
           </Switch>
         </Router>

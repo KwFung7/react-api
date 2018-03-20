@@ -12,7 +12,7 @@ import axios from 'axios';
 import jwt from 'jsonwebtoken';
 import './index.css';
 import rootReducer from './reducers/rootReducer';
-import { API_HOST_URL, API_ROUTE, X_AUTH } from './constants';
+import { API_HOST_URL, API_ROUTE, X_AUTH, TOKEN, EXPIRE_AT } from './constants';
 
 // Log only in development
 let middlewares = [thunk];
@@ -37,11 +37,11 @@ axios.interceptors.response.use((res) => {
   const { headers = {} } = res;
   if (headers[X_AUTH]) {
     axios.defaults.headers.common[X_AUTH] = headers[X_AUTH];
-    window.localStorage.setItem('token', headers[X_AUTH]);
+    window.localStorage.setItem(TOKEN, headers[X_AUTH]);
 
     // user cant keep login with expired token
     let decoded = jwt.decode(headers[X_AUTH]);
-    window.localStorage.setItem('expireAt', decoded.expireAt);
+    window.localStorage.setItem(EXPIRE_AT, decoded.expireAt);
   }
   return res;
 }, (error) => {

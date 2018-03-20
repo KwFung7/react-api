@@ -26,3 +26,9 @@ export const BREAKPOINT_TABLET = 992;
 export const API_HOST_URL = 'http://localhost:5000';
 export const X_AUTH = 'x-auth';
 export const ADMIN_ROLE = 'admin';
+
+// Local Storage
+export const TOKEN = 'token';
+export const EXPIRE_AT = 'expireAt';
+export const USER_NAME = 'userName';
+export const USER_ROLE = 'userRole';
