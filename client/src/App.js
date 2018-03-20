@@ -14,6 +14,7 @@ import SettingPage from './components/SettingPage';
 import PortfolioPage from './components/PortfolioPage';
 import ServerLogPage from './components/ServerLogPage';
 import PrivateRoute from './components/PrivateRoute';
+import LoginRoute from './components/LoginRoute';
 import { muiTheme } from './components/MuiTheme';
 
 class App extends Component {
@@ -33,7 +34,7 @@ class App extends Component {
                 state: { from: props.location }
               }} />;
             }} />
-            <Route path={constants.LOGIN_ROUTE} component={LoginPage} />
+            <LoginRoute path={constants.LOGIN_ROUTE} component={LoginPage} />
             <PrivateRoute path={constants.HOME_ROUTE} component={HomePage} />
             <PrivateRoute path={constants.SETTING_ROUTE} component={SettingPage} />
             <PrivateRoute path={constants.PORTFOLIO_ROUTE} component={PortfolioPage} />

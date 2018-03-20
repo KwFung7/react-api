@@ -26,6 +26,7 @@ export const BREAKPOINT_TABLET = 992;
 export const API_HOST_URL = 'http://localhost:5000';
 export const X_AUTH = 'x-auth';
 export const ADMIN_ROLE = 'admin';
+export const SECRET_KEY = 'FUCKMYLIFE';
 
 // Local Storage
 export const TOKEN = 'token';

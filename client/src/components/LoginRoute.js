@@ -1,24 +1,24 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { LOGIN_ROUTE } from '../constants';
+import { HOME_ROUTE } from '../constants';
 import checkLoginStatus from '../helpers/checkLoginStatus';
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
+const LoginRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={props =>
       checkLoginStatus() ? (
-        <Component {...props} />
-      ) : (
         <Redirect
           to={{
-            pathname: LOGIN_ROUTE ,
+            pathname: HOME_ROUTE ,
             state: { from: props.location }
           }}
         />
+      ) : (
+        <Component {...props} />
       )
     }
   />
 );
 
-export default PrivateRoute;
+export default LoginRoute;
