@@ -1,7 +1,7 @@
 import axios from 'axios';
 import _ from 'lodash';
 import * as types from './actionTypes';
-import { USER_ROUTE, LOGIN_ROUTE, USER_NAME, USER_ROLE } from '../constants';
+import { USER_ROUTE, LOGIN_ROUTE, USER_NAME, USER_ROLE, USER_ID } from '../constants';
 
 export const startLoginProcess = (data, callback) => {
   const config = {
@@ -25,6 +25,7 @@ export const startLoginProcess = (data, callback) => {
       // also store the userName and role into localStorage
       window.localStorage.setItem(USER_NAME, data.userName);
       window.localStorage.setItem(USER_ROLE, data.role);
+      window.localStorage.setItem(USER_ID, data._id);
 
       if (_.isFunction(callback)) {
         try {
