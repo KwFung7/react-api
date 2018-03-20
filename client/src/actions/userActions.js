@@ -22,6 +22,10 @@ export const startLoginProcess = (data, callback) => {
         userName: data.userName,
         role: data.role 
       })
+      // also store the userName and role into localStorage
+      window.localStorage.setItem('userName', data.userName);
+      window.localStorage.setItem('userRole', data.role);
+
       if (_.isFunction(callback)) {
         try {
           callback();
@@ -54,6 +58,8 @@ export const startLogoutProcess = (callback) => {
       dispatch({
         type: types.LOGOUT_SUCCESS,
       })
+      window.localStorage.clear();
+
       if (_.isFunction(callback)) {
         try {
           callback();
