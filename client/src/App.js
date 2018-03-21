@@ -16,10 +16,17 @@ import ServerLogPage from './components/ServerLogPage';
 import PrivateRoute from './components/PrivateRoute';
 import { muiTheme } from './components/MuiTheme';
 
+// Actions
+import { fetchSystemSetting } from './actions/settingActions';
+
 class App extends Component {
   constructor(props) {
     super(props);
     setLocale();
+  }
+
+  componentDidMount() {
+    this.props.fetchSystemSetting();
   }
 
   render() {
@@ -48,8 +55,11 @@ class App extends Component {
 
 export default connect(
   (state) => {
+    return {}
+  },
+  (dispatch) => {
     return {
-      setting: state.setting
+      fetchSystemSetting: () => { dispatch(fetchSystemSetting()); }
     }
   }
 )(App);
