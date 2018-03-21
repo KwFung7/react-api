@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import AdminLayout from './AdminLayout';
 import { Paper, SelectField, MenuItem } from 'material-ui';
 import { t } from '../modules/I18n';
+import _ from 'lodash';
 import { fetchSpecificPortfolio, fetchPortfolioList } from '../actions/portfolioActions';
 import { ADMIN_ROLE } from '../constants';
 
@@ -18,17 +19,27 @@ class SettingPage extends Component {
     this.setState({
       portfolioValue: value
     });
-  }
+  };
 
-  componentDidMount() {
-    const { user = {}, setting = {}, fetchPortfolioList, fetchSpecificPortfolio } = this.props;
-    if (user.role === ADMIN_ROLE) {
+  fetchPortfolio = (role, setting) => {
+    const { fetchPortfolioList, fetchSpecificPortfolio } = this.props;
+    if (role === ADMIN_ROLE) {
       fetchPortfolioList();
     } else {
       const { data = {} } = setting;
       const { selected_portfolio: id } = data;
       id && fetchSpecificPortfolio(id);
     }
+  };
+
+  componentWillReceiveProps(nextProps) {
+    const { user = {}, setting = {} } = nextProps;
+    !_.isEmpty(user.role) && !_.isEmpty(setting.data) && this.fetchPortfolio(user.role, setting);
+  }
+
+  componentDidMount() {
+    const { user = {}, setting = {} } = this.props;
+    !_.isEmpty(user.role) && !_.isEmpty(setting.data) && this.fetchPortfolio(user.role, setting);
   }
 
   render() {

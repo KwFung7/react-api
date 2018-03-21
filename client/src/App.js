@@ -4,6 +4,7 @@ import { Router, Route, Redirect, Switch } from 'react-router-dom';
 import * as constants from './constants';
 import { setLocale } from './modules/I18n';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 import './App.css';
 
 // Import components
@@ -18,6 +19,7 @@ import { muiTheme } from './components/MuiTheme';
 
 // Actions
 import { fetchSystemSetting } from './actions/settingActions';
+import { checkToken } from './actions/userActions';
 
 class App extends Component {
   constructor(props) {
@@ -26,6 +28,8 @@ class App extends Component {
   }
 
   componentDidMount() {
+    const token = window.localStorage.getItem(constants.TOKEN);
+    !_.isEmpty(token) && this.props.checkToken(token);
     this.props.fetchSystemSetting();
   }
 
@@ -59,7 +63,8 @@ export default connect(
   },
   (dispatch) => {
     return {
-      fetchSystemSetting: () => { dispatch(fetchSystemSetting()); }
+      fetchSystemSetting: () => { dispatch(fetchSystemSetting()); },
+      checkToken: (token) => { dispatch(checkToken(token)); }
     }
   }
 )(App);
