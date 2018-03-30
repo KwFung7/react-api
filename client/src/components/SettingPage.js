@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import AdminLayout from './AdminLayout';
-import { Paper, SelectField, MenuItem } from 'material-ui';
+import FormControlSection from './FormControlSection';
+import { Paper, SelectField, MenuItem, CircularProgress } from 'material-ui';
 import { t } from '../modules/I18n';
 import _ from 'lodash';
 import { fetchSpecificPortfolio, fetchPortfolioList } from '../actions/portfolioActions';
@@ -12,7 +13,8 @@ class SettingPage extends Component {
     super(props);
     this.state = {
       selectedPortfolio: '',
-      loaded: false
+      loaded: false,
+      editing: false
     };
   }
 
@@ -20,6 +22,14 @@ class SettingPage extends Component {
     this.setState({
       selectedPortfolio: value
     });
+  };
+
+  handleEditBtnClick = () => {
+    this.setState({ editing: true });
+  };
+
+  handleCompleteBtnClick = () => {
+    this.setState({ editing: false });
   };
 
   fetchPortfolio = (role, setting) => {
@@ -62,38 +72,49 @@ class SettingPage extends Component {
   }
 
   render() {
-    const { portfolio = {} } = this.props;
-    const { list = [], data = {} } = portfolio;
+    const { portfolio = {}, user = {} } = this.props;
+    const { list = [], data = {}, loading } = portfolio;
     const specificPortfolio = _.find(list, ['_id', this.state.selectedPortfolio]) || data;
+    const isAdmin = user.role === ADMIN_ROLE;
 
     return (
       <AdminLayout>
         <Paper className="container-fluid setting-page page">
           <div className="setting-page-title page-title">{t('settingPage.title')}</div>
-          <div className="setting-page-body page-body">
-            {
-              !_.isEmpty(specificPortfolio) &&
-              <SelectField
-                floatingLabelText={t('settingPage.selectedPortfolio')}
-                style={{ textAlign: 'left' }}
-                value={specificPortfolio._id}
-                onChange={this.handleChange}
-                disabled={_.isEmpty(list)}
-                dropDownMenuProps={{
-                  anchorOrigin: {
-                    vertical: 'center',
-                    horizontal: 'left',
+          {
+            loading
+            ? <div className="setting-page-body page-body"><CircularProgress color='grey' style={{ marginTop: '3rem' }}/></div>
+            : <div className="setting-page-body page-body">
+              {
+                !_.isEmpty(specificPortfolio) &&
+                <SelectField
+                  floatingLabelText={t('settingPage.selectedPortfolio')}
+                  style={{ textAlign: 'left' }}
+                  value={specificPortfolio._id}
+                  onChange={this.handleChange}
+                  disabled={!this.state.editing}
+                  dropDownMenuProps={{
+                    anchorOrigin: {
+                      vertical: 'center',
+                      horizontal: 'left',
+                    }
+                  }}
+                >
+                  {
+                    _.isEmpty(list)
+                    ? <MenuItem value={specificPortfolio._id} primaryText={specificPortfolio.name} />
+                    : list.map((obj, idx) => <MenuItem key={idx} value={obj._id} primaryText={obj.name} />)
                   }
-                }}
-              >
-                {
-                  _.isEmpty(list)
-                  ? <MenuItem value={specificPortfolio._id} primaryText={specificPortfolio.name} />
-                  : list.map((obj, idx) => <MenuItem key={idx} value={obj._id} primaryText={obj.name} />)
-                }
-              </SelectField>
-            }
-          </div>
+                </SelectField>
+              }
+              <FormControlSection
+                disabledEditBtn={this.state.editing || !isAdmin}
+                disabledCompleteBtn={!this.state.editing}
+                editBtnOnClick={this.handleEditBtnClick}
+                completeBtnOnClick={this.handleCompleteBtnClick}
+              />
+            </div>
+          }
         </Paper>
       </AdminLayout>
     );

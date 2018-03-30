@@ -17,6 +17,10 @@ export default {
       serverLog: 'Server Log'
     }
   },
+  common: {
+    editBtnLabel: 'Edit',
+    completeBtnLabel: 'Complete'
+  },
   homePage: {
     title: 'Welcome to my Admin Panel',
     author: 'by Felix Kwan'

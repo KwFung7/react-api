@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import { AppBar, FlatButton, Drawer, Paper, List, ListItem, IconButton } from 'material-ui';
+import { AppBar, FlatButton, Drawer, Paper, List, ListItem, IconButton, CircularProgress } from 'material-ui';
 import ActionSettings from 'material-ui/svg-icons/action/settings';
 import ActionFace from 'material-ui/svg-icons/action/face';
 import ActionFeedback from 'material-ui/svg-icons/action/feedback';
@@ -52,6 +52,7 @@ class AdminLayout extends Component {
   }
 
   render() {
+    const { user = {} } = this.props;
     return (
       <Paper>
         <AppBar
@@ -62,7 +63,11 @@ class AdminLayout extends Component {
           iconElementRight={
             <div style={{ display: 'flex' }}>
               <IconButton iconStyle={{ color: 'white' }} onClick={this.handleLogout}>
-                <ActionExitToApp />
+                {
+                  user.loading
+                  ? <CircularProgress size={15} thickness={2.5} color='white' />
+                  : <ActionExitToApp />
+                }
               </IconButton>
               <FlatButton
                 label={t('navigation.localeBtnLabel')}
@@ -132,7 +137,11 @@ class AdminLayout extends Component {
 }
 
 export default connect(
-  (state) => { return {} },
+  (state) => {
+    return {
+      user: state.user
+    }
+  },
   (dispatch) => {
     return {
       handleLocationChange: (location) => { dispatch(push(location)); },

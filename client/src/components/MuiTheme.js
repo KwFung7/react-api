@@ -1,5 +1,5 @@
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import { indigo500, blue500, grey500, orange500 } from 'material-ui/styles/colors';
+import { indigo500, blue500, grey500, orange500, deepPurple400 } from 'material-ui/styles/colors';
 
 export const muiTheme = getMuiTheme({
   appBar: {
@@ -14,6 +14,7 @@ export const muiTheme = getMuiTheme({
     height: 45
   },
   raisedButton: {
+    primaryColor: deepPurple400,
     secondaryColor: orange500
   },
   fontFamily: 'Ubuntu'

@@ -17,6 +17,10 @@ export default {
       serverLog: '服務器日誌'
     }
   },
+  common: {
+    editBtnLabel: '編輯',
+    completeBtnLabel: '完成'
+  },
   homePage: {
     title: '歡迎來到我的管理平台',
     author: 'by Felix Kwan'
