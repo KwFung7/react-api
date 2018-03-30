@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import { AppBar, FlatButton, Drawer, Paper, List, ListItem } from 'material-ui';
+import { AppBar, FlatButton, Drawer, Paper, List, ListItem, IconButton } from 'material-ui';
 import ActionSettings from 'material-ui/svg-icons/action/settings';
 import ActionFace from 'material-ui/svg-icons/action/face';
 import ActionFeedback from 'material-ui/svg-icons/action/feedback';
+import ActionExitToApp from 'material-ui/svg-icons/action/exit-to-app';
 import NotificationEventNote from 'material-ui/svg-icons/notification/event-note';
 import { t, setLocale, currentLocale } from '../modules/I18n';
 import CopyrightFooter from './CopyrightFooter';
 import * as constants from '../constants';
+import { startLogoutProcess } from '../actions/userActions';
 
 class AdminLayout extends Component {
   constructor(props) {
@@ -42,6 +44,13 @@ class AdminLayout extends Component {
     this.setState({ open: !this.state.open });
   };
 
+  handleLogout = () => {
+    const { startLogoutProcess, handleLocationChange } = this.props;
+    startLogoutProcess(() => {
+      handleLocationChange(constants.LOGIN_ROUTE);
+    });
+  }
+
   render() {
     return (
       <Paper>
@@ -51,7 +60,16 @@ class AdminLayout extends Component {
           zDepth={3}
           onLeftIconButtonClick={this.handleDrawer}
           iconElementRight={
-            <FlatButton label={t('navigation.localeBtnLabel')} onClick={this.handleLocaleBtnClick} />
+            <div style={{ display: 'flex' }}>
+              <IconButton iconStyle={{ color: 'white' }} onClick={this.handleLogout}>
+                <ActionExitToApp />
+              </IconButton>
+              <FlatButton
+                label={t('navigation.localeBtnLabel')}
+                onClick={this.handleLocaleBtnClick}
+                style={{ color: 'white' }}
+              />
+            </div>
           }
           onTitleClick={() => {
             this.props.handleLocationChange(constants.HOME_ROUTE)
@@ -117,7 +135,8 @@ export default connect(
   (state) => { return {} },
   (dispatch) => {
     return {
-      handleLocationChange: (location) => { dispatch(push(location)); }
+      handleLocationChange: (location) => { dispatch(push(location)); },
+      startLogoutProcess: (callback) => { dispatch(startLogoutProcess(callback)); }
     }
   }
 )(AdminLayout);
