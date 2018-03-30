@@ -24,7 +24,7 @@ export const fetchPortfolioList = () => {
       dispatch({
         type: types.FETCH_PORTFOLIO_LIST_FAILURE,
         error
-      })
+      });
     })
   }
 };

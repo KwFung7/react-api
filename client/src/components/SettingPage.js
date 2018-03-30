@@ -11,18 +11,21 @@ class SettingPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      portfolioValue: '',
+      selectedPortfolio: '',
+      loaded: false
     };
   }
 
   handleChange = (e, idx, value) => {
     this.setState({
-      portfolioValue: value
+      selectedPortfolio: value
     });
   };
 
   fetchPortfolio = (role, setting) => {
     const { fetchPortfolioList, fetchSpecificPortfolio } = this.props;
+    this.setState({ loaded: true });
+
     if (role === ADMIN_ROLE) {
       fetchPortfolioList();
     } else {
@@ -34,34 +37,62 @@ class SettingPage extends Component {
 
   componentWillReceiveProps(nextProps) {
     const { user = {}, setting = {} } = nextProps;
-    !_.isEmpty(user.role) && !_.isEmpty(setting.data) && this.fetchPortfolio(user.role, setting);
+    const { data = {} } = setting;
+    if (_.isEmpty(this.state.selectedPortfolio)) {
+      this.setState({
+        selectedPortfolio: data.selected_portfolio,
+      });
+    }
+
+    if (!_.isEmpty(user.role) && !_.isEmpty(setting.data) && !this.state.loaded) {
+      this.fetchPortfolio(user.role, setting);
+    }
   }
 
   componentDidMount() {
     const { user = {}, setting = {} } = this.props;
-    !_.isEmpty(user.role) && !_.isEmpty(setting.data) && this.fetchPortfolio(user.role, setting);
+    const { data = {} } = setting;
+    this.setState({
+      selectedPortfolio: data.selected_portfolio,
+    });
+
+    if (!_.isEmpty(user.role) && !_.isEmpty(data) && !this.state.loaded) {
+      this.fetchPortfolio(user.role, setting);
+    }
   }
 
   render() {
+    const { portfolio = {} } = this.props;
+    const { list = [], data = {} } = portfolio;
+    const specificPortfolio = _.find(list, ['_id', this.state.selectedPortfolio]) || data;
+
     return (
       <AdminLayout>
         <Paper className="container-fluid setting-page page">
           <div className="setting-page-title page-title">{t('settingPage.title')}</div>
           <div className="setting-page-body page-body">
-            <SelectField
-              floatingLabelText={t('settingPage.selectedPortfolio')}
-              style={{ textAlign: 'left' }}
-              value={this.state.portfolioValue}
-              onChange={this.handleChange}
-              dropDownMenuProps={{
-                anchorOrigin: {
-                  vertical: 'center',
-                  horizontal: 'left',
+            {
+              !_.isEmpty(specificPortfolio) &&
+              <SelectField
+                floatingLabelText={t('settingPage.selectedPortfolio')}
+                style={{ textAlign: 'left' }}
+                value={specificPortfolio._id}
+                onChange={this.handleChange}
+                disabled={_.isEmpty(list)}
+                dropDownMenuProps={{
+                  anchorOrigin: {
+                    vertical: 'center',
+                    horizontal: 'left',
+                  }
+                }}
+              >
+                {
+                  _.isEmpty(list)
+                  ? <MenuItem value={specificPortfolio._id} primaryText={specificPortfolio.name} />
+                  : list.map((obj, idx) => <MenuItem key={idx} value={obj._id} primaryText={obj.name} />)
                 }
-              }}
-            >
-              <MenuItem value={this.state.portfolioValue} primaryText="felixkwan" />
-            </SelectField>
+              </SelectField>
+            }
           </div>
         </Paper>
       </AdminLayout>
@@ -73,7 +104,8 @@ export default connect(
   (state) => {
     return {
       setting: state.setting,
-      user: state.user
+      user: state.user,
+      portfolio: state.portfolio
     }
   },
   (dispatch) => {
