@@ -5,6 +5,7 @@ import FormControlSection from './FormControlSection';
 import { Paper, SelectField, MenuItem, CircularProgress } from 'material-ui';
 import { t } from '../modules/I18n';
 import _ from 'lodash';
+import { setSystemSetting } from '../actions/settingActions';
 import { fetchSpecificPortfolio, fetchPortfolioList } from '../actions/portfolioActions';
 import { ADMIN_ROLE } from '../constants';
 
@@ -29,7 +30,15 @@ class SettingPage extends Component {
   };
 
   handleCompleteBtnClick = () => {
-    this.setState({ editing: false });
+    const { setting = {} } = this.props;
+    const { data = {} } = setting;
+    const payload = {
+      selected_portfolio: this.state.selectedPortfolio
+    };
+
+    this.setState({ editing: false }, () => {
+      this.props.setSystemSetting(data._id, payload);
+    });
   };
 
   fetchPortfolio = (role, setting) => {
@@ -132,7 +141,8 @@ export default connect(
   (dispatch) => {
     return {
       fetchPortfolioList: () => { dispatch(fetchPortfolioList()); },
-      fetchSpecificPortfolio: (id) => { dispatch(fetchSpecificPortfolio(id)); }
+      fetchSpecificPortfolio: (id) => { dispatch(fetchSpecificPortfolio(id)); },
+      setSystemSetting: (id, data) => { dispatch(setSystemSetting(id, data)); }
     }
   }
 )(SettingPage);
