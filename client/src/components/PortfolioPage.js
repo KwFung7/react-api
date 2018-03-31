@@ -5,7 +5,6 @@ import { Paper } from 'material-ui';
 import { t } from '../modules/I18n';
 import { fetchSpecificPortfolio } from '../actions/portfolioActions';
 
-
 class PortfolioPage extends Component {
 
   componentDidMount() {
@@ -18,7 +17,7 @@ class PortfolioPage extends Component {
     return (
       <AdminLayout>
         <Paper className="container-fluid portfolio-page page">
-          <div className="portfolio-page-title page-title">{t('portfolioPage.title')}</div>
+          <div className="portfolio-page-title page-title">{t(`portfolioPage.${this.props.part}.title`)}</div>
         </Paper>
       </AdminLayout>
     );
@@ -26,8 +25,9 @@ class PortfolioPage extends Component {
 }
 
 export default connect(
-  (state) => {
+  (state, ownProps) => {
     return {
+      part: ownProps.match.params.part,
       setting: state.setting,
       portfolio: state.portfolio
     }

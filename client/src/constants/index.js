@@ -7,6 +7,12 @@ export const LOGIN_ROUTE = '/login';
 export const SETTING_ROUTE = '/setting';
 export const PORTFOLIO_ROUTE = '/portfolio';
 export const SERVER_LOG_ROUTE = '/log';
+export const PORTFOLIO_SUBROUTE = [
+  'header',
+  'intro',
+  'projects',
+  'contact'
+]
 
 // NoMatch
 export const NO_MATCH_STATUS = '404.';

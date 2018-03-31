@@ -47,7 +47,7 @@ class App extends Component {
             <Route path={constants.LOGIN_ROUTE} component={LoginPage} />
             <PrivateRoute path={constants.HOME_ROUTE} component={HomePage} />
             <PrivateRoute path={constants.SETTING_ROUTE} component={SettingPage} />
-            <PrivateRoute path={constants.PORTFOLIO_ROUTE} component={PortfolioPage} />
+            <PrivateRoute path={`${constants.PORTFOLIO_ROUTE}/:part`} component={PortfolioPage} />
             <PrivateRoute path={constants.SERVER_LOG_ROUTE} component={ServerLogPage} />
             <Route component={NoMatch} />
           </Switch>
