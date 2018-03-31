@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import AdminLayout from '../AdminLayout';
-import { Paper } from 'material-ui';
+import { Paper, CircularProgress } from 'material-ui';
 import { t } from '../../modules/I18n';
+import { PORTFOLIO_SUBROUTE } from '../../constants';
 import { fetchSpecificPortfolio } from '../../actions/portfolioActions';
+
+// Import all portfolio section
+import PortfolioHeaderSection from '../sections/PortfolioHeaderSection';
+import PortfolioIntroSection from '../sections/PortfolioIntroSection';
+import PortfolioProjectsSection from '../sections/PortfolioProjectsSection';
+import PortfolioContactSection from '../sections/PortfolioContactSection';
 
 class PortfolioPage extends Component {
   constructor(props) {
@@ -11,6 +18,29 @@ class PortfolioPage extends Component {
     this.state = {
       loaded: false
     }
+  }
+
+  renderSection = () => {
+    // assign specific component according to route
+    let PortfolioSection;
+    switch(this.props.part) {
+      case PORTFOLIO_SUBROUTE[0]:
+        PortfolioSection = <PortfolioHeaderSection />;
+        break;
+      case PORTFOLIO_SUBROUTE[1]:
+        PortfolioSection = <PortfolioIntroSection />;
+        break;
+      case PORTFOLIO_SUBROUTE[2]:
+        PortfolioSection = <PortfolioProjectsSection />;
+        break;
+      case PORTFOLIO_SUBROUTE[3]:
+        PortfolioSection = <PortfolioContactSection />;
+        break;
+      default:
+        console.log('No specific component for this route.')
+        break;
+    }
+    return PortfolioSection;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -31,10 +61,18 @@ class PortfolioPage extends Component {
   }
 
   render() {
+    const { portfolio = {}, part } = this.props;
+    const { loading } = portfolio;
+  
     return (
       <AdminLayout>
         <Paper className="container-fluid portfolio-page page">
           <div className="portfolio-page-title page-title">{t(`portfolioPage.${this.props.part}.title`)}</div>
+          {
+            loading
+            ? <div className="portfolio-page-body page-body"><CircularProgress color='grey' style={{ marginTop: '3rem' }}/></div>
+            : this.renderSection()
+          }
         </Paper>
       </AdminLayout>
     );
@@ -47,7 +85,8 @@ export default connect(
     const { selected_portfolio } = data;
     return {
       part: ownProps.match.params.part,
-      id: selected_portfolio
+      id: selected_portfolio,
+      portfolio: state.portfolio
     }
   },
   (dispatch) => {
