@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import AdminLayout from './AdminLayout';
+import AdminLayout from '../AdminLayout';
 import { Paper } from 'material-ui';
-import { t } from '../modules/I18n';
-import { fetchSpecificPortfolio } from '../actions/portfolioActions';
+import { t } from '../../modules/I18n';
+import { fetchSpecificPortfolio } from '../../actions/portfolioActions';
 
 class PortfolioPage extends Component {
   constructor(props) {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import AdminLayout from './AdminLayout';
+import AdminLayout from '../AdminLayout';
 import { Paper } from 'material-ui'
-import { t } from '../modules/I18n';
+import { t } from '../../modules/I18n';
 
 class HomePage extends Component {
   render() {

@@ -9,11 +9,11 @@ import './App.css';
 
 // Import components
 import NoMatch from './components/NoMatch';
-import HomePage from './components/HomePage';
-import LoginPage from './components/LoginPage';
-import SettingPage from './components/SettingPage';
-import PortfolioPage from './components/PortfolioPage';
-import ServerLogPage from './components/ServerLogPage';
+import HomePage from './components/page/HomePage';
+import LoginPage from './components/page/LoginPage';
+import SettingPage from './components/page/SettingPage';
+import PortfolioPage from './components/page/PortfolioPage';
+import ServerLogPage from './components/page/ServerLogPage';
 import PrivateRoute from './components/PrivateRoute';
 import { muiTheme } from './components/MuiTheme';
 

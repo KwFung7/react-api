@@ -3,11 +3,11 @@ import { Paper, AppBar, TextField, RaisedButton, Divider, CircularProgress } fro
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import _ from 'lodash';
-import CopyrightFooter from './CopyrightFooter';
-import { t } from '../modules/I18n';
+import CopyrightFooter from '../CopyrightFooter';
+import { t } from '../../modules/I18n';
 import ActionAccountCircle from 'material-ui/svg-icons/action/account-circle';
-import { HOME_ROUTE } from '../constants';
-import { startLoginProcess, clearError } from '../actions/userActions';
+import { HOME_ROUTE } from '../../constants';
+import { startLoginProcess, clearError } from '../../actions/userActions';
 
 const containerStyle = { 
   width: 300,

@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import AdminLayout from './AdminLayout';
-import FormControlSection from './FormControlSection';
+import AdminLayout from '../AdminLayout';
+import FormControlSection from '../FormControlSection';
 import { Paper, SelectField, MenuItem, CircularProgress } from 'material-ui';
-import { t } from '../modules/I18n';
+import { t } from '../../modules/I18n';
 import _ from 'lodash';
-import { setSystemSetting } from '../actions/settingActions';
-import { fetchSpecificPortfolio, fetchPortfolioList } from '../actions/portfolioActions';
-import { ADMIN_ROLE } from '../constants';
+import { setSystemSetting } from '../../actions/settingActions';
+import { fetchSpecificPortfolio, fetchPortfolioList } from '../../actions/portfolioActions';
+import { ADMIN_ROLE } from '../../constants';
 
 class SettingPage extends Component {
   constructor(props) {
