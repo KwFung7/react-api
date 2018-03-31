@@ -6,11 +6,28 @@ import { t } from '../modules/I18n';
 import { fetchSpecificPortfolio } from '../actions/portfolioActions';
 
 class PortfolioPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loaded: false
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { id, fetchSpecificPortfolio } = nextProps;
+
+    if (id && !this.state.loaded) {
+      fetchSpecificPortfolio(id);
+    }
+    this.setState({ loaded: true });
+  }
 
   componentDidMount() {
-    const { data = {} } = this.props.setting;
-    const { selected_portfolio: id } = data;
-    id && this.props.fetchSpecificPortfolio(id);
+    const { id, fetchSpecificPortfolio } = this.props;
+
+    if (id && !this.state.loaded) {
+      fetchSpecificPortfolio(id);
+    }
   }
 
   render() {
@@ -26,10 +43,11 @@ class PortfolioPage extends Component {
 
 export default connect(
   (state, ownProps) => {
+    const { data = {} } = state.setting;
+    const { selected_portfolio } = data;
     return {
       part: ownProps.match.params.part,
-      setting: state.setting,
-      portfolio: state.portfolio
+      id: selected_portfolio
     }
   },
   (dispatch) => {
