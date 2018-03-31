@@ -93,7 +93,7 @@ class SettingPage extends Component {
           {
             loading
             ? <div className="setting-page-body page-body"><CircularProgress color='grey' style={{ marginTop: '3rem' }}/></div>
-            : <div className="setting-page-body page-body">
+            : <Paper className="setting-page-body page-body">
               {
                 !_.isEmpty(specificPortfolio) &&
                 <SelectField
@@ -122,7 +122,7 @@ class SettingPage extends Component {
                 editBtnOnClick={this.handleEditBtnClick}
                 completeBtnOnClick={this.handleCompleteBtnClick}
               />
-            </div>
+            </Paper>
           }
         </Paper>
       </AdminLayout>
