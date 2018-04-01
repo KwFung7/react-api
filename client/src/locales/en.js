@@ -43,7 +43,11 @@ export default {
   portfolioPage: {
     title: 'Portfolio',
     header: {
-      title: 'Portfolio Header'
+      title: 'Portfolio Header',
+      userName: 'Portfolio Title',
+      userNameHintText: 'Enter your portfolio title',
+      position: 'Position',
+      positionHintText: 'Enter your position'
     },
     intro: {
       title: 'Portfolio Intro'

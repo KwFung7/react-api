@@ -43,7 +43,11 @@ export default {
   portfolioPage: {
     title: '作品集',
     header: {
-      title: '作品集頁頭'
+      title: '作品集頁頭',
+      userName: '作品集標題',
+      userNameHintText: '輸入作品集標題',
+      position: '職位',
+      positionHintText: '輸入你的職位'
     },
     intro: {
       title: '作品集介紹'

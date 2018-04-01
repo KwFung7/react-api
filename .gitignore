@@ -9,6 +9,7 @@
 
 # development
 /server/config/config.json
+/.vscode
 
 # production
 /build

@@ -67,7 +67,7 @@ class PortfolioPage extends Component {
     return (
       <AdminLayout>
         <Paper className="container-fluid portfolio-page page">
-          <div className="portfolio-page-title page-title">{t(`portfolioPage.${this.props.part}.title`)}</div>
+          <div className="portfolio-page-title page-title">{t(`portfolioPage.${part}.title`)}</div>
           {
             loading
             ? <div className="portfolio-page-body page-body"><CircularProgress color='grey' style={{ marginTop: '3rem' }}/></div>
