@@ -4,7 +4,7 @@ import { Paper, TextField, Chip, Avatar } from 'material-ui';
 import FormControlSection from '../FormControlSection';
 import { t } from '../../modules/I18n';
 import ActionAssignmentInd from 'material-ui/svg-icons/action/assignment-ind';
-import { GUEST_ROLE } from '../../constants';
+import { GUEST_ROLE, WORD_LIMIT } from '../../constants';
 
 class PortfolioHeaderSection extends Component {
   constructor(props) {
@@ -21,12 +21,14 @@ class PortfolioHeaderSection extends Component {
   }
 
   handleChange = (field) => (e, newValue) => {
-    this.setState({
-      formData: {
-        ...this.state.formData,
-        [field]: newValue
-      }
-    });
+    if (newValue.length <= WORD_LIMIT[field]) {
+      this.setState({
+        formData: {
+          ...this.state.formData,
+          [field]: newValue
+        }
+      });
+    }
   };
 
   handleEditBtnClick = () => {

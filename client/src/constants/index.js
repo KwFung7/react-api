@@ -40,3 +40,9 @@ export const EXPIRE_AT = 'expireAt';
 export const USER_NAME = 'userName';
 export const USER_ROLE = 'userRole';
 export const USER_ID = 'userID';
+
+// Validation
+export const WORD_LIMIT = {
+  userName: 30,
+  position: 20
+}
