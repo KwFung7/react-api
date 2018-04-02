@@ -8,15 +8,18 @@ import {
   CLEAR_ERROR,
   CHECKING_TOKEN,
   TOKEN_VALID_SUCCESS,
-  TOKEN_VALID_FAILURE
+  TOKEN_VALID_FAILURE,
+  SET_CURRENT_LOCALE
 } from '../actions/actionTypes';
+import { DEFAULT_LOCALE } from '../constants';
 
 const initialState = {
   login: false,
   loading: false,
   error: {},
   userName: '',
-  role: ''
+  role: '',
+  currentLang: DEFAULT_LOCALE
 };
 
 export const user = (state = initialState, action) => {
@@ -82,6 +85,11 @@ export const user = (state = initialState, action) => {
         userName: '',
         role: '',
         error: action.error
+      }
+    case SET_CURRENT_LOCALE:
+      return {
+        ...state,
+        currentLang: action.locale
       }
     case CLEAR_ERROR:
       return {

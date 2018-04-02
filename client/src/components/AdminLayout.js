@@ -10,7 +10,7 @@ import NotificationEventNote from 'material-ui/svg-icons/notification/event-note
 import { t, setLocale, currentLocale } from '../modules/I18n';
 import CopyrightFooter from './CopyrightFooter';
 import * as constants from '../constants';
-import { startLogoutProcess } from '../actions/userActions';
+import { startLogoutProcess, setCurrentLocale } from '../actions/userActions';
 
 class AdminLayout extends Component {
   constructor(props) {
@@ -28,12 +28,15 @@ class AdminLayout extends Component {
   handleLocaleBtnClick = () => {
     switch (currentLocale()) {
       case constants.EN:
+        this.props.setCurrentLocale(constants.TW);
         setLocale(constants.TW);
         break;
       case constants.TW:
+        this.props.setCurrentLocale(constants.EN);
         setLocale(constants.EN);
         break;
       default:
+      this.props.setCurrentLocale(constants.EN);
         setLocale(constants.EN);
     }
     this.props.handleLocationChange(window.location.pathname);
@@ -145,7 +148,8 @@ export default connect(
   (dispatch) => {
     return {
       handleLocationChange: (location) => { dispatch(push(location)); },
-      startLogoutProcess: (callback) => { dispatch(startLogoutProcess(callback)); }
+      startLogoutProcess: (callback) => { dispatch(startLogoutProcess(callback)); },
+      setCurrentLocale: (locale) => { dispatch(setCurrentLocale(locale)); }
     }
   }
 )(AdminLayout);

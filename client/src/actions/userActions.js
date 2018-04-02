@@ -112,6 +112,13 @@ export const checkToken = (token) => {
   }
 };
 
+export const setCurrentLocale = (locale) => {
+  return {
+    type: types.SET_CURRENT_LOCALE,
+    locale
+  }
+}
+
 export const clearError = () => {
   return (dispatch) => {
     dispatch({ type: types.CLEAR_ERROR });
