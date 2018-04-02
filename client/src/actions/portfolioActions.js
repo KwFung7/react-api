@@ -51,7 +51,35 @@ export const fetchSpecificPortfolio = (id) => {
       dispatch({
         type: types.FETCH_SPECIFIC_PORTFOLIO_FAILURE,
         error
-      })
+      });
+    })
+  }
+};
+
+export const setPortfolioData = (id, newData) => {
+  const config = {
+    method: 'PATCH',
+    url: `${PORTFOLIO_ROUTE}/${id}`,
+    data: newData
+  }
+
+  return (dispatch) => {
+    dispatch({
+      type: types.UPDATING_PORTFOLIO
+    });
+    axios(config)
+    .then((payload) => {
+      const { data = {} } = payload;
+      dispatch({
+        type: types.UPDATE_PORTFOLIO_SUCCESS,
+        payload: data
+      });
+    })
+    .catch((error) => {
+      dispatch({
+        type: types.UPDATE_PORTFOLIO_FAILURE,
+        error
+      });
     })
   }
 };

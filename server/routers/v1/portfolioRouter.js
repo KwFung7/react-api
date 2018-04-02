@@ -69,7 +69,7 @@ router.patch(`${PORTFOLIO_ROUTE}/:id`, authenticate, (req, res) => {
     });
   }
 
-  Portfolio.findById(id)
+  Portfolio.findByIdAndUpdate(id, { $set: body }, { new: true })
     .then((portfolio) => {
       if (!portfolio) {
         return res.status(NOT_FOUND).send({
@@ -82,10 +82,7 @@ router.patch(`${PORTFOLIO_ROUTE}/:id`, authenticate, (req, res) => {
           value: req.user.userName
         });
       } else {
-        portfolio.update({ $set: body })
-          .then(() => {
-            res.status(OK).send('Edit portfolio successful.');
-          })
+        res.status(OK).send(portfolio);
       }
     })
     .catch((err) => {

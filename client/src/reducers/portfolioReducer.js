@@ -4,7 +4,10 @@ import {
   FETCH_PORTFOLIO_LIST_FAILURE,
   FETCHING_SPECIFIC_PORTFOLIO,
   FETCH_SPECIFIC_PORTFOLIO_SUCCESS,
-  FETCH_SPECIFIC_PORTFOLIO_FAILURE
+  FETCH_SPECIFIC_PORTFOLIO_FAILURE,
+  UPDATING_PORTFOLIO,
+  UPDATE_PORTFOLIO_SUCCESS,
+  UPDATE_PORTFOLIO_FAILURE
 } from '../actions/actionTypes';
 
 const initialState = {
@@ -55,6 +58,23 @@ export const portfolio = (state = initialState, action) => {
         ...state,
         loading: false,
         loaded: false,
+        error: action.error
+      }
+    case UPDATING_PORTFOLIO:
+      return {
+        ...state,
+        loading: true
+      }
+    case UPDATE_PORTFOLIO_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        data: action.payload
+      }
+    case UPDATE_PORTFOLIO_FAILURE:
+      return {
+        ...state,
+        loading: false,
         error: action.error
       }
     default:

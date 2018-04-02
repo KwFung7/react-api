@@ -5,6 +5,7 @@ import FormControlSection from '../FormControlSection';
 import { t } from '../../modules/I18n';
 import ActionAssignmentInd from 'material-ui/svg-icons/action/assignment-ind';
 import { GUEST_ROLE, WORD_LIMIT } from '../../constants';
+import { setPortfolioData } from '../../actions/portfolioActions';
 
 class PortfolioHeaderSection extends Component {
   constructor(props) {
@@ -36,7 +37,19 @@ class PortfolioHeaderSection extends Component {
   };
 
   handleCompleteBtnClick = () => {
-    this.setState({ editing: false });
+    const { _id, content, setPortfolioData } = this.props;
+    const { userName, position } = this.state.formData;
+    const payload = {
+      header: {
+        ...content,
+        name: userName,
+        position
+      }
+    }
+
+    this.setState({ editing: false }, () => {
+      setPortfolioData(_id, payload)
+    });
   };
 
   render() {
@@ -80,13 +93,19 @@ class PortfolioHeaderSection extends Component {
 export default connect(
   (state) => {
     const { data = {} } = state.portfolio;
-    const { name = '', header = {} } = data;
+    const { _id, name = '', header = {} } = data;
     const { currentLang, role } = state.user;
     return {
+      _id,
       name,
       role,
       currentLang,
       content: header
+    }
+  },
+  (dispatch) => {
+    return {
+      setPortfolioData: (id, data) => { dispatch(setPortfolioData(id, data)); }
     }
   }
 )(PortfolioHeaderSection);
