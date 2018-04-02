@@ -56,7 +56,23 @@ export default {
       title: '作品集項目'
     },
     contact: {
-      title: '作品集聯繫'
+      title: '作品集聯繫',
+      email: {
+        label: '電郵地址',
+        hintText: '輸入你的電郵地址'
+      },
+      github_link: {
+        label: 'Github 網址',
+        hintText: '輸入網址'
+      },
+      linkedin_link: {
+        label: 'Linkedin 網址',
+        hintText: '輸入網址'
+      },
+      phone: {
+        label: '電話號碼',
+        hintText: '輸入你的電話號碼'
+      }
     }
   },
   serverLogPage: {

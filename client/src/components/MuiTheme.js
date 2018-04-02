@@ -1,9 +1,13 @@
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import { indigo500, blue500, grey500, orange500, deepPurple400 } from 'material-ui/styles/colors';
+import { indigo500, blue500, grey500, orange500, deepPurple400, darkBlack } from 'material-ui/styles/colors';
+import { fade } from 'material-ui/utils/colorManipulator';
 
 export const muiTheme = getMuiTheme({
   appBar: {
     color: indigo500
+  },
+  palette: {
+    disabledColor: fade(darkBlack, 0.5)
   },
   textField: {
     borderColor: grey500,

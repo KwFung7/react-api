@@ -56,7 +56,23 @@ export default {
       title: 'Portfolio Projects'
     },
     contact: {
-      title: 'Portfolio Contact'
+      title: 'Portfolio Contact',
+      email: {
+        label: 'Email',
+        hintText: 'Enter your email'
+      },
+      github_link: {
+        label: 'Github Link',
+        hintText: 'Enter your github link'
+      },
+      linkedin_link: {
+        label: 'Linkedin Link',
+        hintText: 'Enter your linkedin link'
+      },
+      phone: {
+        label: 'Phone no.',
+        hintText: 'Enter your phone number'
+      }
     }
   },
   serverLogPage: {
