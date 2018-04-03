@@ -53,7 +53,11 @@ export default {
       title: '作品集介紹'
     },
     projects: {
-      title: '作品集項目'
+      title: '作品集項目',
+      pageTitle: {
+        label: '頁面標題',
+        hintText: '輸入你的頁面標題'
+      }
     },
     contact: {
       title: '作品集聯繫',

@@ -53,7 +53,11 @@ export default {
       title: 'Portfolio Intro'
     },
     projects: {
-      title: 'Portfolio Projects'
+      title: 'Portfolio Projects',
+      pageTitle: {
+        label: 'Page Title',
+        hintText: 'Enter your project page title'
+      }
     },
     contact: {
       title: 'Portfolio Contact',

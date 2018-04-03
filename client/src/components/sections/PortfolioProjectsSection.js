@@ -1,29 +1,95 @@
 import React, { Component } from 'react';
-import { Paper } from 'material-ui';
+import { connect } from 'react-redux';
+import _ from 'lodash';
+import { Paper, TextField, Chip, Avatar } from 'material-ui';
 import FormControlSection from '../FormControlSection';
+import { t } from '../../modules/I18n';
+import ActionAssignmentInd from 'material-ui/svg-icons/action/assignment-ind';
+import { GUEST_ROLE, WORD_LIMIT } from '../../constants';
+import { setPortfolioData } from '../../actions/portfolioActions';
 
 class PortfolioProjectsSection extends Component {
   constructor(props) {
     super(props);
+    
+    const { title: pageTitle, ios_app = [] } = props.content;
     this.state = {
-      editing: false
+      editing: false,
+      formData: {
+        pageTitle,
+        ios_app
+      }
     };
   }
+
+  handleChange = (field) => (e, newValue) => {
+    if (newValue.length <= WORD_LIMIT[field]) {
+      this.setState({
+        formData: {
+          ...this.state.formData,
+          [field]: newValue
+        }
+      });
+    }
+  };
 
   handleEditBtnClick = () => {
     this.setState({ editing: true });
   };
 
   handleCompleteBtnClick = () => {
-    this.setState({ editing: false });
+    const { _id, content, setPortfolioData } = this.props;
+    const { pageTitle, ios_app } = this.state.formData;
+    const payload = {
+      projects: {
+        ...content,
+        title: pageTitle,
+        ios_app
+      }
+    }
+
+    this.setState({ editing: false }, () => {
+      setPortfolioData(_id, payload)
+    });
   };
 
   render() {
+    const { formData, editing } = this.state;
+    const { name, role } = this.props;
+    const isGuest = role === GUEST_ROLE;
+
     return (
       <Paper className="portfolio-page-body page-body">
+        <Chip style={{ marginBottom: '2rem' }} labelColor='grey'>
+          <Avatar icon={<ActionAssignmentInd />} />
+          {name}
+        </Chip>
+        <div className="gradient-layer">
+          <div className="scroll-view">
+            {
+              Object.keys(formData).map((obj, key) => {
+                if (_.isArray(formData[obj])) {
+                  return <div key={key}>Testing</div>
+                } else {
+                  return (
+                    <TextField
+                      key={key}
+                      floatingLabelFixed={true}
+                      floatingLabelText={t(`portfolioPage.projects.${obj}.label`)}
+                      hintText={t(`portfolioPage.projects.${obj}.hintText`)}
+                      onChange={this.handleChange(obj)}
+                      disabled={!editing}
+                      value={formData[obj]}
+                    />
+                  )
+                }
+              })
+            }
+          </div>
+        </div>
         <FormControlSection
-          disabledEditBtn={false}
-          disabledCompleteBtn={false}
+          disabledEditBtn={editing || isGuest}
+          disabledCompleteBtn={!editing}
           editBtnOnClick={this.handleEditBtnClick}
           completeBtnOnClick={this.handleCompleteBtnClick}
         />
@@ -31,4 +97,23 @@ class PortfolioProjectsSection extends Component {
     )
   }
 }
-export default PortfolioProjectsSection;
+
+export default connect(
+  (state) => {
+    const { data = {} } = state.portfolio;
+    const { _id, name = '', projects = {} } = data;
+    const { currentLang, role } = state.user;
+    return {
+      _id,
+      name,
+      role,
+      currentLang,
+      content: projects
+    }
+  },
+  (dispatch) => {
+    return {
+      setPortfolioData: (id, data) => { dispatch(setPortfolioData(id, data)); }
+    }
+  }
+)(PortfolioProjectsSection);

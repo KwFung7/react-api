@@ -48,5 +48,6 @@ export const WORD_LIMIT = {
   email: 30,
   github_link: 50,
   linkedin_link: 50,
-  phone: 15
+  phone: 15,
+  pageTitle: 20
 }
