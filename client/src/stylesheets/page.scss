@@ -27,6 +27,15 @@
   padding: 1rem;
 }
 
+.section-list {
+  position: relative;
+  margin: 0 30px 1rem;
+}
+
+.section-list-item {
+  position: relative;
+}
+
 .scroll-view {
   overflow-y: auto;
   height: 250px;
@@ -83,6 +92,9 @@
 
 @media only screen and (max-width: 767px) {
   .custom-width-textfield {
-    width: 300px !important;
+    width: 240px !important;
+  }
+  .section-list {
+    margin: 0;
   }
 }

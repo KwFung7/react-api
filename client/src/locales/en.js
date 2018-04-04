@@ -110,5 +110,10 @@ export default {
   serverLogPage: {
     title: 'Server Log'
   },
+  iconBtnTooltip: {
+    add: 'Add',
+    remove: 'Remove',
+    logout: 'Logout'
+  },
   copyright: '© [currentYear] Felix Kwan. All rights reserved.'
 };

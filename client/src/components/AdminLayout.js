@@ -65,7 +65,11 @@ class AdminLayout extends Component {
           onLeftIconButtonClick={this.handleDrawer}
           iconElementRight={
             <div style={{ display: 'flex' }}>
-              <IconButton iconStyle={{ color: 'white' }} onClick={this.handleLogout}>
+              <IconButton
+                iconStyle={{ color: 'white' }}
+                tooltip={t('iconBtnTooltip.logout')}
+                onClick={this.handleLogout}
+              >
                 {
                   user.loading
                   ? <CircularProgress size={15} thickness={2.5} color='white' />

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { TextField } from 'material-ui';
+import { TextField, IconButton } from 'material-ui';
 import _ from 'lodash';
 import { t } from '../modules/I18n';
+import ContentAddBox from 'material-ui/svg-icons/content/add-box';
+import ContentRemoveCircle from 'material-ui/svg-icons/content/remove-circle';
 
 class TextFieldList extends Component {
   render() {
@@ -26,19 +28,39 @@ class TextFieldList extends Component {
                         idx
                       }
                       return (
-                        <TextField
-                          id={`${key}-${idx}`}
-                          key={`${key}-${idx}`}
-                          className="custom-width-textfield"
-                          floatingLabelFixed={true}
-                          floatingLabelText={idx === 0 ? t(`portfolioPage.projects.${obj}.label`) : ''}
-                          hintText={`${t(`portfolioPage.projects.${obj}.hintText`)} ${idx + 1}`}
-                          onChange={handleChange(field, path)}
-                          disabled={disabled}
-                          value={item}
-                        />
+                        <div key={`${key}-${idx}`} className="section-list-item">
+                          {
+                            content[obj].length > 1 && !disabled &&
+                            <IconButton
+                              tooltip={disabled ? '' : t('iconBtnTooltip.remove')}
+                              iconStyle={{ color: 'red' }}
+                              style={{ position: 'absolute', bottom: -3, right: 6 }}
+                            >
+                              <ContentRemoveCircle />
+                            </IconButton>
+                          }
+                          <TextField
+                            className="custom-width-textfield"
+                            floatingLabelFixed={true}
+                            floatingLabelText={idx === 0 ? t(`portfolioPage.projects.${obj}.label`) : ''}
+                            hintText={`${t(`portfolioPage.projects.${obj}.hintText`)} ${idx + 1}`}
+                            onChange={handleChange(field, path)}
+                            disabled={disabled}
+                            value={item}
+                          />
+                        </div>
                       )
                     })
+                  }
+                  {
+                    !disabled &&
+                    <IconButton
+                      tooltip={disabled ? '' : t('iconBtnTooltip.add')}
+                      iconStyle={{ color: 'green' }}
+                      style={{ position: 'absolute', top: 0, right: 6 }}
+                    >
+                      <ContentAddBox />
+                    </IconButton>
                   }
                 </div>
               )

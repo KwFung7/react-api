@@ -110,5 +110,10 @@ export default {
   serverLogPage: {
     title: '服務器日誌'
   },
+  iconBtnTooltip: {
+    add: '添加',
+    remove: '移除',
+    logout: '登出'
+  },
   copyright: '© [currentYear] Felix Kwan 版權所有'
 };
