@@ -66,6 +66,7 @@ class PortfolioContactSection extends Component {
                 return (
                   <TextField
                     key={key}
+                    className="custom-width-textfield"
                     floatingLabelFixed={true}
                     floatingLabelText={t(`portfolioPage.contact.${obj}.label`)}
                     hintText={t(`portfolioPage.contact.${obj}.hintText`)}

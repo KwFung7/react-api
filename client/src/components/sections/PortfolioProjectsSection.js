@@ -7,6 +7,7 @@ import { t } from '../../modules/I18n';
 import ActionAssignmentInd from 'material-ui/svg-icons/action/assignment-ind';
 import { GUEST_ROLE, WORD_LIMIT } from '../../constants';
 import { setPortfolioData } from '../../actions/portfolioActions';
+import TextFieldList from '../TextFieldList';
 
 class PortfolioProjectsSection extends Component {
   constructor(props) {
@@ -69,11 +70,26 @@ class PortfolioProjectsSection extends Component {
             {
               Object.keys(formData).map((obj, key) => {
                 if (_.isArray(formData[obj])) {
-                  return <div key={key}>Testing</div>
+                  return (
+                    <div key={key} className={`${obj}-part section-part`}>
+                      {
+                        formData[obj].map((item, idx) => {
+                          return (
+                            <TextFieldList
+                              key={`${key}-${idx}`}
+                              content={item}
+                              disabled={!editing}
+                            />
+                          )
+                        })
+                      }
+                    </div>
+                  )
                 } else {
                   return (
                     <TextField
                       key={key}
+                      className="custom-width-textfield"
                       floatingLabelFixed={true}
                       floatingLabelText={t(`portfolioPage.projects.${obj}.label`)}
                       hintText={t(`portfolioPage.projects.${obj}.hintText`)}

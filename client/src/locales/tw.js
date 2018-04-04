@@ -57,6 +57,34 @@ export default {
       pageTitle: {
         label: '頁面標題',
         hintText: '輸入你的頁面標題'
+      },
+      name: {
+        label: '項目名稱',
+        hintText: '輸入項目名稱'
+      },
+      short_name: {
+        label: '項目短名',
+        hintText: '輸入項目短名'
+      },
+      type: {
+        label: '項目類別',
+        hintText: '輸入項目類別'
+      },
+      code_images: {
+        label: '快照',
+        hintText: '輸入快照連結'
+      },
+      details: {
+        label: '項目詳情',
+        hintText: '輸入項目詳情'
+      },
+      scenes: {
+        label: '場景圖片',
+        hintText: '輸入場景圖片連結'
+      },
+      site: {
+        label: '項目網址',
+        hintText: '輸入項目網址'
       }
     },
     contact: {

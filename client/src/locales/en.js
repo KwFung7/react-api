@@ -57,6 +57,34 @@ export default {
       pageTitle: {
         label: 'Page Title',
         hintText: 'Enter your project page title'
+      },
+      name: {
+        label: 'Project Name',
+        hintText: 'Enter project name'
+      },
+      short_name: {
+        label: 'Project short name',
+        hintText: 'Enter project short name'
+      },
+      type: {
+        label: 'Project Type',
+        hintText: 'Enter project type'
+      },
+      code_images: {
+        label: 'Snapshot',
+        hintText: 'Enter snapshot link'
+      },
+      details: {
+        label: 'Project Details',
+        hintText: 'Enter project details'
+      },
+      scenes: {
+        label: 'Scenes Image',
+        hintText: 'Enter scenes image link'
+      },
+      site: {
+        label: 'Project Site',
+        hintText: 'Enter project website'
       }
     },
     contact: {

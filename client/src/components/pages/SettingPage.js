@@ -97,6 +97,7 @@ class SettingPage extends Component {
               {
                 !_.isEmpty(specificPortfolio) &&
                 <SelectField
+                  className="custom-width-textfield"
                   floatingLabelText={t('settingPage.selectedPortfolio')}
                   style={{ textAlign: 'left' }}
                   value={specificPortfolio._id}

@@ -65,6 +65,7 @@ class PortfolioHeaderSection extends Component {
           {name}
         </Chip>
         <TextField
+          className="custom-width-textfield"
           floatingLabelFixed={true}
           floatingLabelText={t('portfolioPage.header.userName')}
           hintText={t('portfolioPage.header.userNameHintText')}
@@ -73,6 +74,7 @@ class PortfolioHeaderSection extends Component {
           value={userName}
         />
         <TextField
+          className="custom-width-textfield"
           floatingLabelFixed={true}
           floatingLabelText={t('portfolioPage.header.position')}
           hintText={t('portfolioPage.header.positionHintText')}
