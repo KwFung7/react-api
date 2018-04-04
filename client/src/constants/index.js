@@ -49,5 +49,5 @@ export const WORD_LIMIT = {
   github_link: 50,
   linkedin_link: 50,
   phone: 15,
-  pageTitle: 20
+  pageTitle: 30
 }

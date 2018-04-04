@@ -23,6 +23,23 @@ class PortfolioProjectsSection extends Component {
     };
   }
 
+  handleListChange = (field, path) => (e, newValue) => {
+    const { fieldIdx, obj, idx } = path;
+    let newArray = this.state.formData[field];
+    if (_.isUndefined(idx)) {
+      newArray[fieldIdx][obj] = newValue;
+    } else {
+      newArray[fieldIdx][obj][idx] = newValue;
+    }
+
+    this.setState({
+      formData: {
+        ...this.state.formData,
+        [field]: newArray 
+      }
+    })
+  }
+
   handleChange = (field) => (e, newValue) => {
     if (newValue.length <= WORD_LIMIT[field]) {
       this.setState({
@@ -77,9 +94,11 @@ class PortfolioProjectsSection extends Component {
                           return (
                             <TextFieldList
                               key={`${key}-${idx}`}
-                              title={`${obj.replace('_', ' ').toUpperCase()} ${idx + 1}`}
+                              fieldIdx={idx}
+                              field={obj}
                               content={item}
                               disabled={!editing}
+                              handleChange={this.handleListChange}
                             />
                           )
                         })
