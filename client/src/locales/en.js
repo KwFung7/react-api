@@ -71,8 +71,8 @@ export default {
         hintText: 'Enter project type'
       },
       code_images: {
-        label: 'Snapshot',
-        hintText: 'Enter snapshot link'
+        label: 'Screenshot',
+        hintText: 'Enter screenshot link'
       },
       details: {
         label: 'Project Details',

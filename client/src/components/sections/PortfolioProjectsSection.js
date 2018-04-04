@@ -77,6 +77,7 @@ class PortfolioProjectsSection extends Component {
                           return (
                             <TextFieldList
                               key={`${key}-${idx}`}
+                              title={`${obj.replace('_', ' ').toUpperCase()} ${idx + 1}`}
                               content={item}
                               disabled={!editing}
                             />

@@ -71,8 +71,8 @@ export default {
         hintText: '輸入項目類別'
       },
       code_images: {
-        label: '快照',
-        hintText: '輸入快照連結'
+        label: '截圖',
+        hintText: '輸入截圖連結'
       },
       details: {
         label: '項目詳情',

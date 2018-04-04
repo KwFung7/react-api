@@ -5,11 +5,12 @@ import { t } from '../modules/I18n';
 
 class TextFieldList extends Component {
   render() {
-    let { content = {}, disabled } = this.props;
+    let { title, content = {}, disabled } = this.props;
     content = _.omit(content, ['id', '_id']);
 
     return (
       <div>
+        <div style={{ color: 'grey', margin: '2rem 0 0.5rem' }}>{title}</div>
         {
           Object.keys(content).map((obj, key) => {
             if (_.isArray(content[obj])) {
