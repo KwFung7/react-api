@@ -50,7 +50,28 @@ export default {
       positionHintText: 'Enter your position'
     },
     intro: {
-      title: 'Portfolio Intro'
+      title: 'Portfolio Intro',
+      general: 'General',
+      message: {
+        label: 'Welcome Message',
+        hintText: 'Enter your welcome message'
+      },
+      birth: {
+        label: 'Birthday',
+        hintText: 'Enter your birthday'
+      },
+      gender: {
+        label: 'Gender',
+        hintText: 'Enter your gender'
+      },
+      name: {
+        label: 'Full Name',
+        hintText: 'Enter your full name'
+      },
+      position: {
+        label: 'Position',
+        hintText: 'Enter your position'
+      }
     },
     projects: {
       title: 'Portfolio Projects',

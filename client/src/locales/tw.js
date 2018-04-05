@@ -50,7 +50,28 @@ export default {
       positionHintText: '輸入你的職位'
     },
     intro: {
-      title: '作品集介紹'
+      title: '作品集介紹',
+      general: '基本資料',
+      message: {
+        label: '歡迎訊息',
+        hintText: '輸入歡迎訊息'
+      },
+      birth: {
+        label: '生日日期',
+        hintText: '輸入你的生日日期'
+      },
+      gender: {
+        label: '性別',
+        hintText: '輸入你的性別'
+      },
+      name: {
+        label: '姓名',
+        hintText: '輸入你的姓名'
+      },
+      position: {
+        label: '職位',
+        hintText: '輸入你的職位'
+      }
     },
     projects: {
       title: '作品集項目',
