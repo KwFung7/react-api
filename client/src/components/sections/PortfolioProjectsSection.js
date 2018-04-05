@@ -51,6 +51,32 @@ class PortfolioProjectsSection extends Component {
     }
   };
 
+  handleAddBtnClick = (field, path) => {
+    const { fieldIdx, obj } = path;
+    let newArray = this.state.formData[field];
+    newArray[fieldIdx][obj].push('');
+
+    this.setState({
+      formData: {
+        ...this.state.formData,
+        [field]: newArray
+      }
+    });
+  }
+
+  handleRemoveBtnClick = (field, path) => {
+    const { fieldIdx, obj, idx } = path;
+    let newArray = this.state.formData[field];
+    newArray[fieldIdx][obj] = newArray[fieldIdx][obj].filter((item, index) => { return index !== idx });
+
+    this.setState({
+      formData: {
+        ...this.state.formData,
+        [field]: newArray
+      }
+    });
+  }
+
   handleEditBtnClick = () => {
     this.setState({ editing: true });
   };
@@ -99,6 +125,8 @@ class PortfolioProjectsSection extends Component {
                               content={item}
                               disabled={!editing}
                               handleChange={this.handleListChange}
+                              handleAddBtnClick={this.handleAddBtnClick}
+                              handleRemoveBtnClick={this.handleRemoveBtnClick}
                             />
                           )
                         })

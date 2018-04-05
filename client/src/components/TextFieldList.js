@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { TextField, IconButton } from 'material-ui';
 import _ from 'lodash';
 import { t } from '../modules/I18n';
-import ContentAddBox from 'material-ui/svg-icons/content/add-box';
+import ContentAddCircle from 'material-ui/svg-icons/content/add-circle';
 import ContentRemoveCircle from 'material-ui/svg-icons/content/remove-circle';
 
 class TextFieldList extends Component {
   render() {
-    let { fieldIdx, field, content, disabled, handleChange } = this.props;
+    let { fieldIdx, field, content, disabled, handleChange, handleAddBtnClick, handleRemoveBtnClick } = this.props;
     content = _.omit(content, ['id', '_id']);
 
     return (
@@ -35,6 +35,7 @@ class TextFieldList extends Component {
                               tooltip={disabled ? '' : t('iconBtnTooltip.remove')}
                               iconStyle={{ color: 'red' }}
                               style={{ position: 'absolute', bottom: -3, right: 6 }}
+                              onClick={() => { handleRemoveBtnClick(field, path); }}
                             >
                               <ContentRemoveCircle />
                             </IconButton>
@@ -58,8 +59,9 @@ class TextFieldList extends Component {
                       tooltip={disabled ? '' : t('iconBtnTooltip.add')}
                       iconStyle={{ color: 'green' }}
                       style={{ position: 'absolute', top: 0, right: 6 }}
+                      onClick={() => { handleAddBtnClick(field, { fieldIdx, obj }); }}
                     >
-                      <ContentAddBox />
+                      <ContentAddCircle />
                     </IconButton>
                   }
                 </div>
