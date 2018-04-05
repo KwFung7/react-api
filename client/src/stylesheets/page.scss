@@ -32,6 +32,19 @@
   margin: 0 30px 1rem;
 }
 
+.section-list-title {
+  color: grey;
+  background-color: whitesmoke;
+  margin: 2rem 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.section-list-title.disabled {
+  padding: 1rem;
+}
+
 .section-list-item {
   position: relative;
 }

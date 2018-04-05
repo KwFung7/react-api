@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { TextField, IconButton } from 'material-ui';
 import _ from 'lodash';
 import { t } from '../modules/I18n';
+import ContentAddBox from 'material-ui/svg-icons/content/add-box';
 import ContentAddCircle from 'material-ui/svg-icons/content/add-circle';
 import ContentRemoveCircle from 'material-ui/svg-icons/content/remove-circle';
+import IndeterminateCheckBox from 'material-ui/svg-icons/toggle/indeterminate-check-box';
 
 class TextFieldList extends Component {
   render() {
@@ -12,8 +14,27 @@ class TextFieldList extends Component {
 
     return (
       <div>
-        <div style={{ color: 'grey', margin: '2rem 0 0.5rem' }}>
+        <div className={`section-list-title ${disabled ? 'disabled' : ''}`}>
           {field.replace('_', ' ').toUpperCase()} {fieldIdx + 1}
+          {
+            !disabled &&
+            <div style={{ marginLeft: '1rem' }}>
+              <IconButton
+                tooltip={disabled ? '' : t('iconBtnTooltip.add')}
+                iconStyle={{ color: 'rgb(63, 81, 181)' }}
+                onClick={() => {}}
+              >
+                <ContentAddBox />
+              </IconButton>
+              <IconButton
+                tooltip={disabled ? '' : t('iconBtnTooltip.remove')}
+                iconStyle={{ color: 'red' }}
+                onClick={() => {}}
+              >
+                <IndeterminateCheckBox />
+              </IconButton>
+            </div>
+          }
         </div>
         {
           Object.keys(content).map((obj, key) => {
