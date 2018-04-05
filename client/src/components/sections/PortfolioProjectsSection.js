@@ -38,7 +38,40 @@ class PortfolioProjectsSection extends Component {
         [field]: newArray 
       }
     })
-  }
+  };
+
+  handleListAddBtnClick = (field, idx) => {
+    let newArray = this.state.formData[field];
+    const template = {
+      name: '',
+      short_name: '',
+      type: '',
+      site: '',
+      details: ['', ''],
+      code_images: [''],
+      scenes: ['', '', '', '']
+    }
+    newArray.push(template);
+
+    this.setState({
+      formData: {
+        ...this.state.formData,
+        [field]: newArray
+      }
+    });
+  };
+
+  handleListRemoveBtnClick = (field, idx) => {
+    let newArray = this.state.formData[field];
+    newArray = newArray.filter((item, index) => { return index !== idx });
+
+    this.setState({
+      formData: {
+        ...this.state.formData,
+        [field]: newArray
+      }
+    });
+  };
 
   handleChange = (field) => (e, newValue) => {
     if (newValue.length <= WORD_LIMIT[field]) {
@@ -62,7 +95,7 @@ class PortfolioProjectsSection extends Component {
         [field]: newArray
       }
     });
-  }
+  };
 
   handleRemoveBtnClick = (field, path) => {
     const { fieldIdx, obj, idx } = path;
@@ -75,7 +108,7 @@ class PortfolioProjectsSection extends Component {
         [field]: newArray
       }
     });
-  }
+  };
 
   handleEditBtnClick = () => {
     this.setState({ editing: true });
@@ -127,6 +160,8 @@ class PortfolioProjectsSection extends Component {
                               handleChange={this.handleListChange}
                               handleAddBtnClick={this.handleAddBtnClick}
                               handleRemoveBtnClick={this.handleRemoveBtnClick}
+                              handleListAddBtnClick={this.handleListAddBtnClick}
+                              handleListRemoveBtnClick={this.handleListRemoveBtnClick}
                             />
                           )
                         })

@@ -9,7 +9,17 @@ import IndeterminateCheckBox from 'material-ui/svg-icons/toggle/indeterminate-ch
 
 class TextFieldList extends Component {
   render() {
-    let { fieldIdx, field, content, disabled, handleChange, handleAddBtnClick, handleRemoveBtnClick } = this.props;
+    let {
+      fieldIdx,
+      field,
+      content,
+      disabled,
+      handleChange,
+      handleAddBtnClick,
+      handleRemoveBtnClick,
+      handleListAddBtnClick,
+      handleListRemoveBtnClick
+    } = this.props;
     content = _.omit(content, ['id', '_id']);
 
     return (
@@ -22,14 +32,14 @@ class TextFieldList extends Component {
               <IconButton
                 tooltip={disabled ? '' : t('iconBtnTooltip.add')}
                 iconStyle={{ color: 'rgb(63, 81, 181)' }}
-                onClick={() => {}}
+                onClick={() => { handleListAddBtnClick(field, fieldIdx); }}
               >
                 <ContentAddBox />
               </IconButton>
               <IconButton
                 tooltip={disabled ? '' : t('iconBtnTooltip.remove')}
                 iconStyle={{ color: 'red' }}
-                onClick={() => {}}
+                onClick={() => { handleListRemoveBtnClick(field, fieldIdx); }}
               >
                 <IndeterminateCheckBox />
               </IconButton>
