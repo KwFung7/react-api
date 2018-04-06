@@ -52,10 +52,15 @@ export default {
     intro: {
       title: 'Portfolio Intro',
       general: 'General',
+      experience: 'Experience',
+      skill: 'Skill',
+      education: 'Education',
+      language: 'Language',
       message: {
         label: 'Welcome Message',
         hintText: 'Enter your welcome message'
       },
+      // General
       birth: {
         label: 'Birthday',
         hintText: 'Enter your birthday'
@@ -71,6 +76,35 @@ export default {
       position: {
         label: 'Position',
         hintText: 'Enter your position'
+      },
+      // Experience
+      company: {
+        label: 'Company Name',
+        hintText: 'Enter company name'
+      },
+      current: {
+        label: 'Current working or not',
+        hintText: 'true / false'
+      },
+      details: {
+        label: 'Working Details',
+        hintText: 'Enter working details'
+      },
+      start: {
+        label: 'Start Working Month',
+        hintText: 'Enter start working month (e.g. July 2017)'
+      },
+      start_for_moment: {
+        label: 'Start Working Date (YYYY/MM/DD)',
+        hintText: 'Enter start working date'
+      },
+      end: {
+        label: 'Last Working Month',
+        hintText: 'Enter last working month'
+      },
+      info: {
+        label: 'Job Info',
+        hintText: 'Enter job information'
       }
     },
     projects: {

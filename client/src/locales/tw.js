@@ -52,10 +52,15 @@ export default {
     intro: {
       title: '作品集介紹',
       general: '基本資料',
+      experience: '工作經驗',
+      skill: '技術',
+      education: '學曆',
+      language: '語言能力',
       message: {
         label: '歡迎訊息',
         hintText: '輸入歡迎訊息'
       },
+      // General
       birth: {
         label: '生日日期',
         hintText: '輸入你的生日日期'
@@ -71,6 +76,35 @@ export default {
       position: {
         label: '職位',
         hintText: '輸入你的職位'
+      },
+      // Experience
+      company: {
+        label: '公司名稱',
+        hintText: '輸入公司名稱'
+      },
+      current: {
+        label: '在職',
+        hintText: '輸入在職與否 (true / false)'
+      },
+      details: {
+        label: '工作詳情',
+        hintText: '輸入工作詳情'
+      },
+      start: {
+        label: '就職月份',
+        hintText: '輸入就職月份(e.g. July 2017)'
+      },
+      start_for_moment: {
+        label: '就職日期(YYYY/MM/DD)',
+        hintText: '輸入就職日期'
+      },
+      end: {
+        label: '離職月份',
+        hintText: '輸入離職月份'
+      },
+      info: {
+        label: '簡介',
+        hintText: '輸入簡介'
       }
     },
     projects: {

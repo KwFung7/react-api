@@ -13,6 +13,7 @@ class TextFieldList extends Component {
       fieldIdx,
       field,
       content,
+      type,
       disabled,
       handleChange,
       handleAddBtnClick,
@@ -74,8 +75,8 @@ class TextFieldList extends Component {
                           <TextField
                             className="custom-width-textfield"
                             floatingLabelFixed={true}
-                            floatingLabelText={idx === 0 ? t(`portfolioPage.projects.${obj}.label`) : ''}
-                            hintText={`${t(`portfolioPage.projects.${obj}.hintText`)} ${idx + 1}`}
+                            floatingLabelText={idx === 0 ? t(`portfolioPage.${type}.${obj}.label`) : ''}
+                            hintText={`${t(`portfolioPage.${type}.${obj}.hintText`)} ${idx + 1}`}
                             onChange={handleChange(field, path)}
                             disabled={disabled}
                             value={item}
@@ -108,8 +109,8 @@ class TextFieldList extends Component {
                   key={key}
                   className="custom-width-textfield"
                   floatingLabelFixed={true}
-                  floatingLabelText={t(`portfolioPage.projects.${obj}.label`)}
-                  hintText={t(`portfolioPage.projects.${obj}.hintText`)}
+                  floatingLabelText={t(`portfolioPage.${type}.${obj}.label`)}
+                  hintText={t(`portfolioPage.${type}.${obj}.hintText`)}
                   onChange={handleChange(field, path)}
                   disabled={disabled}
                   value={content[obj]}

@@ -156,6 +156,7 @@ class PortfolioProjectsSection extends Component {
                               fieldIdx={idx}
                               field={obj}
                               content={item}
+                              type={'projects'}
                               disabled={!editing}
                               handleChange={this.handleListChange}
                               handleAddBtnClick={this.handleAddBtnClick}
