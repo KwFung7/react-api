@@ -12,7 +12,7 @@ router.get(LOG_ROUTE, authenticate, (req, res) => {
       console.error('Unable to read server log.');
       res.status(BAD_REQUEST).send(err);
     }
-    res.status(OK).send(data);
+    res.status(OK).send(data.toString().split('\n').slice(0, 400).join('\n'));
   });
 })
 

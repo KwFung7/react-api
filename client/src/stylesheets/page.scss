@@ -60,6 +60,11 @@
   height: 250px;
 }
 
+.log-scroll-view {
+  overflow-y: auto;
+  height: 400px;
+}
+
 .gradient-layer {
   position: relative;
 }

@@ -42,12 +42,16 @@ class ServerLogPage extends Component {
         <Paper className="container-fluid server-log-page page">
           <div className="server-log-page-title page-title">{t('serverLogPage.title')}</div>
           <Paper className="setting-page-body page-body">
-            <div className="server-log-section" style={{ textAlign: 'left', padding: '1rem' }}>
-              {
-                logData.map((line, idx) => {
-                  return <div key={idx}><div>{line}</div>{(idx + 1) % 4 === 0 ? <br/> : ''}</div>
-                })
-              }
+            <div className="gradient-layer">
+              <div className="log-scroll-view">
+                <div className="server-log-section" style={{ textAlign: 'left', padding: '1rem', color: 'grey' }}>
+                  {
+                    logData.map((line, idx) => {
+                      return <div key={idx}><div>{line}</div>{(idx + 1) % 4 === 0 ? <br/> : ''}</div>
+                    })
+                  }
+                </div>
+              </div>
             </div>
           </Paper>
         </Paper>
