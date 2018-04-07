@@ -123,6 +123,15 @@ export default {
       school: {
         label: 'School',
         hintText: 'Enter school name'
+      },
+      // Language
+      qualifications: {
+        label: 'Qualification',
+        hintText: 'Enter your qualifications'
+      },
+      results: {
+        label: 'Result',
+        hintText: 'Enter your testing result'
       }
     },
     projects: {

@@ -10,6 +10,7 @@ import ActionAssignmentInd from 'material-ui/svg-icons/action/assignment-ind';
 import IntroExperiencePart from '../parts/IntroExperiencePart';
 import IntroSkillPart from '../parts/IntroSkillPart';
 import IntroEducationPart from '../parts/IntroEducationPart';
+import IntroLanguagePart from '../parts/IntroLanguagePart';
 
 class PortfolioIntroSection extends Component {
   constructor(props) {
@@ -27,7 +28,17 @@ class PortfolioIntroSection extends Component {
   };
 
   handleCompleteBtnClick = () => {
-    this.setState({ editing: false });
+    const { _id, content, setPortfolioData } = this.props;
+    const payload = {
+      intro: {
+        ...content,
+        ...this.state.formData
+      }
+    }
+
+    this.setState({ editing: false }, () => {
+      setPortfolioData(_id, payload)
+    });
   };
 
   handleMessageChange = () => (e, newValue) => {
@@ -136,6 +147,12 @@ class PortfolioIntroSection extends Component {
             {/* ------------ Education ------------ */}
             <IntroEducationPart
               content={education}
+              editing={editing}
+              updateFormData={this.updateFormData}
+            />
+            {/* ------------ Language ------------ */}
+            <IntroLanguagePart
+              content={language}
               editing={editing}
               updateFormData={this.updateFormData}
             />

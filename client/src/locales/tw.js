@@ -123,6 +123,15 @@ export default {
       school: {
         label: '學校',
         hintText: '輸入學校'
+      },
+      // Language
+      qualifications: {
+        label: '資格',
+        hintText: '輸入資格'
+      },
+      results: {
+        label: '成績',
+        hintText: '輸入資格'
       }
     },
     projects: {
