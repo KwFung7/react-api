@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 const logger = (req, res, next) => {
   // for server log
   let now = new Date().toString();
