@@ -6,7 +6,7 @@ const { LOG_ROUTE, BAD_REQUEST, OK } = require('../../constants');
 let router = express.Router();
 
 /* GET ===================================== */
-router.get(LOG_ROUTE, (req, res) => {
+router.get(LOG_ROUTE, authenticate, (req, res) => {
   fs.readFile('server.log', (err, data) => {
     if (err) {
       console.error('Unable to read server log.');
