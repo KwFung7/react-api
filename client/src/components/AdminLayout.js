@@ -60,7 +60,7 @@ class AdminLayout extends Component {
       <Paper>
         <AppBar
           title={t('navigation.appTitle')}
-          style={{ zIndex: 1500 }}
+          style={{ zIndex: 1500, position: 'fixed', top: 0 }}
           zDepth={3}
           onLeftIconButtonClick={this.handleDrawer}
           iconElementRight={

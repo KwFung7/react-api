@@ -43,14 +43,14 @@ export default {
   portfolioPage: {
     title: '作品集',
     header: {
-      title: '作品集頁頭',
+      title: '作品集 - 頁頭',
       userName: '作品集標題',
       userNameHintText: '輸入作品集標題',
       position: '職位',
       positionHintText: '輸入你的職位'
     },
     intro: {
-      title: '作品集介紹',
+      title: '作品集 - 介紹',
       general: '基本資料',
       experience: '工作經驗',
       skill: '技能',
@@ -135,7 +135,7 @@ export default {
       }
     },
     projects: {
-      title: '作品集項目',
+      title: '作品集 - 項目',
       pageTitle: {
         label: '頁面標題',
         hintText: '輸入你的頁面標題'
@@ -170,7 +170,7 @@ export default {
       }
     },
     contact: {
-      title: '作品集聯繫',
+      title: '作品集 - 聯繫',
       email: {
         label: '電郵地址',
         hintText: '輸入你的電郵地址'

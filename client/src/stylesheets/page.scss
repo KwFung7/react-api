@@ -1,7 +1,8 @@
 .page {
-  height: calc(100vh - 64px);
+  min-height: calc(100vh - 64px);
   padding: 3rem 2rem;
   background-color: whitesmoke !important;
+  margin-top: 64px
 }
 
 .page-title {
