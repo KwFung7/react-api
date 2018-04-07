@@ -8,6 +8,7 @@ import ActionAssignmentInd from 'material-ui/svg-icons/action/assignment-ind';
 import { GUEST_ROLE, WORD_LIMIT } from '../../constants';
 import { setPortfolioData } from '../../actions/portfolioActions';
 import TextFieldList from '../TextFieldList';
+import templateData from '../../data/template.json';
 
 class PortfolioProjectsSection extends Component {
   constructor(props) {
@@ -42,16 +43,8 @@ class PortfolioProjectsSection extends Component {
 
   handleListAddBtnClick = (field, idx) => {
     let newArray = this.state.formData[field];
-    const template = {
-      name: '',
-      short_name: '',
-      type: '',
-      site: '',
-      details: ['', ''],
-      code_images: [''],
-      scenes: ['', '', '', '']
-    }
-    newArray.push(template);
+    const template = templateData[field];
+    newArray.push({ ...template, id: newArray.length + 1 });
 
     this.setState({
       formData: {
@@ -65,7 +58,7 @@ class PortfolioProjectsSection extends Component {
     let newArray = this.state.formData[field];
     newArray = newArray.filter((item, index) => { return index !== idx });
 
-    this.setState({
+    !_.isEmpty(newArray) && this.setState({
       formData: {
         ...this.state.formData,
         [field]: newArray

@@ -8,6 +8,7 @@ import { GUEST_ROLE, WORD_LIMIT } from '../../constants';
 import { setPortfolioData } from '../../actions/portfolioActions';
 import ActionAssignmentInd from 'material-ui/svg-icons/action/assignment-ind';
 import TextFieldList from '../TextFieldList';
+import IntroExperiencePart from '../parts/IntroExperiencePart';
 
 class PortfolioIntroSection extends Component {
   constructor(props) {
@@ -26,66 +27,6 @@ class PortfolioIntroSection extends Component {
 
   handleCompleteBtnClick = () => {
     this.setState({ editing: false });
-  };
-
-
-  handleAddBtnClick = (field, path) => {
-    const { fieldIdx, obj } = path;
-    let newArray = this.state.formData[field];
-    newArray[fieldIdx][obj].push('');
-
-    this.setState({
-      formData: {
-        ...this.state.formData,
-        [field]: newArray
-      }
-    });
-  };
-
-  handleRemoveBtnClick = (field, path) => {
-    const { fieldIdx, obj, idx } = path;
-    let newArray = this.state.formData[field];
-    newArray[fieldIdx][obj] = newArray[fieldIdx][obj].filter((item, index) => { return index !== idx });
-
-    this.setState({
-      formData: {
-        ...this.state.formData,
-        [field]: newArray
-      }
-    });
-  };
-
-  handleListAddBtnClick = (field, idx) => {
-    let newArray = this.state.formData[field];
-    const template = {
-      name: '',
-      short_name: '',
-      type: '',
-      site: '',
-      details: ['', ''],
-      code_images: [''],
-      scenes: ['', '', '', '']
-    }
-    newArray.push(template);
-
-    this.setState({
-      formData: {
-        ...this.state.formData,
-        [field]: newArray
-      }
-    });
-  };
-
-  handleListRemoveBtnClick = (field, idx) => {
-    let newArray = this.state.formData[field];
-    newArray = newArray.filter((item, index) => { return index !== idx });
-
-    this.setState({
-      formData: {
-        ...this.state.formData,
-        [field]: newArray
-      }
-    });
   };
 
   handleMessageChange = () => (e, newValue) => {
@@ -112,30 +53,20 @@ class PortfolioIntroSection extends Component {
     }
   };
 
-  handleExperienceChange = (field, path) => (e, newValue) => {
-    const { fieldIdx, obj, idx } = path;
-    const { experience = {} } = this.state.formData;
-    let newArray = experience[field];
-    if (_.isUndefined(idx)) {
-      newArray[fieldIdx][obj] = newValue;
-    } else {
-      newArray[fieldIdx][obj][idx] = newValue;
-    }
-
+  updateFormData = (field, value) => {
     this.setState({
       formData: {
         ...this.state.formData,
-        [field]: newArray 
+        [field]: value
       }
-    })
-  };
+    });
+  }
 
   render() {
     const { formData, editing } = this.state;
     const { name, role } = this.props;
     const isGuest = role === GUEST_ROLE;
     const { message = [], general = {}, experience = {}, skill = {}, education = {}, language = {}} = formData;
-    const { jobs = [] } = experience;
 
     return (
       <Paper className="portfolio-page-body page-body">
@@ -190,30 +121,11 @@ class PortfolioIntroSection extends Component {
               }
             </div>
             {/* ------------ Experience ------------ */}
-            <div className="experience-part section-part">
-              <div className="section-part-title">
-                {t('portfolioPage.intro.experience')}
-              </div>
-              {
-                jobs.map((item, idx) => {
-                  return (
-                    <TextFieldList
-                      key={idx}
-                      fieldIdx={idx}
-                      field={'jobs'}
-                      content={item}
-                      type={'intro'}
-                      disabled={!editing}
-                      handleChange={this.handleExperienceChange}
-                      handleAddBtnClick={this.handleAddBtnClick}
-                      handleRemoveBtnClick={this.handleRemoveBtnClick}
-                      handleListAddBtnClick={this.handleListAddBtnClick}
-                      handleListRemoveBtnClick={this.handleListRemoveBtnClick}
-                    />
-                  )
-                })
-              }
-            </div>
+            <IntroExperiencePart
+              content={experience}
+              editing={editing}
+              updateFormData={this.updateFormData}
+            />
           </div>
         </div>
         <FormControlSection
