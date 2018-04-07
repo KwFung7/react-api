@@ -105,6 +105,11 @@ export default {
       info: {
         label: 'Job Info',
         hintText: 'Enter job information'
+      },
+      // Skill
+      skill_details: {
+        label: 'Skills',
+        hintText: 'Enter your skills'
       }
     },
     projects: {

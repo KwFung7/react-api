@@ -14,6 +14,7 @@ class TextFieldList extends Component {
       field,
       content,
       type,
+      newFieldName,
       disabled,
       handleChange,
       handleAddBtnClick,
@@ -21,32 +22,35 @@ class TextFieldList extends Component {
       handleListAddBtnClick,
       handleListRemoveBtnClick
     } = this.props;
-    content = _.omit(content, ['id', '_id']);
+    content = _.omit(content, ['id', '_id', 'type']);
 
     return (
       <div>
-        <div className={`section-list-title ${disabled ? 'disabled' : ''}`}>
-          {field.replace('_', ' ').toUpperCase()} {fieldIdx + 1}
-          {
-            !disabled &&
-            <div style={{ marginLeft: '1rem' }}>
-              <IconButton
-                tooltip={disabled ? '' : t('iconBtnTooltip.add')}
-                iconStyle={{ color: 'rgb(63, 81, 181)' }}
-                onClick={() => { handleListAddBtnClick(field, fieldIdx); }}
-              >
-                <ContentAddBox />
-              </IconButton>
-              <IconButton
-                tooltip={disabled ? '' : t('iconBtnTooltip.remove')}
-                iconStyle={{ color: 'red' }}
-                onClick={() => { handleListRemoveBtnClick(field, fieldIdx); }}
-              >
-                <IndeterminateCheckBox />
-              </IconButton>
-            </div>
-          }
-        </div>
+        {
+          field && !_.isUndefined(fieldIdx) &&
+          <div className={`section-list-title ${disabled ? 'disabled' : ''}`}>
+            {field.replace('_', ' ').toUpperCase()} {fieldIdx + 1}
+            {
+              !disabled &&
+              <div style={{ marginLeft: '1rem' }}>
+                <IconButton
+                  tooltip={disabled ? '' : t('iconBtnTooltip.add')}
+                  iconStyle={{ color: 'rgb(63, 81, 181)' }}
+                  onClick={() => { handleListAddBtnClick(field, fieldIdx); }}
+                >
+                  <ContentAddBox />
+                </IconButton>
+                <IconButton
+                  tooltip={disabled ? '' : t('iconBtnTooltip.remove')}
+                  iconStyle={{ color: 'red' }}
+                  onClick={() => { handleListRemoveBtnClick(field, fieldIdx); }}
+                >
+                  <IndeterminateCheckBox />
+                </IconButton>
+              </div>
+            }
+          </div>
+        }
         {
           Object.keys(content).map((obj, key) => {
             if (_.isArray(content[obj])) {
@@ -75,8 +79,8 @@ class TextFieldList extends Component {
                           <TextField
                             className="custom-width-textfield"
                             floatingLabelFixed={true}
-                            floatingLabelText={idx === 0 ? t(`portfolioPage.${type}.${obj}.label`) : ''}
-                            hintText={`${t(`portfolioPage.${type}.${obj}.hintText`)} ${idx + 1}`}
+                            floatingLabelText={idx === 0 ? t(`portfolioPage.${type}.${newFieldName ? `${newFieldName}_${obj}` : obj}.label`) : ''}
+                            hintText={`${t(`portfolioPage.${type}.${newFieldName ? `${newFieldName}_${obj}` : obj}.hintText`)} ${idx + 1}`}
                             onChange={handleChange(field, path)}
                             disabled={disabled}
                             value={item}
@@ -109,8 +113,8 @@ class TextFieldList extends Component {
                   key={key}
                   className="custom-width-textfield"
                   floatingLabelFixed={true}
-                  floatingLabelText={t(`portfolioPage.${type}.${obj}.label`)}
-                  hintText={t(`portfolioPage.${type}.${obj}.hintText`)}
+                  floatingLabelText={t(`portfolioPage.${type}.${newFieldName ? `${newFieldName}_${obj}` : obj}.label`)}
+                  hintText={t(`portfolioPage.${type}.${newFieldName ? `${newFieldName}_${obj}` : obj}.hintText`)}
                   onChange={handleChange(field, path)}
                   disabled={disabled}
                   value={content[obj]}

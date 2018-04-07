@@ -53,5 +53,4 @@ export const WORD_LIMIT = {
   name: 30,
   gender: 10,
   birth: 10,
-  position: 30
 }

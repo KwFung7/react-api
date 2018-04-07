@@ -53,7 +53,7 @@ export default {
       title: '作品集介紹',
       general: '基本資料',
       experience: '工作經驗',
-      skill: '技術',
+      skill: '技能',
       education: '學曆',
       language: '語言能力',
       message: {
@@ -105,6 +105,11 @@ export default {
       info: {
         label: '簡介',
         hintText: '輸入簡介'
+      },
+      // Skill
+      skill_details: {
+        label: '技能',
+        hintText: '輸入技能'
       }
     },
     projects: {

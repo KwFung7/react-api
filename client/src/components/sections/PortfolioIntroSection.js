@@ -7,8 +7,8 @@ import { t } from '../../modules/I18n';
 import { GUEST_ROLE, WORD_LIMIT } from '../../constants';
 import { setPortfolioData } from '../../actions/portfolioActions';
 import ActionAssignmentInd from 'material-ui/svg-icons/action/assignment-ind';
-import TextFieldList from '../TextFieldList';
 import IntroExperiencePart from '../parts/IntroExperiencePart';
+import IntroSkillPart from '../parts/IntroSkillPart';
 
 class PortfolioIntroSection extends Component {
   constructor(props) {
@@ -123,6 +123,12 @@ class PortfolioIntroSection extends Component {
             {/* ------------ Experience ------------ */}
             <IntroExperiencePart
               content={experience}
+              editing={editing}
+              updateFormData={this.updateFormData}
+            />
+            {/* ------------ Skill ------------ */}
+            <IntroSkillPart
+              content={skill}
               editing={editing}
               updateFormData={this.updateFormData}
             />
