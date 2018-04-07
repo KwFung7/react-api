@@ -5,6 +5,7 @@ const { OK, BAD_REQUEST, NOT_FOUND, UNAUTHORIZED } = HttpStatus;
 const PORTFOLIO_ROUTE = '/portfolio';
 const SETTING_ROUTE = '/setting';
 const USER_ROUTE = '/user';
+const LOG_ROUTE = '/log';
 const V1_ROUTE = '/v1';
 const API_ROUTE = '/api';
 
@@ -41,6 +42,7 @@ module.exports = {
   PORTFOLIO_ROUTE,
   SETTING_ROUTE,
   USER_ROUTE,
+  LOG_ROUTE,
   V1_ROUTE,
   API_ROUTE,
   ENABLED_UPDATE_SETTING,
