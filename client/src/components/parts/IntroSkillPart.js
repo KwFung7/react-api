@@ -71,8 +71,6 @@ class IntroSkillPart extends Component {
           handleChange={this.handleSkillChange}
           handleAddBtnClick={this.handleAddBtnClick}
           handleRemoveBtnClick={this.handleRemoveBtnClick}
-          handleListAddBtnClick={this.handleListAddBtnClick}
-          handleListRemoveBtnClick={this.handleListRemoveBtnClick}
         />
       </div>
     )

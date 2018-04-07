@@ -110,6 +110,19 @@ export default {
       skill_details: {
         label: 'Skills',
         hintText: 'Enter your skills'
+      },
+      // Education
+      period: {
+        label: 'Period',
+        hintText: 'Enter period'
+      },
+      programme: {
+        label: 'Programme',
+        hintText: 'Enter study programme'
+      },
+      school: {
+        label: 'School',
+        hintText: 'Enter school name'
       }
     },
     projects: {

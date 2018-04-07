@@ -110,6 +110,19 @@ export default {
       skill_details: {
         label: '技能',
         hintText: '輸入技能'
+      },
+      // Education
+      period: {
+        label: '時期',
+        hintText: '輸入時期'
+      },
+      programme: {
+        label: '課程',
+        hintText: '輸入課程'
+      },
+      school: {
+        label: '學校',
+        hintText: '輸入學校'
       }
     },
     projects: {

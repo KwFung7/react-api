@@ -17,5 +17,10 @@
     "start_for_moment": "",
     "current": false,
     "end": ""
+  },
+  "education": {
+    "period": "",
+    "programme": "",
+    "school": ""
   }
 }

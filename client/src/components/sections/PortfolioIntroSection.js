@@ -9,6 +9,7 @@ import { setPortfolioData } from '../../actions/portfolioActions';
 import ActionAssignmentInd from 'material-ui/svg-icons/action/assignment-ind';
 import IntroExperiencePart from '../parts/IntroExperiencePart';
 import IntroSkillPart from '../parts/IntroSkillPart';
+import IntroEducationPart from '../parts/IntroEducationPart';
 
 class PortfolioIntroSection extends Component {
   constructor(props) {
@@ -129,6 +130,12 @@ class PortfolioIntroSection extends Component {
             {/* ------------ Skill ------------ */}
             <IntroSkillPart
               content={skill}
+              editing={editing}
+              updateFormData={this.updateFormData}
+            />
+            {/* ------------ Education ------------ */}
+            <IntroEducationPart
+              content={education}
               editing={editing}
               updateFormData={this.updateFormData}
             />
