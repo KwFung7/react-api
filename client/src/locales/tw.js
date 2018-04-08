@@ -23,7 +23,8 @@ export default {
   },
   homePage: {
     title: '歡迎來到我的管理平台',
-    author: 'by Felix Kwan'
+    author: 'by Felix Kwan',
+    notice: '訪客用戶無法更改資料以及訪問服務器日誌。'
   },
   loginPage: {
     title: '登入',
@@ -32,7 +33,7 @@ export default {
     password: '密碼',
     enterPassword: '輸入你的密碼',
     btnLabel: '下一步',
-    guestLogin: '客人登入',
+    guestLogin: '訪客登入',
     guestUserName: '帳戶 : guest',
     guestPassword: '密碼 : 123456'
   },
@@ -190,7 +191,8 @@ export default {
     }
   },
   serverLogPage: {
-    title: '服務器日誌'
+    title: '服務器日誌',
+    warning: '目前用戶無法訪問服務器日誌，請使用管理員權限登錄。'
   },
   iconBtnTooltip: {
     add: '添加',

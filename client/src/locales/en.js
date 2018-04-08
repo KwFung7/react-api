@@ -1,6 +1,6 @@
 export default {
   navigation: {
-    appTitle: 'Admin',
+    appTitle: 'Admin Panel',
     localeBtnLabel: '繁中',
     drawerMenu: {
       setting: 'System setting',
@@ -23,7 +23,8 @@ export default {
   },
   homePage: {
     title: 'Welcome to my Admin Panel',
-    author: 'by Felix Kwan'
+    author: 'by Felix Kwan',
+    notice: 'Guest account cannot edit data and access server log.'
   },
   loginPage: {
     title: 'Login',
@@ -190,7 +191,8 @@ export default {
     }
   },
   serverLogPage: {
-    title: 'Server Log'
+    title: 'Server Log',
+    warning: 'Current account cannot access server log. Please login with admin account.'
   },
   iconBtnTooltip: {
     add: 'Add',

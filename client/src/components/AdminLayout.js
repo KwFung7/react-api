@@ -65,6 +65,9 @@ class AdminLayout extends Component {
           onLeftIconButtonClick={this.handleDrawer}
           iconElementRight={
             <div style={{ display: 'flex' }}>
+              <div style={{ alignSelf: 'center', color: 'white' }}>
+                {user.userName}
+              </div>
               <IconButton
                 iconStyle={{ color: 'white' }}
                 tooltip={t('iconBtnTooltip.logout')}
@@ -79,7 +82,7 @@ class AdminLayout extends Component {
               <FlatButton
                 label={t('navigation.localeBtnLabel')}
                 onClick={this.handleLocaleBtnClick}
-                style={{ color: 'white' }}
+                style={{ color: 'white', minWidth: 40 }}
               />
             </div>
           }
