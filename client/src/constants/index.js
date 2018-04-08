@@ -29,7 +29,9 @@ export const BREAKPOINT_MOBILE = 768;
 export const BREAKPOINT_TABLET = 992;
 
 // API
-export const API_HOST_URL = 'http://localhost:5000';
+export const API_HOST_URL = process.env.NODE_ENV === 'production'
+  ? 'https://admin.kwfxng.com'
+  : 'http://localhost:5000'
 export const X_AUTH = 'x-auth';
 export const ADMIN_ROLE = 'admin';
 export const GUEST_ROLE = 'guest';
