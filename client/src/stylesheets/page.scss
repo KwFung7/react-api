@@ -1,5 +1,5 @@
 .page {
-  min-height: 100vh;
+  height: 100vh;
   padding: 3rem 2rem;
   background-color: whitesmoke !important;
 }
@@ -63,6 +63,7 @@
 
 .log-scroll-view {
   overflow-y: auto;
+  overflow-x: hidden;
   height: 380px;
 }
 
