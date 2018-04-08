@@ -70,7 +70,7 @@ class TextFieldList extends Component {
                             <IconButton
                               tooltip={disabled ? '' : t('iconBtnTooltip.remove')}
                               iconStyle={{ color: 'red' }}
-                              style={{ position: 'absolute', bottom: -3, right: 6 }}
+                              style={{ position: 'absolute', bottom: -3, right: 0 }}
                               onClick={() => { handleRemoveBtnClick(field, path); }}
                             >
                               <ContentRemoveCircle />
@@ -94,7 +94,7 @@ class TextFieldList extends Component {
                     <IconButton
                       tooltip={disabled ? '' : t('iconBtnTooltip.add')}
                       iconStyle={{ color: 'green' }}
-                      style={{ position: 'absolute', top: 0, right: 6 }}
+                      style={{ position: 'absolute', top: 0, right: 0 }}
                       onClick={() => { handleAddBtnClick(field, { fieldIdx, obj }); }}
                     >
                       <ContentAddCircle />

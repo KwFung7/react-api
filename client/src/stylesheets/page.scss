@@ -1,8 +1,7 @@
 .page {
-  min-height: calc(100vh - 64px);
+  min-height: 100vh;
   padding: 3rem 2rem;
   background-color: whitesmoke !important;
-  margin-top: 64px
 }
 
 .page-title {
@@ -10,6 +9,7 @@
   font-size: 30px;
   text-align: center;
   color: grey;
+  margin-top: 64px;
   margin-bottom: 2rem;
 }
 
@@ -63,7 +63,7 @@
 
 .log-scroll-view {
   overflow-y: auto;
-  height: 400px;
+  height: 380px;
 }
 
 .gradient-layer {
