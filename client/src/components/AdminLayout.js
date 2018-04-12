@@ -117,6 +117,7 @@ class AdminLayout extends Component {
                     primaryText={obj}
                     innerDivStyle={{ color: 'rgba(0, 0, 0, 0.6)' }}
                     onClick={() => {
+                      this.handleDrawer();
                       this.props.handleLocationChange(`${constants.PORTFOLIO_ROUTE}/${constants.PORTFOLIO_SUBROUTE[idx]}`) 
                     }}
                   />
