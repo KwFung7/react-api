@@ -1,5 +1,6 @@
 .page {
-  height: 100vh;
+  height: auto;
+  min-height: 100vh;
   padding: 3rem 2rem;
   background-color: whitesmoke !important;
 }
@@ -76,7 +77,7 @@
   z-index: 10;
   display: block;
   position: absolute;
-  top: 0;
+  top: -1px;
   left: 0;
   height: 25px;
   width: 100%;
@@ -91,7 +92,7 @@
   z-index: 10;
   display: block;
   position: absolute;
-  bottom: 0;
+  bottom: -1px;
   left: 0;
   height: 30px;
   width: 100%;
@@ -109,7 +110,7 @@
   position: fixed;
   bottom: 0;
   text-align: center;
-  opacity: 0.6;
+  opacity: 0.2;
   letter-spacing: 2px;
   font-size: 12px;
   padding: 0;
@@ -122,7 +123,7 @@
 
 @media only screen and (max-width: 767px) {
   .page {
-    height: calc(100vh - 64px);
+    padding: 3rem 1rem;
   }
   .custom-width-textfield {
     width: 240px !important;

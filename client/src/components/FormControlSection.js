@@ -15,7 +15,7 @@ class FormControlSection extends Component {
           labelPosition='after'
           primary={true}
           labelStyle={{ textTransform: 'normal' }}
-          style={{ margin: '2rem 1rem 1rem', minWidth: 120 }}
+          style={{ margin: '2rem 0.5rem 1rem', minWidth: 100 }}
           onClick={editBtnOnClick}
           disabled={disabledEditBtn}
         />
@@ -25,7 +25,7 @@ class FormControlSection extends Component {
           labelPosition='after'
           secondary={true}
           labelStyle={{ textTransform: 'normal' }}
-          style={{ margin: '2rem 1rem 1rem', minWidth: 125 }}
+          style={{ margin: '2rem 0.5rem 1rem', minWidth: 100 }}
           onClick={completeBtnOnClick}
           disabled={disabledCompleteBtn}
         />
