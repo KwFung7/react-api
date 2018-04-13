@@ -14,7 +14,7 @@ const containerStyle = {
   height: 400,
   borderRadius: 15,
   backgroundColor: 'whitesmoke',
-  margin: 'calc(50vh - 200px) calc(50vw - 150px)'
+  margin: '0 calc(50% - 150px)'
 }
 const appbarStyle = {
   borderTopLeftRadius: 15,
@@ -72,55 +72,57 @@ class LoginPage extends Component {
     const { userName, password, userErrorText, passwordErrorText } = this.state;
     const loading = this.props.user.loading;
     return (
-      <Paper zDepth={4} style={containerStyle}>
-        <AppBar
-          title={t('loginPage.title')}
-          iconElementRight={<ActionAccountCircle />}
-          showMenuIconButton={false}
-          zDepth={3}
-          titleStyle={appbarTitleStyle}
-          style={appbarStyle}
-        />
-        <div style={{ padding: '0 1.5rem' }}>
-          <TextField
-            fullWidth={true}
-            floatingLabelFixed={true}
-            floatingLabelText={t('loginPage.userName')}
-            hintText={t('loginPage.enterUserName')}
-            onChange={this.handleChange('userName')}
-            errorText={userErrorText}
-            value={userName}
+      <div className="container-fluid login-page">
+        <Paper zDepth={4} style={containerStyle}>
+          <AppBar
+            title={t('loginPage.title')}
+            iconElementRight={<ActionAccountCircle />}
+            showMenuIconButton={false}
+            zDepth={3}
+            titleStyle={appbarTitleStyle}
+            style={appbarStyle}
           />
-          <TextField
-            fullWidth={true}
-            type='password'
-            floatingLabelFixed={true}
-            floatingLabelText={t('loginPage.password')}
-            hintText={t('loginPage.enterPassword')}
-            onChange={this.handleChange('password')}
-            errorText={passwordErrorText}
-            value={password}
-          />
-          <RaisedButton
-            label={loading ? '' : t('loginPage.btnLabel')}
-            icon={loading ? <CircularProgress size={30} thickness={2}/> : ''}
-            labelPosition='after'
-            secondary={true}
-            fullWidth={true}
-            labelStyle={{ textTransform: 'normal' }}
-            style={{ margin: '1rem 0' }}
-            onClick={this.handleLoginBtnClick}
-            disabled={loading || _.isEmpty(userName) || _.isEmpty(password)}
-          />
-          <Divider />
-          <div style={{ marginTop: '1rem', color: 'lightgrey' }} >
-            <div>{t('loginPage.guestLogin')}</div>
-            <div>{t('loginPage.guestUserName')}</div>
-            <div>{t('loginPage.guestPassword')}</div>
+          <div style={{ padding: '0 1.5rem' }}>
+            <TextField
+              fullWidth={true}
+              floatingLabelFixed={true}
+              floatingLabelText={t('loginPage.userName')}
+              hintText={t('loginPage.enterUserName')}
+              onChange={this.handleChange('userName')}
+              errorText={userErrorText}
+              value={userName}
+            />
+            <TextField
+              fullWidth={true}
+              type='password'
+              floatingLabelFixed={true}
+              floatingLabelText={t('loginPage.password')}
+              hintText={t('loginPage.enterPassword')}
+              onChange={this.handleChange('password')}
+              errorText={passwordErrorText}
+              value={password}
+            />
+            <RaisedButton
+              label={loading ? '' : t('loginPage.btnLabel')}
+              icon={loading ? <CircularProgress size={30} thickness={2}/> : ''}
+              labelPosition='after'
+              secondary={true}
+              fullWidth={true}
+              labelStyle={{ textTransform: 'normal' }}
+              style={{ margin: '1rem 0' }}
+              onClick={this.handleLoginBtnClick}
+              disabled={loading || _.isEmpty(userName) || _.isEmpty(password)}
+            />
+            <Divider />
+            <div style={{ marginTop: '1rem', color: 'lightgrey' }} >
+              <div>{t('loginPage.guestLogin')}</div>
+              <div>{t('loginPage.guestUserName')}</div>
+              <div>{t('loginPage.guestPassword')}</div>
+            </div>
           </div>
-        </div>
-        <CopyrightFooter />
-      </Paper>
+          <CopyrightFooter />
+        </Paper>
+      </div>
     );
   }
 }
