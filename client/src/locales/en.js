@@ -96,8 +96,8 @@ export default {
         hintText: 'Enter start working month (e.g. July 2017)'
       },
       start_for_moment: {
-        label: 'Start Working Date (YYYY/MM/DD)',
-        hintText: 'Enter start working date'
+        label: 'Start Working Date',
+        hintText: 'Enter start working date (YYYY/MM/DD)'
       },
       end: {
         label: 'Last Working Month',
