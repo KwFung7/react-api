@@ -65,12 +65,15 @@
 
 .scroll-view {
   overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
   height: 250px;
 }
 
 .log-scroll-view {
   overflow-y: auto;
   overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
   height: 380px;
 }
 
