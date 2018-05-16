@@ -6,7 +6,7 @@ export const fetchServerLog = () => {
   const config = {
     method: 'GET',
     url: SERVER_LOG_ROUTE
-  }
+  };
 
   return (dispatch) => {
     dispatch({

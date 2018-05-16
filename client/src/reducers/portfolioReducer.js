@@ -52,31 +52,31 @@ export const portfolio = (state = initialState, action) => {
         loading: false,
         loaded: true,
         data: action.payload
-      }
+      };
     case FETCH_SPECIFIC_PORTFOLIO_FAILURE:
       return {
         ...state,
         loading: false,
         loaded: false,
         error: action.error
-      }
+      };
     case UPDATING_PORTFOLIO:
       return {
         ...state,
         loading: true
-      }
+      };
     case UPDATE_PORTFOLIO_SUCCESS:
       return {
         ...state,
         loading: false,
         data: action.payload
-      }
+      };
     case UPDATE_PORTFOLIO_FAILURE:
       return {
         ...state,
         loading: false,
         error: action.error
-      }
+      };
     default:
       return state;
   }

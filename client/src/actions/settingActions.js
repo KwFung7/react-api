@@ -7,7 +7,7 @@ export const fetchSystemSetting = () => {
   const config = {
     method: 'GET',
     url: SETTING_ROUTE
-  }
+  };
 
   return (dispatch) => {
     dispatch({
@@ -35,7 +35,7 @@ export const setSystemSetting = (id, newSetting) => {
     method: 'PATCH',
     url: `${SETTING_ROUTE}/${id}`,
     data: newSetting
-  }
+  };
 
   return (dispatch) => {
     dispatch({

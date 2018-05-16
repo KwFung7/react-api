@@ -25,10 +25,9 @@ const checkLoginStatus = () => {
         return false;
       }
     }
-  }
+  };
 
-  const alreadyLogin = isValid() && !isExpired;
-  return alreadyLogin;
-}
+  return isValid() && !isExpired;
+};
 
 export default checkLoginStatus;

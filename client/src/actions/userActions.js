@@ -9,7 +9,7 @@ export const startLoginProcess = (data, callback) => {
     method: 'POST',
     url: `${USER_ROUTE}${LOGIN_ROUTE}`,
     data
-  }
+  };
 
   return (dispatch) => {
     dispatch({
@@ -22,7 +22,7 @@ export const startLoginProcess = (data, callback) => {
         type: types.LOGIN_SUCCESS,
         userName: data.userName,
         role: data.role 
-      })
+      });
       // also store the userName and role into localStorage
       window.localStorage.setItem(USER_NAME, data.userName);
       window.localStorage.setItem(USER_ROLE, data.role);
@@ -49,17 +49,17 @@ export const startLogoutProcess = (callback) => {
   const config = {
     method: 'DELETE',
     url: `${USER_ROUTE}/logout`
-  }
+  };
 
   return (dispatch) => {
     dispatch({
       type: types.START_LOGOUT_PROCESS
     });
     axios(config)
-    .then((payload) => {
+    .then(() => {
       dispatch({
         type: types.LOGOUT_SUCCESS,
-      })
+      });
       window.localStorage.clear();
 
       if (_.isFunction(callback)) {
@@ -84,7 +84,7 @@ export const checkToken = (token) => {
     method: 'POST',
     url: `${USER_ROUTE}/token`,
     data: {token}
-  }
+  };
 
   return (dispatch) => {
     dispatch({
@@ -117,7 +117,7 @@ export const setCurrentLocale = (locale) => {
     type: types.SET_CURRENT_LOCALE,
     locale
   }
-}
+};
 
 export const clearError = () => {
   return (dispatch) => {

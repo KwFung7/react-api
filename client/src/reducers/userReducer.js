@@ -29,7 +29,7 @@ export const user = (state = initialState, action) => {
         ...state,
         loading: true,
         login: false
-      }
+      };
     case LOGIN_SUCCESS:
       return {
         ...state,
@@ -37,19 +37,19 @@ export const user = (state = initialState, action) => {
         login: true,
         userName: action.userName,
         role: action.role
-      }
+      };
     case LOGIN_FAILURE:
       return {
         ...state,
         loading: false,
         login: false,
         error: action.error
-      }
+      };
       case START_LOGOUT_PROCESS:
       return {
         ...state,
         loading: true,
-      }
+      };
     case LOGOUT_SUCCESS:
       return {
         ...state,
@@ -57,18 +57,18 @@ export const user = (state = initialState, action) => {
         login: false,
         userName: '',
         role: ''
-      }
+      };
     case LOGOUT_FAILURE:
       return {
         ...state,
         loading: false,
         error: action.error
-      }
+      };
     case CHECKING_TOKEN:
       return {
         ...state,
         loading: true
-      }
+      };
     case TOKEN_VALID_SUCCESS:
       return {
         ...state,
@@ -76,7 +76,7 @@ export const user = (state = initialState, action) => {
         login: true,
         userName: action.userName,
         role: action.role
-      }
+      };
     case TOKEN_VALID_FAILURE:
       return {
         ...state,
@@ -85,17 +85,17 @@ export const user = (state = initialState, action) => {
         userName: '',
         role: '',
         error: action.error
-      }
+      };
     case SET_CURRENT_LOCALE:
       return {
         ...state,
         currentLang: action.locale
-      }
+      };
     case CLEAR_ERROR:
       return {
         ...state,
         error: {}
-      }
+      };
     default:
       return state;
   }

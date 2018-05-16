@@ -12,7 +12,7 @@ export const PORTFOLIO_SUBROUTE = [
   'intro',
   'projects',
   'contact'
-]
+];
 
 // NoMatch
 export const NO_MATCH_STATUS = '404.';
@@ -26,12 +26,11 @@ export const TW = 'tw';
 
 // Responsive
 export const BREAKPOINT_MOBILE = 768;
-export const BREAKPOINT_TABLET = 992;
 
 // API
 export const API_HOST_URL = process.env.NODE_ENV === 'production'
   ? 'https://admin.kwfxng.com'
-  : 'http://localhost:5000'
+  : 'http://localhost:5000';
 export const X_AUTH = 'x-auth';
 export const ADMIN_ROLE = 'admin';
 export const GUEST_ROLE = 'guest';
@@ -55,4 +54,4 @@ export const WORD_LIMIT = {
   name: 30,
   gender: 10,
   birth: 10,
-}
+};

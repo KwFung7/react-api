@@ -6,7 +6,7 @@ export const fetchPortfolioList = () => {
   const config = {
     method: 'GET',
     url: PORTFOLIO_ROUTE
-  }
+  };
 
   return (dispatch) => {
     dispatch({
@@ -33,7 +33,7 @@ export const fetchSpecificPortfolio = (id) => {
   const config = {
     method: 'GET',
     url: `${PORTFOLIO_ROUTE}/${id}`
-  }
+  };
 
   return (dispatch) => {
     dispatch({
@@ -61,7 +61,7 @@ export const setPortfolioData = (id, newData) => {
     method: 'PATCH',
     url: `${PORTFOLIO_ROUTE}/${id}`,
     data: newData
-  }
+  };
 
   return (dispatch) => {
     dispatch({
