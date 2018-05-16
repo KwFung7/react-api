@@ -15,14 +15,14 @@ const containerStyle = {
   borderRadius: 15,
   backgroundColor: 'whitesmoke',
   margin: '0 calc(50% - 150px)'
-}
+};
 const appbarStyle = {
   borderTopLeftRadius: 15,
   borderTopRightRadius: 15
-}
+};
 const appbarTitleStyle = {
   color: 'whitesmoke'
-}
+};
 
 class LoginPage extends Component {
   constructor(props) {

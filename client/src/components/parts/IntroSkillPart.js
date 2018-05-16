@@ -28,7 +28,7 @@ class IntroSkillPart extends Component {
   handleRemoveBtnClick = (field, path) => {
     const { obj, idx } = path;
     let newArray = this.state.skill[obj];
-    newArray = newArray.filter((item, index) => { return index !== idx });;
+    newArray = newArray.filter((item, index) => { return index !== idx });
 
     this.setState({
       skill: {

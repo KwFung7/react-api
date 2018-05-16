@@ -45,7 +45,7 @@ class PortfolioHeaderSection extends Component {
         name: userName,
         position
       }
-    }
+    };
 
     this.setState({ editing: false }, () => {
       setPortfolioData(_id, payload)

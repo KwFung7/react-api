@@ -15,7 +15,7 @@ class HomePage extends Component {
 
   handleRequestClose = () => {
     this.setState({ open: false });
-  }
+  };
 
   render() {
     const { user = {} } = this.props;

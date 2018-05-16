@@ -62,7 +62,7 @@ class TextFieldList extends Component {
                         fieldIdx,
                         obj,
                         idx
-                      }
+                      };
                       return (
                         <div key={`${key}-${idx}`} className="section-list-item">
                           {
@@ -106,7 +106,7 @@ class TextFieldList extends Component {
               const path = {
                 fieldIdx,
                 obj
-              }
+              };
               return (
                 <TextField
                   id={key.toString()}

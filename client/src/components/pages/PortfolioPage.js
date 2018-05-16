@@ -37,11 +37,11 @@ class PortfolioPage extends Component {
         PortfolioSection = <PortfolioContactSection />;
         break;
       default:
-        console.log('No specific component for this route.')
+        console.log('No specific component for this route.');
         break;
     }
     return PortfolioSection;
-  }
+  };
 
   componentWillReceiveProps(nextProps) {
     const { id, fetchSpecificPortfolio } = nextProps;

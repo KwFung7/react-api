@@ -34,7 +34,7 @@ class PortfolioIntroSection extends Component {
         ...content,
         ...this.state.formData
       }
-    }
+    };
 
     this.setState({ editing: false }, () => {
       setPortfolioData(_id, payload)
@@ -72,7 +72,7 @@ class PortfolioIntroSection extends Component {
         [field]: value
       }
     });
-  }
+  };
 
   render() {
     const { formData, editing } = this.state;

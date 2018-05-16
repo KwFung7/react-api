@@ -36,11 +36,11 @@ class AdminLayout extends Component {
         setLocale(constants.EN);
         break;
       default:
-      this.props.setCurrentLocale(constants.EN);
+        this.props.setCurrentLocale(constants.EN);
         setLocale(constants.EN);
+        break;
     }
     this.props.handleLocationChange(window.location.pathname);
-    return;
   };
 
   handleDrawer = () => {
@@ -52,7 +52,7 @@ class AdminLayout extends Component {
     startLogoutProcess(() => {
       handleLocationChange(constants.LOGIN_ROUTE);
     });
-  }
+  };
 
   render() {
     const { user = {} } = this.props;

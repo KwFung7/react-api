@@ -42,7 +42,7 @@ class IntroExperiencePart extends Component {
     });
   };
 
-  handleListAddBtnClick = (field, idx) => {
+  handleListAddBtnClick = (field) => {
     let newArray = this.state.experience[field];
     const template = templateData[field];
     newArray.push({ ...template, id: newArray.length + 1 });

@@ -12,7 +12,7 @@ class IntroEducationPart extends Component {
     };
   }
 
-  handleListAddBtnClick = (field, idx) => {
+  handleListAddBtnClick = (field) => {
     let newArray = this.state.education[field];
     newArray.push(templateData.education);
 

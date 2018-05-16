@@ -41,7 +41,7 @@ class PortfolioProjectsSection extends Component {
     })
   };
 
-  handleListAddBtnClick = (field, idx) => {
+  handleListAddBtnClick = (field) => {
     let newArray = this.state.formData[field];
     const template = templateData[field];
     newArray.push({ ...template, id: newArray.length + 1 });
@@ -116,7 +116,7 @@ class PortfolioProjectsSection extends Component {
         title: pageTitle,
         ios_app
       }
-    }
+    };
 
     this.setState({ editing: false }, () => {
       setPortfolioData(_id, payload)

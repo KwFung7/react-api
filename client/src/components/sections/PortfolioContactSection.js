@@ -41,7 +41,7 @@ class PortfolioContactSection extends Component {
         ...content,
         ...this.state.formData
       }
-    }
+    };
 
     this.setState({ editing: false }, () => {
       setPortfolioData(_id, payload)
