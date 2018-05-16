@@ -13,9 +13,9 @@ const authenticate = (req, res, next) => {
       req.token = token;
       next();
     })
-    .catch((e) => {
+    .catch(() => {
       res.status(UNAUTHORIZED).send();
     })
-}
+};
 
 module.exports = authenticate;

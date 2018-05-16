@@ -3,7 +3,7 @@ const _ = require('lodash');
 const { ObjectID } = require('mongodb');
 const { Setting } = require('../../models');
 const authenticate = require('../../middlewares/authenticate');
-const { SETTING_ROUTE, OK, BAD_REQUEST, UNAUTHORIZED, ENABLED_UPDATE_SETTING, ADMIN_ROLE } = require('../../constants');
+const { SETTING_ROUTE, OK, BAD_REQUEST, UNAUTHORIZED, NOT_FOUND, ENABLED_UPDATE_SETTING, ADMIN_ROLE } = require('../../constants');
 
 let router = express.Router();
 /* GET ===================================== */
@@ -15,7 +15,7 @@ router.get(SETTING_ROUTE, (req, res) => {
     .catch((err) => {
       res.status(BAD_REQUEST).send(err);
     })
-})
+});
 
 /* PATCH ===================================== */
 router.patch(`${SETTING_ROUTE}/:id`, authenticate, (req, res) => {
@@ -50,7 +50,7 @@ router.patch(`${SETTING_ROUTE}/:id`, authenticate, (req, res) => {
     .catch((err) => {
       res.status(BAD_REQUEST).send(err);
     })
-})
+});
 
 /* POST ===================================== */
 router.post(SETTING_ROUTE, authenticate, (req, res) => {
@@ -71,6 +71,6 @@ router.post(SETTING_ROUTE, authenticate, (req, res) => {
     .catch((err) => {
       res.status(BAD_REQUEST).send(err);
     })
-})
+});
 
 module.exports = router;

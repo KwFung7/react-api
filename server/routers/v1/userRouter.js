@@ -2,7 +2,7 @@ const express = require('express');
 const _ = require('lodash');
 const { User } = require('../../models');
 const authenticate = require('../../middlewares/authenticate');
-const { OK, BAD_REQUEST, USER_ROUTE, UNAUTHORIZED } = require('../../constants');
+const { BAD_REQUEST, USER_ROUTE, UNAUTHORIZED } = require('../../constants');
 
 let router = express.Router();
 
@@ -37,7 +37,7 @@ router.post(`${USER_ROUTE}/login`, (req, res) => {
   .catch((err) => {
     res.status(BAD_REQUEST).send(err);
   })
-})
+});
 
 router.post(`${USER_ROUTE}/token`, (req, res) => {
   // check token valid or not
@@ -50,10 +50,10 @@ router.post(`${USER_ROUTE}/token`, (req, res) => {
       }
       res.send(user);
     })
-    .catch((e) => {
+    .catch(() => {
       res.status(UNAUTHORIZED).send();
     })
-})
+});
 
 /* GET ===================================== */
 router.get(USER_ROUTE, authenticate, (req, res) => {
@@ -69,6 +69,6 @@ router.delete(`${USER_ROUTE}/logout`, authenticate, (req, res) => {
   .catch((err) => {
     res.status(BAD_REQUEST).send(err);
   })
-})
+});
 
 module.exports = router;

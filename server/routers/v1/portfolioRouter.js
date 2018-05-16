@@ -33,7 +33,7 @@ router.get(PORTFOLIO_ROUTE, authenticate, (req, res) => {
 });
 
 router.get(`${PORTFOLIO_ROUTE}/:id`, (req, res) => {
-  const id = req.params.id
+  const id = req.params.id;
 
   if (!ObjectID.isValid(id)) {
     return res.status(NOT_FOUND).send({
@@ -88,7 +88,7 @@ router.patch(`${PORTFOLIO_ROUTE}/:id`, authenticate, (req, res) => {
     .catch((err) => {
       res.status(BAD_REQUEST).send(err);
     })
-})
+});
 
 /* POST ===================================== */
 router.post(PORTFOLIO_ROUTE, authenticate, (req, res) => {
@@ -101,6 +101,6 @@ router.post(PORTFOLIO_ROUTE, authenticate, (req, res) => {
     .catch((err) => {
       res.status(BAD_REQUEST).send(err);
     });
-})
+});
 
 module.exports = router;

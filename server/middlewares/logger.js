@@ -9,7 +9,7 @@ const logger = (req, res, next) => {
   let data = fs.readFileSync('server.log').toString().split("\n");
   log.split("\n").reverse().forEach((line) => {
     data.unshift(line);
-  })
+  });
   log = data.join("\n");
 
   fs.writeFile('server.log', log, err => {

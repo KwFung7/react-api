@@ -14,6 +14,6 @@ router.get(LOG_ROUTE, authenticate, (req, res) => {
     }
     res.status(OK).send(data.toString().split('\n').slice(0, 400).join('\n'));
   });
-})
+});
 
 module.exports = router;

@@ -76,7 +76,7 @@ userSchema.methods.removeToken = function (token) {
       tokens: {token}
     }
   })
-}
+};
 
 /* Model Method ==================================== */
 userSchema.statics.findByToken = function (token) {
@@ -119,7 +119,7 @@ userSchema.statics.findByCredentials = function (userName, password) {
       });
     })
   })
-}
+};
 
 /* Bcrypt before save ============================== */
 userSchema.pre('save', function (next) {
@@ -136,6 +136,6 @@ userSchema.pre('save', function (next) {
   } else {
     next();
   }
-})
+});
 
 module.exports = userSchema;

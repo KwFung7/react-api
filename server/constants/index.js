@@ -31,8 +31,8 @@ const ENABLED_UPDATE_PORTFOLIO_FIELD = [
 const ADMIN_ROLE = 'admin';
 
 // Error message
-const WRONG_ACCOUNT = 'Couldn\'t find your Account'
-const WRONG_PASSWORD = 'Wrong password. Please try again.'
+const WRONG_ACCOUNT = 'Couldn\'t find your Account';
+const WRONG_PASSWORD = 'Wrong password. Please try again.';
 
 module.exports = {
   OK,
@@ -52,4 +52,4 @@ module.exports = {
   TOKEN_EXPIRE_DAY,
   WRONG_ACCOUNT,
   WRONG_PASSWORD
-}
+};
