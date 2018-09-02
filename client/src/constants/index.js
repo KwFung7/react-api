@@ -45,7 +45,7 @@ export const USER_ID = 'userID';
 // Validation
 export const WORD_LIMIT = {
   userName: 30,
-  position: 20,
+  position: 50,
   email: 30,
   github_link: 50,
   linkedin_link: 50,
