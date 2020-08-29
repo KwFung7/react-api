@@ -5,7 +5,7 @@
   "proxy": "http://localhost:5000/",
   "dependencies": {
     "axios": "^0.18.1",
-    "bootstrap": "^4.0.0",
+    "bootstrap": "^4.3.1",
     "i18n-js": "^3.0.3",
     "jsonwebtoken": "^8.2.0",
     "lodash": "^4.17.19",
