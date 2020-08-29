@@ -10,11 +10,7 @@
     "server": "cd server && nodemon server.js",
     "start": "cd server && node server.js",
     "dev-start": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
-    "test": "mocha server/**/*.test.js",
-    "watch-test": "nodemon --exec \"yarn test\""
-  },
-  "engines": {
-    "node": "6.11.2"
+    "test": "mocha server/**/*.test.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -31,7 +27,6 @@
   "devDependencies": {
     "expect": "^22.3.0",
     "mocha": "^5.0.1",
-    "nodemon": "^1.15.0",
     "supertest": "^3.0.0"
   }
 }
