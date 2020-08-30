@@ -11,9 +11,6 @@
 /server/config/config.json
 /.vscode
 
-# production
-/build
-
 # misc
 .DS_Store
 .env.local
@@ -26,3 +23,8 @@ yarn-debug.log*
 yarn-error.log*
 server.log
 .idea
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
