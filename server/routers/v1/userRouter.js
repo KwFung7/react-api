@@ -17,10 +17,10 @@ router.post(USER_ROUTE, (req, res) => {
       return user.generateAuthToken();
     })
     .then((token) => {
-      res.header('x-auth', token).send(user);
+      res.header('x-auth', token).json(user);
     })
     .catch((err) => {
-      res.status(BAD_REQUEST).send(err);
+      res.status(BAD_REQUEST).json(err);
     });
 });
 
@@ -31,11 +31,11 @@ router.post(`${USER_ROUTE}/login`, (req, res) => {
   .then((user) => {
     return user.generateAuthToken()
     .then((token) => {
-      res.header('x-auth', token).send(user);
+      res.header('x-auth', token).json(user);
     })
   })
   .catch((err) => {
-    res.status(BAD_REQUEST).send(err);
+    res.status(BAD_REQUEST).json(err);
   })
 });
 
@@ -48,26 +48,26 @@ router.post(`${USER_ROUTE}/token`, (req, res) => {
       if (!user) {
         return Promise.reject();
       }
-      res.send(user);
+      res.json(user);
     })
     .catch(() => {
-      res.status(UNAUTHORIZED).send();
+      res.status(UNAUTHORIZED).json();
     })
 });
 
 /* GET ===================================== */
 router.get(USER_ROUTE, authenticate, (req, res) => {
-  res.send(req.user);
+  res.json(req.user);
 });
 
 /* DELETE ===================================== */
 router.delete(`${USER_ROUTE}/logout`, authenticate, (req, res) => {
   req.user.removeToken(req.token)
   .then(() => {
-    res.send('Logout Successful.');
+    res.json('Logout Successful.');
   })
   .catch((err) => {
-    res.status(BAD_REQUEST).send(err);
+    res.status(BAD_REQUEST).json(err);
   })
 });
 

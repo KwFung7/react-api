@@ -10,10 +10,10 @@ let router = express.Router();
 router.get(SETTING_ROUTE, (req, res) => {
   Setting.find()
     .then((settings) => {
-      res.status(OK).send(settings);
+      res.status(OK).json(settings);
     })
     .catch((err) => {
-      res.status(BAD_REQUEST).send(err);
+      res.status(BAD_REQUEST).json(err);
     })
 });
 
@@ -24,14 +24,14 @@ router.patch(`${SETTING_ROUTE}/:id`, authenticate, (req, res) => {
   const body = _.pick(req.body, ENABLED_UPDATE_SETTING);
 
   if (ADMIN_ROLE !== req.user.role) {
-    return res.status(UNAUTHORIZED).send({
+    return res.status(UNAUTHORIZED).json({
       message: 'This account is not authorized to edit system setting.',
       value: req.user.userName
     });
   }
 
   if (!ObjectID.isValid(id)) {
-    return res.status(NOT_FOUND).send({
+    return res.status(NOT_FOUND).json({
       message: 'ID not valid.',
       value: id
     });
@@ -40,15 +40,15 @@ router.patch(`${SETTING_ROUTE}/:id`, authenticate, (req, res) => {
   Setting.findByIdAndUpdate(id, { $set: body }, { new: true } )
     .then((setting) => {
       if (!setting) {
-        return res.status(NOT_FOUND).send({
+        return res.status(NOT_FOUND).json({
           message: 'ID not found.',
           value: id
         })
       }
-      res.status(OK).send(setting);
+      res.status(OK).json(setting);
     })
     .catch((err) => {
-      res.status(BAD_REQUEST).send(err);
+      res.status(BAD_REQUEST).json(err);
     })
 });
 
@@ -58,7 +58,7 @@ router.post(SETTING_ROUTE, authenticate, (req, res) => {
   const setting = new Setting(obj);
 
   if (ADMIN_ROLE !== req.user.role) {
-    return res.status(UNAUTHORIZED).send({
+    return res.status(UNAUTHORIZED).json({
       message: 'This account is not authorized to add system setting.',
       value: req.user.userName
     });
@@ -66,10 +66,10 @@ router.post(SETTING_ROUTE, authenticate, (req, res) => {
 
   setting.save()
     .then(() => {
-      res.status(OK).send('Saved new setting.');
+      res.status(OK).json('Saved new setting.');
     })
     .catch((err) => {
-      res.status(BAD_REQUEST).send(err);
+      res.status(BAD_REQUEST).json(err);
     })
 });
 
