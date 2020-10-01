@@ -14,7 +14,7 @@ describe('POST /api/v1/portfolio', () => {
   it('should create new portfolio', (done) => {
     request(app)
       .post('/api/v1/portfolio')
-      .json(portfolioExample)
+      .send(portfolioExample)
       .expect(200)
       .expect((res) => {
         expect(res.text).toBe('Saved new portfolio.');

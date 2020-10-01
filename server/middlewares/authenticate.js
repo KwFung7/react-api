@@ -14,7 +14,7 @@ const authenticate = (req, res, next) => {
       next();
     })
     .catch(() => {
-      res.status(UNAUTHORIZED).json();
+      res.status(UNAUTHORIZED).send();
     })
 };
 
