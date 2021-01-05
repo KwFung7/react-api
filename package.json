@@ -5,12 +5,11 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "client": "cd client && yarn start",
-    "build-client": "cd client && yarn build",
-    "server": "cd server && nodemon server.js",
-    "start": "cd server && node server.js",
-    "dev-start": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
-    "test": "mocha server/**/*.test.js",
+    "server": "nodemon server.js",
+    "start": "node server.js",
+    "serverless-start": "sls offline start --skipCacheInvalidation",
+    "serverless-deploy": "sls deploy",
+    "test": "mocha ./**/*.test.js",
     "watch-test": "nodemon --exec \"yarn test\""
   },
   "dependencies": {
@@ -24,11 +23,13 @@
     "lodash": "^4.17.5",
     "mongodb": "^3.0.2",
     "mongoose": "^5.0.5",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "serverless-http": "^2.6.0"
   },
   "devDependencies": {
     "expect": "^22.3.0",
     "mocha": "^5.0.1",
+    "serverless-offline": "^6.8.0",
     "supertest": "^3.0.0"
   }
 }
