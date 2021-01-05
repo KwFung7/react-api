@@ -7,7 +7,7 @@
 /coverage
 
 # development
-/server/config/config.json
+/config/config.json
 /.vscode
 
 # misc
