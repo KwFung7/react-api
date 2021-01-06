@@ -21,11 +21,15 @@ functions:
       - http:
           path: /
           method: ANY
-          cors: true
+          cors:
+            - enabled: true
+            - headers: 'Content-Type,Authorization,x-auth'
       - http:
           path: /{proxy+}
           method: ANY
-          cors: true
+          cors:
+            - enabled: true
+            - headers: 'Content-Type,Authorization,x-auth'
 
 plugins:
   - serverless-offline

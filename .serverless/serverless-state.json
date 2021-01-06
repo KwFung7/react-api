@@ -175,7 +175,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/express-app/prod/1609957850211-2021-01-06T18:30:50.211Z/express-app.zip"
+                "S3Key": "serverless/express-app/prod/1609959208564-2021-01-06T18:53:28.564Z/express-app.zip"
               },
               "Handler": "server.handler",
               "Runtime": "nodejs12.x",
@@ -193,14 +193,14 @@
               "AppLogGroup"
             ]
           },
-          "AppLambdaVersionmfgY6R1VAFqsV3XTukDOfvAOvZcrHkDSw5JGNHRBLA": {
+          "AppLambdaVersionIVWj7AWN7QuCiGFZg0AvR5wqJluVsxNCrNBIeAkxPw": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "AppLambdaFunction"
               },
-              "CodeSha256": "uEin5yR4PaxbxoCrsCF2wtDpYJ9Qgr8T0xmpKL7EHSM="
+              "CodeSha256": "MdPVXzdRtNpwV7CkCOyrRG77+6p7LO+JQY8CUOY3e+k="
             }
           },
           "ApiGatewayRestApi": {
@@ -262,7 +262,7 @@
                       "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,DELETE,GET,HEAD,PATCH,POST,PUT'"
                     },
                     "ResponseTemplates": {
-                      "application/json": "#set($origin = $input.params(\"Origin\"))\n#if($origin == \"\") #set($origin = $input.params(\"origin\")) #end\n#if($origin.matches(\".+\")) #set($context.responseOverride.header.Access-Control-Allow-Origin = $origin) #end"
+                      "application/json": ""
                     }
                   }
                 ]
@@ -310,7 +310,7 @@
                       "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,DELETE,GET,HEAD,PATCH,POST,PUT'"
                     },
                     "ResponseTemplates": {
-                      "application/json": "#set($origin = $input.params(\"Origin\"))\n#if($origin == \"\") #set($origin = $input.params(\"origin\")) #end\n#if($origin.matches(\".+\")) #set($context.responseOverride.header.Access-Control-Allow-Origin = $origin) #end"
+                      "application/json": ""
                     }
                   }
                 ]
@@ -412,7 +412,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1609957834748": {
+          "ApiGatewayDeployment1609959203424": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -474,7 +474,7 @@
           "AppLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "AppLambdaVersionmfgY6R1VAFqsV3XTukDOfvAOvZcrHkDSw5JGNHRBLA"
+              "Ref": "AppLambdaVersionIVWj7AWN7QuCiGFZg0AvR5wqJluVsxNCrNBIeAkxPw"
             }
           },
           "ServiceEndpoint": {
@@ -598,25 +598,14 @@
             "http": {
               "path": "",
               "method": "any",
-              "cors": {
-                "origins": [
-                  "*"
-                ],
-                "origin": "*",
-                "methods": [
-                  "OPTIONS",
-                  "ANY"
-                ],
-                "headers": [
-                  "Content-Type",
-                  "X-Amz-Date",
-                  "Authorization",
-                  "X-Api-Key",
-                  "X-Amz-Security-Token",
-                  "X-Amz-User-Agent"
-                ],
-                "allowCredentials": false
-              },
+              "cors": [
+                {
+                  "enabled": true
+                },
+                {
+                  "headers": "Content-Type,Authorization,x-auth"
+                }
+              ],
               "integration": "AWS_PROXY"
             }
           },
@@ -624,25 +613,14 @@
             "http": {
               "path": "{proxy+}",
               "method": "any",
-              "cors": {
-                "origins": [
-                  "*"
-                ],
-                "origin": "*",
-                "methods": [
-                  "OPTIONS",
-                  "ANY"
-                ],
-                "headers": [
-                  "Content-Type",
-                  "X-Amz-Date",
-                  "Authorization",
-                  "X-Api-Key",
-                  "X-Amz-Security-Token",
-                  "X-Amz-User-Agent"
-                ],
-                "allowCredentials": false
-              },
+              "cors": [
+                {
+                  "enabled": true
+                },
+                {
+                  "headers": "Content-Type,Authorization,x-auth"
+                }
+              ],
               "integration": "AWS_PROXY"
             }
           }
@@ -653,7 +631,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "AppLambdaVersionmfgY6R1VAFqsV3XTukDOfvAOvZcrHkDSw5JGNHRBLA"
+        "versionLogicalId": "AppLambdaVersionIVWj7AWN7QuCiGFZg0AvR5wqJluVsxNCrNBIeAkxPw"
       }
     },
     "configValidationMode": "warn",
@@ -686,7 +664,7 @@
     "artifact": "C:\\Users\\LingF\\Project\\react-api\\.serverless\\express-app.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/express-app/prod/1609957850211-2021-01-06T18:30:50.211Z",
+    "artifactDirectoryName": "serverless/express-app/prod/1609959208564-2021-01-06T18:53:28.564Z",
     "artifact": "express-app.zip"
   }
 }
