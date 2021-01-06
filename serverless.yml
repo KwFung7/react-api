@@ -12,6 +12,7 @@ vpc:
     - sg-1923466d
   subnetIds:
     - subnet-dba66193
+    - subnet-48e6312e
 
 functions:
   app:
