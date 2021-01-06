@@ -17,7 +17,7 @@ router.post(USER_ROUTE, (req, res) => {
       return user.generateAuthToken();
     })
     .then((token) => {
-      res.header('x-auth', token).send(user);
+      res.header('Authorization', token).send(user);
     })
     .catch((err) => {
       res.status(BAD_REQUEST).send(err);
@@ -31,7 +31,7 @@ router.post(`${USER_ROUTE}/login`, (req, res) => {
   .then((user) => {
     return user.generateAuthToken()
     .then((token) => {
-      res.header('x-auth', token).send(user);
+      res.header('Authorization', token).send(user);
     })
   })
   .catch((err) => {

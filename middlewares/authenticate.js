@@ -2,7 +2,7 @@ const { UNAUTHORIZED } = require('../constants');
 const { User } = require('../models');
 
 const authenticate = (req, res, next) => {
-  const token = req.header('x-auth');
+  const token = req.header('Authorization');
   User.findByToken(token)
     .then((user) => {
       if (!user) {
