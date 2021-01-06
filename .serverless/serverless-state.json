@@ -175,7 +175,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/express-app/prod/1609856593318-2021-01-05T14:23:13.318Z/express-app.zip"
+                "S3Key": "serverless/express-app/prod/1609934946471-2021-01-06T12:09:06.471Z/express-app.zip"
               },
               "Handler": "server.handler",
               "Runtime": "nodejs12.x",
@@ -193,14 +193,14 @@
               "AppLogGroup"
             ]
           },
-          "AppLambdaVersionl7nUc2eUW72B1suvQSiH3CAnNHFNi6NVYMwoKnapw": {
+          "AppLambdaVersionzeRLqLxfvqeb88zVu1zKiN3yhJCfA41PDY6r0vztaY": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "AppLambdaFunction"
               },
-              "CodeSha256": "QcySvaIrlmvLx9L9VCu5vyy/8jzgnk0XcrH5sxhXdCU="
+              "CodeSha256": "q2TSEwPMiSm4v6yRsEJET394leaXCkatgj44qNfhTf8="
             }
           },
           "ApiGatewayRestApi": {
@@ -412,7 +412,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1609856575232": {
+          "ApiGatewayDeployment1609934941104": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -474,7 +474,7 @@
           "AppLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "AppLambdaVersionl7nUc2eUW72B1suvQSiH3CAnNHFNi6NVYMwoKnapw"
+              "Ref": "AppLambdaVersionzeRLqLxfvqeb88zVu1zKiN3yhJCfA41PDY6r0vztaY"
             }
           },
           "ServiceEndpoint": {
@@ -653,7 +653,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "AppLambdaVersionl7nUc2eUW72B1suvQSiH3CAnNHFNi6NVYMwoKnapw"
+        "versionLogicalId": "AppLambdaVersionzeRLqLxfvqeb88zVu1zKiN3yhJCfA41PDY6r0vztaY"
       }
     },
     "configValidationMode": "warn",
@@ -666,6 +666,14 @@
       "provider": {
         "$ref": "$[\"service\"][\"provider\"]"
       },
+      "vpc": {
+        "securityGroupIds": [
+          "sg-1923466d"
+        ],
+        "subnetIds": [
+          "subnet-dba66193"
+        ]
+      },
       "functions": {
         "$ref": "$[\"service\"][\"functions\"]"
       },
@@ -677,7 +685,7 @@
     "artifact": "C:\\Users\\LingF\\Project\\react-api\\.serverless\\express-app.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/express-app/prod/1609856593318-2021-01-05T14:23:13.318Z",
+    "artifactDirectoryName": "serverless/express-app/prod/1609934946471-2021-01-06T12:09:06.471Z",
     "artifact": "express-app.zip"
   }
 }
