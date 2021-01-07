@@ -5,7 +5,7 @@ const logger = require('./middlewares/logger');
 const ApiRouter = require('./routers');
 
 let app = express();
-app.use(cors({ exposedHeaders: 'x-auth' }));
+app.use(cors({ exposedHeaders: 'x-auth', allowedHeaders: 'x-auth' }));
 app.use(bodyParser.json());
 // app.use(logger);
 app.use('/', ApiRouter);

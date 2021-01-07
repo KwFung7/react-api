@@ -19,14 +19,80 @@ functions:
     handler: server.handler
     events:
       - http:
-          path: /
-          method: ANY
+          path: /api/v1/setting
+          method: get
           cors:
             - enabled: true
             - headers: 'Content-Type,Authorization,x-auth'
       - http:
-          path: /{proxy+}
-          method: ANY
+          path: /api/v1/setting
+          method: post
+          cors:
+            - enabled: true
+            - headers: 'Content-Type,Authorization,x-auth'
+      - http:
+          path: /api/v1/setting/{id}
+          method: patch
+          cors:
+            - enabled: true
+            - headers: 'Content-Type,Authorization,x-auth'
+      - http:
+          path: /api/v1/log
+          method: get
+          cors:
+            - enabled: true
+            - headers: 'Content-Type,Authorization,x-auth'
+      - http:
+          path: /api/v1/portfolio
+          method: get
+          cors:
+            - enabled: true
+            - headers: 'Content-Type,Authorization,x-auth'
+      - http:
+          path: /api/v1/portfolio/{id}
+          method: get
+          cors:
+            - enabled: true
+            - headers: 'Content-Type,Authorization,x-auth'
+      - http:
+          path: /api/v1/portfolio
+          method: post
+          cors:
+            - enabled: true
+            - headers: 'Content-Type,Authorization,x-auth'
+      - http:
+          path: /api/v1/portfolio/{id}
+          method: patch
+          cors:
+            - enabled: true
+            - headers: 'Content-Type,Authorization,x-auth'
+      - http:
+          path: /api/v1/user
+          method: get
+          cors:
+            - enabled: true
+            - headers: 'Content-Type,Authorization,x-auth'
+      - http:
+          path: /api/v1/user/logout
+          method: delete
+          cors:
+            - enabled: true
+            - headers: 'Content-Type,Authorization,x-auth'
+      - http:
+          path: /api/v1/user
+          method: post
+          cors:
+            - enabled: true
+            - headers: 'Content-Type,Authorization,x-auth'
+      - http:
+          path: /api/v1/user/login
+          method: post
+          cors:
+            - enabled: true
+            - headers: 'Content-Type,Authorization,x-auth'
+      - http:
+          path: /api/v1/user/token
+          method: post
           cors:
             - enabled: true
             - headers: 'Content-Type,Authorization,x-auth'
